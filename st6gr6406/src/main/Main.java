@@ -25,17 +25,17 @@ import model.OpretKontoModel;
  */
 public class Main extends Application{
     
-    private ObservableList<OpretKontoModel> familieData = FXCollections.observableArrayList();
+    //private ObservableList<> familieData = FXCollections.observableArrayList();
     private Stage primaryStage;
 
-    public Main(){
+    /*public Main(){
         familieData.add(new OpretKontoModel("Trine"));
         
     }
     
     public ObservableList<OpretKontoModel> getFamilieData() {
         return familieData;
-    }
+    }*/
 
     @Override
     public void start(Stage primaryStage) {
@@ -47,5 +47,6 @@ public class Main extends Application{
     }
      
 }
+
 
   
