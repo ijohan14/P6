@@ -7,6 +7,7 @@ package main;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -29,20 +30,22 @@ public class Main extends Application{
 
     public Main(){
         familieData.add(new OpretKontoModel("Trine"));
-        familieData.forEach((o) -> {
-            System.out.println(o.toString());
-        });
+        
+    }
+    
+    public ObservableList<OpretKontoModel> getFamilieData() {
+        return familieData;
     }
 
     @Override
     public void start(Stage primaryStage) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
-
-   
     
-    
-    
-    
-    
+     public static void main(String[] args) {
+        launch(args);
+    }
+     
 }
+
+  
