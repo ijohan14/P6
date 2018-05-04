@@ -11,14 +11,17 @@ package model;
  */
 public class BornekontoModel {
     //Attributter
-    public int startniveau; 
+    private int startniveau; 
     private int svarSum;
     private int hojde;
     private int vagt;
-    public int alder; 
+    private int alder;
+    private boolean kon;
     private int svar1; 
     private int svar2; 
     private int svar3;
+    //private int bmi;
+    private int isobmi;
     
     //constructer 
     //private BørnekontoModel(){
@@ -49,23 +52,124 @@ public class BornekontoModel {
     
     //vi skal have givet svarSum en værdi. det skal være summen af svar1, svar2 og svar3. 
     
-    public void startNivaeu(int svarSum){
+    public void startNiveau(int svarSum){
         if (svarSum == 0){
-            startniveau = 1; 
+            setStartniveau(1); 
         }
         if  (svarSum == 1){ 
-            startniveau = 1; 
+            setStartniveau(1); 
         }
         if (svarSum == 2){
-            startniveau = 2; 
+            setStartniveau(2); 
         }
         if (svarSum == 3){
-            startniveau = 2;
+            setStartniveau(2);
         }
         else{
             System.out.println("Fejlmeddelelse");
         }
     }
+    
+
+    
+    public void ISOBMI(int hojde, int vagt, int alder){
+        //bmi = vagt/(hojde*hojde);
+        //Herefter skal vi så udregne ISO-BMI ud fra BMI og alder.
+        setIsobmi(vagt/(hojde*hojde)); //!!!!Her skal alder og køn regnes på!!!!
+    }
+
+    /**
+     * @return the startniveau
+     */
+    public int getStartniveau() {
+        return startniveau;
+    }
+
+    /**
+     * @return the svarSum
+     */
+    public int getSvarSum() {
+        return svarSum;
+    }
+
+    /**
+     * @return the hojde
+     */
+    public int getHojde() {
+        return hojde;
+    }
+
+    /**
+     * @param hojde the hojde to set
+     */
+    public void setHojde(int hojde) {
+        this.hojde = hojde;
+    }
+
+    /**
+     * @return the vagt
+     */
+    public int getVagt() {
+        return vagt;
+    }
+
+    /**
+     * @param vagt the vagt to set
+     */
+    public void setVagt(int vagt) {
+        this.vagt = vagt;
+    }
+
+    /**
+     * @return the alder
+     */
+    public int getAlder() {
+        return alder;
+    }
+
+    /**
+     * @param alder the alder to set
+     */
+    public void setAlder(int alder) {
+        this.alder = alder;
+    }
+
+    /**
+     * @return the svar1
+     */
+    public int getSvar1() {
+        return svar1;
+    }
+
+    /**
+     * @return the svar2
+     */
+    public int getSvar2() {
+        return svar2;
+    }
+
+    /**
+     * @return the svar3
+     */
+    public int getSvar3() {
+        return svar3;
+    }
+
+    /**
+     * @return the isobmi
+     */
+    public int getIsobmi() {
+        return isobmi;
+    }
+
+    /**
+     * @param isobmi the isobmi to set
+     */
+    public void setIsobmi(int isobmi) {
+        this.isobmi = isobmi;
+    }
+    
+     
     
             
 }

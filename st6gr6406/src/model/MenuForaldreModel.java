@@ -11,9 +11,16 @@ package model;
  */
 public class MenuForaldreModel {
     //Attributter
-    public String sundinfo; //informationcontroller skal bruge, derfor +m
-    public String kostregistrering; //navnet hedder dette, fordi den hænger sammen med kostregistreringviez og -controller
+    public String kostVejledning; //Vejledningcontroller skal bruge, derfor +m
+    public String kostRegistrering; //navnet hedder dette, fordi den hænger sammen med kostregistreringview og -controller
+    public String fysiskAktivitetVejledning; 
+    public String opskrifter;
     
+    //Her skal isoBmi hentes fra BornekontoModel:
+    // getIsoBmi
+    
+    //Her skal vi hente fysiskAktivitet fra  MenuBornModel
+    // getFysiskAktivitet
     
     
     
