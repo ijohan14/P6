@@ -10,5 +10,15 @@ package model;
  * @author nathalie
  */
 public class ForaldrekontoModel {
+    //Attributter
+    private Float cpr;
+    public String kontotype;  
+    public String fornavn; 
+    public String efternavn; 
+    public int familieID; 
+    public String brugernavn; 
+    public String adgangskode; 
+    
+    
     
 }

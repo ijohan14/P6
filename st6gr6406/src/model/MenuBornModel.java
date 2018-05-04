@@ -10,5 +10,13 @@ package model;
  * @author nathalie
  */
 public class MenuBornModel {
+    //attributter 
+    public String fysiskAktivitet; //denne skal overføres til manuforældremodel.
+
+    //metoder 
+    public void setFysiskAktivitet(String fysiskAktivitet){
+        this.fysiskAktivitet = fysiskAktivitet;
+    }
+    
     
 }
