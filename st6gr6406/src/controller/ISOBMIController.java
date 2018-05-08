@@ -5,10 +5,25 @@
  */
 package controller;
 
+import model.MenuForaldreModel;
 /**
  *
  * @author nathalie
  */
 public class ISOBMIController {
+    //Attributter
+    public MenuForaldreModel isoBmi;
     
+    //Metoder
+    private void handleGemKnap(){
+        
+    }
+    
+    private void handleFortrydKnap(){
+        
+    }
+    
+    public void setIsoBmi(MenuForaldreModel isoBmi){
+        this.isoBmi = isoBmi;
+    }
 }

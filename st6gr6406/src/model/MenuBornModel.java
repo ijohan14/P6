@@ -13,28 +13,42 @@ package model;
  */
 public class MenuBornModel {
     //attributter 
-    public int fysiskAktivitetTid; //denne skal overføres til manuforældremodel.
-    public int fysiskAktivitetIntensitet;
-    public String fysiskAktivitetType;
+    
     public int level;
-    public float pointStatus;
-    public String avatarKon;
+    public int point;
     public String avatarHarFarve;
     public String avatarBukserFarve;
     public String avatarTrojeFarve;
     public String udfordring;
     public String malsatning;
+    public String typeMalsatning;
+    public int malsatningVarighed;
+    public String typeUdfordring;
+    public int udfordringVarighed;
+    //Timer??
     
 
     //metoder
     
     //Her skal alle avatar attributter settes!!
     
-    public void avatar(String avatarKon, String avatarHarFarve, String avatarBukserFarve, String avatarTrojeFarve){
+    public void avatar(String avatarHarFarve, String avatarBukserFarve, String avatarTrojeFarve){
         //Her skal der oprettes figurer, der ligner en avatar, det gør vi senere
     }
     
-    public void fysiskAktivitet(int fysiskAktivitetTid, String fysiskAktivitetType, int fysiskAktivitetIntensitet){
-        
+    public String udfordring(String udfordringType, int udfordringVarighed){
+        return udfordring;
+    }
+    
+    public String malsatning(String malsatningType, int malsatningVarighed){
+        return malsatning;
+    }
+    
+    public int level(int point){
+        return level;
+    }
+    
+    public int point(String udfordring, String malsatning){
+        return point;
     }
 }

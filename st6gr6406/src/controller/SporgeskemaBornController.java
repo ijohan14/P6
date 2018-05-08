@@ -5,17 +5,18 @@
  */
 package controller;
 
-import model.MenuForaldreModel;
+import model.StartModel;
+
 /**
  *
  * @author nathalie
  */
-public class KostregistreringController {
+public class SporgeskemaBornController {
     //Attributter
-    public MenuForaldreModel dagensKost;
+    public int sporgeskemaSvar;
     
     //Metoder
-    private void handleGemKnap(){
+    private void handleOkKnap(){
         
     }
     
@@ -23,8 +24,12 @@ public class KostregistreringController {
         
     }
     
-    public void setDagensKost(MenuForaldreModel dagensKost){
-        this.dagensKost = dagensKost;
+    public int getSporgeskemaSvar(){
+        return sporgeskemaSvar;
+    }
+    
+    public void setSporgeskemaSvar(){
+        
     }
     
 }

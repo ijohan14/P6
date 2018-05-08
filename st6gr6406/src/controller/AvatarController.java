@@ -5,10 +5,31 @@
  */
 package controller;
 
+import model.MenuBornModel;
+
 /**
  *
- * @author nathalie
+ * @author 18gr6406
  */
 public class AvatarController {
+    //Attributter
+    private MenuBornModel avatar;
+    
+    //Metoder
+    private void handleGemKnap(){
+        
+    }
+    
+    private void handleFortrydKnap(){
+        
+    }
+
+    /**
+     * @param avatar the avatar to set
+     */
+    public void setAvatar(MenuBornModel avatar) {
+        this.avatar = avatar;
+    }
+    
     
 }

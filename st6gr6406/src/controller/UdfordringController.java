@@ -5,10 +5,42 @@
  */
 package controller;
 
+import model.MenuBornModel;
+
 /**
  *
- * @author nathalie
+ * @author 18gr6406
  */
 public class UdfordringController {
+    //Attributter
+    private MenuBornModel udfordring;
+    
+    //Metoder
+    private void handleGemKnap(){
+        
+    }
+    
+    private void handleFortrydKnap(){
+        
+    }
+    
+    private void handleTilbageKnap(){
+        
+    }
+    
+    private void handleStartTimerKnap(){
+        
+    }
+    
+    private void handleStopTimerKnap(){
+        
+    }
+
+    /**
+     * @param udfordring the udfordring to set
+     */
+    public void setUdfordring(MenuBornModel udfordring) {
+        this.udfordring = udfordring;
+    }
     
 }

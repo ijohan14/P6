@@ -10,5 +10,32 @@ package controller;
  * @author nathalie
  */
 public class MenuForaldreController {
+    //Attributter
+    
+    
+    //Metoder    
+    private void handleKostRegistreringKnap(){
+        
+    }   
+    
+    private void handleISOBMIKnap(){
+        
+    }
+    
+    private void handleOpskrifterKnap(){
+        
+    }
+    
+    private void handleKostRapporterKnap(){
+        
+    }
+    
+    private void handleFysiskAktivitetRapporterKnap(){
+        
+    }
+    
+    private void handleLogUdKnap(){
+        
+    }
     
 }

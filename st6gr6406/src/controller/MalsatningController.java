@@ -5,10 +5,33 @@
  */
 package controller;
 
+import model.MenuBornModel;
+
 /**
  *
- * @author nathalie
+ * @author 18gr6406
  */
 public class MalsatningController {
+    //Atributter
+    private MenuBornModel malsatning;
+    
+    //Metoder
+    private void handleGemKnap(){
+        
+    }
+    
+    private void handleFortrydKnap(){
+        
+    }
+
+    /**
+     * @param malsatning the malsatning to set
+     */
+    public void setMalsatning(MenuBornModel malsatning) {
+        this.malsatning = malsatning;
+    }
+    
+    
+    
     
 }
