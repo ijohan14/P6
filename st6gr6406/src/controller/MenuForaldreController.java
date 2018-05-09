@@ -38,4 +38,16 @@ public class MenuForaldreController {
         
     }
     
+    private String visOpskrift(){ 
+        //tænker måske det skal være noget switch case, men ved ikke.
+        return "Opskrift1";
+    }
+    
+    private String visRapportKost(){
+        return "Kostrapport1";
+    }
+    
+    private String visRapportFysiskAktivitetRapport(){
+        return "Fysisk aktivitet rapport1";
+    }
 }

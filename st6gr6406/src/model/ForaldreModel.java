@@ -20,8 +20,8 @@ public class ForaldreModel {
     private StringProperty fornavn;
     private StringProperty efternavn;
     private StringProperty cpr;
-    public BooleanProperty kon;
-    public IntegerProperty alder;
+    //public BooleanProperty kon;
+    //public IntegerProperty alder;
     private StringProperty familieID;
     private BooleanProperty brugertype;
     private StringProperty adgangskode;

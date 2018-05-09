@@ -28,12 +28,16 @@ public class MenuBornController {
         
     }
 
-    private int visPoint(){
-        return testInt;
+    private int visPoint(Point: int){
+        //noget med at gette point fra en anden klasse og sætte pointene lig i og så returneres i
+        Point = 2;
     }
-    
-    private int visLevel(){
-        return testInt;
-    }
+//    private int visPoint(){
+//        return testInt;
+//    }
+//    
+//    private int visLevel(){
+//        return testInt;
+//    }
     
 }

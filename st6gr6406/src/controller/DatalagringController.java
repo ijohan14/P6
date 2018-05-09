@@ -10,5 +10,12 @@ package controller;
  * @author Gruppe 18gr6406
  */
 public class DatalagringController {
+    //ch tænker vi skal gette barn og foraldre før vi kan noget heri.
+    public boolean tilfojKonto(Barn: BarnModel){
+        
+    }
     
+    public boolean tilfojForaldre(Foraldre:ForaldreModel){
+        
+    }
 }
