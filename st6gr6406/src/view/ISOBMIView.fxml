@@ -33,5 +33,6 @@
       <TextField layoutX="124.0" layoutY="188.0" prefHeight="25.0" prefWidth="130.0" />
       <TextField layoutX="124.0" layoutY="231.0" prefHeight="25.0" prefWidth="130.0" />
       <Label layoutX="48.0" layoutY="292.0" text="ISO-BMI" />
+      <TextField layoutX="124.0" layoutY="288.0" prefHeight="25.0" prefWidth="130.0" />
    </children>
 </AnchorPane>
