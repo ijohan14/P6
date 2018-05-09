@@ -10,5 +10,28 @@ package controller;
  * @author Gruppe 18gr6406
  */
 public class SpilController {
+    //Attributter
+    
+    
+    //Metoder
+    private void handleMalsatningGemKnap(){
+        
+    }
+    
+    private void handleMalsatningFortrydKnap(){
+        
+    }
+    
+    private boolean erMalsatningInputValid(){
+        return erMalsatningInputValid;
+    }
+    
+    private String visMalsatningType(){
+        return visMalsatningType;
+    }
+    
+    private String visMalsatningVarighed(){
+        return visMalsatningVarighed;
+    }
     
 }

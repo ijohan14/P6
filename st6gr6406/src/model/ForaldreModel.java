@@ -19,7 +19,7 @@ public class ForaldreModel {
     //Attributter
     private StringProperty fornavn;
     private StringProperty efternavn;
-    private StringProperty CPR;
+    private StringProperty cpr;
     public BooleanProperty kon;
     public IntegerProperty alder;
     private StringProperty familieID;
@@ -39,8 +39,8 @@ public class ForaldreModel {
         this(null, null, false);
     }
     
-    public ForaldreModel(String CPR, String adgangskode, Boolean brugertype) {
-        this.CPR = new SimpleStringProperty(CPR);
+    public ForaldreModel(String cpr, String adgangskode, Boolean brugertype) {
+        this.cpr = new SimpleStringProperty(cpr);
         this.adgangskode = new SimpleStringProperty(adgangskode);
         this.brugertype = new SimpleBooleanProperty(brugertype);
         
@@ -82,17 +82,17 @@ public class ForaldreModel {
     }
 
     /**
-     * @return the CPR
+     * @return the cpr
      */
-    public StringProperty getCPR() {
-        return CPR;
+    public StringProperty getCpr() {
+        return cpr;
     }
 
     /**
-     * @param CPR the CPR to set
+     * @param cpr the cpr to set
      */
-    public void setCPR(StringProperty CPR) {
-        this.CPR = CPR;
+    public void setCpr(StringProperty cpr) {
+        this.cpr = cpr;
     }
 
     /**

@@ -7,7 +7,7 @@ package controller;
 
 /**
  *
- * @author nathalie
+ * @author Gruppe 18gr6406
  */
 public class MenuForaldreController {
     //Attributter
@@ -18,7 +18,7 @@ public class MenuForaldreController {
         
     }   
     
-    private void handleISOBMIKnap(){
+    private void handleIsoBmiKnap(){
         
     }
     

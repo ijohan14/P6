@@ -5,23 +5,18 @@
  */
 package controller;
 
-import model.BornModel;
 
 /**
  *
- * @author 18gr6406
+ * @author Gruppe 18gr6406
  */
 public class MenuBornController {
     //Attributter
-    private BornModel level;
-    private BornModel point;
+    private int level;
+    private int point;
     
     
-    //Metoder
-    private void handleAvatarKnap(){
-        
-    }
-    
+    //Metoder    
     private void handleMalsatningKnap(){
         
     }
@@ -34,33 +29,12 @@ public class MenuBornController {
         
     }
 
-    /**
-     * @return the level
-     */
-    public BornModel getLevel() {
-        return level;
-    }
-
-    /**
-     * @param level the level to set
-     */
-    public void setLevel(BornModel level) {
-        this.level = level;
-    }
-
-    /**
-     * @return the point
-     */
-    public BornModel getPoint() {
+    private int visPoint(){
         return point;
     }
-
-    /**
-     * @param point the point to set
-     */
-    public void setPoint(BornModel point) {
-        this.point = point;
-    }
     
+    private int visLevel(){
+        return level;
+    }
     
 }
