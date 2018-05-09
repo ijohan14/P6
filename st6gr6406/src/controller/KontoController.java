@@ -12,16 +12,20 @@ package controller;
  */
 public class KontoController {
     //Attributter
-    
+    private boolean testBoo;
     
  
     //Metoder
-    private void handleOkKnap(){
+    private void handleSporgeskemaBornOkKnap(){
         
     }
     
-    private void handleFortrydKnap(){
+    private void handleSporgeskemaBornFortrydKnap(){
         
+    }
+    
+    private boolean erSporgeskemaBornInputValid(){
+        return testBoo;
     }
     
     

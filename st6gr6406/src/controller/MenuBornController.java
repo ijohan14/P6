@@ -12,8 +12,7 @@ package controller;
  */
 public class MenuBornController {
     //Attributter
-    private int level;
-    private int point;
+    private int testInt;
     
     
     //Metoder    
@@ -30,11 +29,11 @@ public class MenuBornController {
     }
 
     private int visPoint(){
-        return point;
+        return testInt;
     }
     
     private int visLevel(){
-        return level;
+        return testInt;
     }
     
 }

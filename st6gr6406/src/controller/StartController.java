@@ -7,23 +7,26 @@ package controller;
 
 import main.Applikation;
 
+
 /**
  *
- * @author 18gr6406
+ * @author Gruppe 18gr6406
  */
 public class StartController {
     //Attributter
-
-    
     private Applikation main;
     
+    private boolean testBoo;
+    
+    
+    
+    //Metoder 
     /**
      * @param main  
      */
     public void setMain(Applikation main) {
         this.main = main;
     }
-    
     private void handleOpretNyBrugerKnap() {
     
     }
@@ -31,7 +34,10 @@ public class StartController {
     private void handleLoginKnap() {
         
     }
-
+    
+    private boolean erInputValid(){
+        return testBoo;
+    }
 
     
 }

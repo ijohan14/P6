@@ -11,7 +11,8 @@ package controller;
  */
 public class SpilController {
     //Attributter
-    
+    private boolean testBoo;
+    private String testString;
     
     //Metoder
     private void handleMalsatningGemKnap(){
@@ -23,15 +24,34 @@ public class SpilController {
     }
     
     private boolean erMalsatningInputValid(){
-        return erMalsatningInputValid;
+        return testBoo;
     }
     
     private String visMalsatningType(){
-        return visMalsatningType;
+        return testString;
     }
     
     private String visMalsatningVarighed(){
-        return visMalsatningVarighed;
+        return testString;
     }
     
+    private void handleUdfordringGemKnap(){
+        
+    }
+    
+    private void handleUdfordringFortrydKnap(){
+        
+    }
+    
+    private void handleUdfordringTilbageKnap(){
+        
+    }
+    
+    private void handleUdfordringStartTimerKnap(){
+        
+    }
+    
+    private void handleUdfordringStopTimerKnap(){
+        
+    }
 }

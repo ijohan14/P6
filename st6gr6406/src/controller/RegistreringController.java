@@ -5,7 +5,6 @@
  */
 package controller;
 
-import model.ForaldreModel;
 
 /**
  *
@@ -13,9 +12,8 @@ import model.ForaldreModel;
  */
 public class RegistreringController {
     //Attributter
-    private boolean erIsoBmiInputValid;
-    private int registrerValgtBarn;
-    private int cpr;
+    private boolean testBoo;
+    private int testInt;
     
     //Metoder
     private void handleIsoBmiGemKnap(){
@@ -31,14 +29,14 @@ public class RegistreringController {
     }
     
     private boolean erIsoBmiInputValid(){
-        return erIsoBmiInputValid;
+        return testBoo;
     }
     
     private int registrerValgtBarn(){
-        return cpr;
+        return testInt;
     }
     
     private boolean erKostRegistreringInputValid(){
-        return erKostRegistreringInputValid;
+        return testBoo;
     }
 }
