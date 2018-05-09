@@ -15,7 +15,7 @@ import javafx.beans.property.SimpleBooleanProperty;
  *
  * @author 18gr6406
  */
-public class StartModel {
+public class ForaldreModel {
     //Attributter
     private StringProperty fornavn;
     private StringProperty efternavn;
@@ -35,11 +35,11 @@ public class StartModel {
      * Default constructor
      * Denne sætter CPR og adgangskode til null som default.
      */
-    public StartModel(){
+    public ForaldreModel(){
         this(null, null, false);
     }
     
-    public StartModel(String CPR, String adgangskode, Boolean brugertype) {
+    public ForaldreModel(String CPR, String adgangskode, Boolean brugertype) {
         this.CPR = new SimpleStringProperty(CPR);
         this.adgangskode = new SimpleStringProperty(adgangskode);
         this.brugertype = new SimpleBooleanProperty(brugertype);

@@ -5,7 +5,7 @@
  */
 package controller;
 
-import model.MenuBornModel;
+import model.BornModel;
 
 /**
  *
@@ -13,8 +13,8 @@ import model.MenuBornModel;
  */
 public class MenuBornController {
     //Attributter
-    private MenuBornModel level;
-    private MenuBornModel point;
+    private BornModel level;
+    private BornModel point;
     
     
     //Metoder
@@ -37,28 +37,28 @@ public class MenuBornController {
     /**
      * @return the level
      */
-    public MenuBornModel getLevel() {
+    public BornModel getLevel() {
         return level;
     }
 
     /**
      * @param level the level to set
      */
-    public void setLevel(MenuBornModel level) {
+    public void setLevel(BornModel level) {
         this.level = level;
     }
 
     /**
      * @return the point
      */
-    public MenuBornModel getPoint() {
+    public BornModel getPoint() {
         return point;
     }
 
     /**
      * @param point the point to set
      */
-    public void setPoint(MenuBornModel point) {
+    public void setPoint(BornModel point) {
         this.point = point;
     }
     

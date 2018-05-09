@@ -9,7 +9,7 @@ package model;
  *
  * @author nathalie
  */
-public class MenuForaldreModel {
+public class VejledningModel {
     //Attributter
     private int dato;
     private String maltid;

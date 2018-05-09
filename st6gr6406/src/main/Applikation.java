@@ -20,14 +20,14 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import model.StartModel;
+import model.ForaldreModel;
 
 
 /**
  *
  * @author 18gr6406
  */
-public class Main extends Application{
+public class Applikation extends Application{
     
     
     private Stage primaryStage;
@@ -36,14 +36,14 @@ public class Main extends Application{
     /**
      * Her oprettes en observableList navngivet familieDate, som indeholder konti fra StartModel
      */
-    private ObservableList<StartModel> familieData = FXCollections.observableArrayList();
+    private ObservableList<ForaldreModel> familieData = FXCollections.observableArrayList();
     
-    public Main(){
-        familieData.add(new StartModel("131191-1234","adgangskodeTest", true));
+    public Applikation(){
+        familieData.add(new ForaldreModel("131191-1234","adgangskodeTest", true));
         
     }
     
-    public ObservableList<StartModel> getFamilieData() {
+    public ObservableList<ForaldreModel> getFamilieData() {
         return familieData;
     }
 

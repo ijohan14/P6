@@ -5,14 +5,14 @@
  */
 package controller;
 
-import model.MenuForaldreModel;
+import model.VejledningModel;
 /**
  *
  * @author nathalie
  */
-public class ISOBMIController {
+public class IsoBmiController {
     //Attributter
-    public MenuForaldreModel isoBmi;
+    public VejledningModel isoBmi;
     
     //Metoder
     private void handleGemKnap(){
@@ -23,7 +23,7 @@ public class ISOBMIController {
         
     }
     
-    public void setIsoBmi(MenuForaldreModel isoBmi){
+    public void setIsoBmi(VejledningModel isoBmi){
         this.isoBmi = isoBmi;
     }
 }

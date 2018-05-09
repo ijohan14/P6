@@ -5,7 +5,7 @@
  */
 package controller;
 
-import model.MenuBornModel;
+import model.BornModel;
 
 /**
  *
@@ -13,7 +13,7 @@ import model.MenuBornModel;
  */
 public class MalsatningController {
     //Atributter
-    private MenuBornModel malsatning;
+    private BornModel malsatning;
     
     //Metoder
     private void handleGemKnap(){
@@ -27,7 +27,7 @@ public class MalsatningController {
     /**
      * @param malsatning the malsatning to set
      */
-    public void setMalsatning(MenuBornModel malsatning) {
+    public void setMalsatning(BornModel malsatning) {
         this.malsatning = malsatning;
     }
     

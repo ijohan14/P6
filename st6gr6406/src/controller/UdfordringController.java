@@ -5,15 +5,15 @@
  */
 package controller;
 
-import model.MenuBornModel;
+import model.BornModel;
 
 /**
  *
- * @author 18gr6406
+ * @author Gruppe 18gr6406
  */
 public class UdfordringController {
     //Attributter
-    private MenuBornModel udfordring;
+    private BornModel udfordring;
     
     //Metoder
     private void handleGemKnap(){
@@ -39,7 +39,7 @@ public class UdfordringController {
     /**
      * @param udfordring the udfordring to set
      */
-    public void setUdfordring(MenuBornModel udfordring) {
+    public void setUdfordring(BornModel udfordring) {
         this.udfordring = udfordring;
     }
     

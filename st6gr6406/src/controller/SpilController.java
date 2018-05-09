@@ -5,26 +5,10 @@
  */
 package controller;
 
-
 /**
  *
- * @author 18gr6406
+ * @author Gruppe 18gr6406
  */
-public class OpretNyKontoController {
-    //Attributter
-    
-    
- 
-    //Metoder
-    
-    
-    private void handleOkKnap(){
-        
-    }
-    
-    private void handleFortrydKnap(){
-        
-    }
-    
+public class SpilController {
     
 }

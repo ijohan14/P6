@@ -5,7 +5,7 @@
  */
 package controller;
 
-import model.StartModel;
+import model.ForaldreModel;
 
 /**
  *

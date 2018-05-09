@@ -16,7 +16,7 @@ import javafx.beans.property.StringProperty;
  *
  * @author 18gr6406
  */
-public class MenuBornModel {
+public class BornModel {
     //attributter 
     private StringProperty fornavn;
     private StringProperty efternavn;

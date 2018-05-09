@@ -5,14 +5,14 @@
  */
 package controller;
 
-import model.MenuForaldreModel;
+import model.VejledningModel;
 /**
  *
  * @author nathalie
  */
 public class KostregistreringController {
     //Attributter
-    public MenuForaldreModel dagensKost;
+    public VejledningModel dagensKost;
     
     //Metoder
     private void handleGemKnap(){
@@ -23,7 +23,7 @@ public class KostregistreringController {
         
     }
     
-    public void setDagensKost(MenuForaldreModel dagensKost){
+    public void setDagensKost(VejledningModel dagensKost){
         this.dagensKost = dagensKost;
     }
     

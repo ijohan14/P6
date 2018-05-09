@@ -5,7 +5,7 @@
  */
 package controller;
 
-import main.Main;
+import main.Applikation;
 
 /**
  *
@@ -15,12 +15,12 @@ public class StartController {
     //Attributter
 
     
-    private Main main;
+    private Applikation main;
     
     /**
      * @param main  
      */
-    public void setMain(Main main) {
+    public void setMain(Applikation main) {
         this.main = main;
     }
     
