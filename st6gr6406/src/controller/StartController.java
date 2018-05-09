@@ -5,44 +5,23 @@
  */
 package controller;
 
+import main.Main;
+
 /**
  *
- * @author st6gr6406
+ * @author 18gr6406
  */
 public class StartController {
     //Attributter
-    /*
-    @FXML
-    private TextField fornavnTekstFelt;
-    @FXML
-    private TextField efternavnTekstFelt;
-    @FXML
-    private TextField CPRTekstFelt;
-    @FXML
-    private TextField adgangskodeTekstFelt;
-    @FXML
-    private TextField familieIDTekstFelt;
-    */
-    private OpretNyKontoController brugerkonto;
+
     
-        
-    public OpretNyKontoController getBrugerkonto(){
-        return brugerkonto;
-    }
+    private Main main;
     
-    public void setBrugerkonto(OpretNyKontoController brugerkonto) {
-        this.brugerkonto = brugerkonto;
-        
-        
-        /*
-        //Skal forbindes til OpretNyKontoView
-        fornavnTekstFelt.setText(brugerkonto.getFornavn());
-        efternavnTekstFelt.setText(brugerkonto.getEfternavn());
-        CPRTekstFelt.setText(brugerkonto.getCPR());
-        adgangskodeTekstFelt.setText(brugerkonto.getAdgangskode());
-        familieIDTekstFelt.setText(Integer.toString(brugerkonto.getFamilieID());
-        //Her mangler brugertype og sporgsmålSvar
-        */
+    /**
+     * @param main  
+     */
+    public void setMain(Main main) {
+        this.main = main;
     }
     
     private void handleOpretNyBrugerKnap() {
@@ -52,5 +31,7 @@ public class StartController {
     private void handleLoginKnap() {
         
     }
+
+
     
 }
