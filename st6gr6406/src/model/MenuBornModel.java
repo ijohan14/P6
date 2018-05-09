@@ -5,6 +5,11 @@
  */
 package model;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 
 
 /**
@@ -13,6 +18,12 @@ package model;
  */
 public class MenuBornModel {
     //attributter 
+    private StringProperty fornavn;
+    private StringProperty efternavn;
+    private StringProperty CPR;   //OBS, det ville ikke fungere med integer!!
+    private IntegerProperty familieID;
+    private BooleanProperty brugerType;
+    private StringProperty adgangskode;
     
     public int level;
     public int point;
@@ -28,9 +39,7 @@ public class MenuBornModel {
     //Timer??
     
 
-    //metoder
     
-    //Her skal alle avatar attributter settes!!
     
     public void avatar(String avatarHarFarve, String avatarBukserFarve, String avatarTrojeFarve){
         //Her skal der oprettes figurer, der ligner en avatar, det gør vi senere
@@ -51,4 +60,5 @@ public class MenuBornModel {
     public int point(String udfordring, String malsatning){
         return point;
     }
+
 }

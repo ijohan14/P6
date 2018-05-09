@@ -17,33 +17,46 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import model.OpretKontoModel;
+import model.StartModel;
+
 
 /**
  *
- * @author nathalie
+ * @author 18gr6406
  */
 public class Main extends Application{
     
-    //private ObservableList<> familieData = FXCollections.observableArrayList();
+    private ObservableList<StartModel> familieData = FXCollections.observableArrayList();
     private Stage primaryStage;
 
-    /*public Main(){
-        familieData.add(new OpretKontoModel("Trine"));
+    
+    public Main(){
+        familieData.add(new StartModel("131191-1234","adgangskodeTest", true));
         
     }
     
-    public ObservableList<OpretKontoModel> getFamilieData() {
+    public ObservableList<StartModel> getFamilieData() {
         return familieData;
-    }*/
+    }
 
     @Override
     public void start(Stage primaryStage) {
+        this.primaryStage = primaryStage;
         
+        Start();
     }
     
      public static void main(String[] args) {
         launch(args);
+    }
+
+    public void Start() {
+        try{
+            
+        }
+        catch(Exception e){
+            System.out.println("Fejlmedelelse!");
+        }
     }
      
 }

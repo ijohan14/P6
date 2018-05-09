@@ -3,28 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
-
+package model;
 
 /**
  *
  * @author 18gr6406
  */
-public class OpretNyKontoController {
-    //Attributter
-    
-    
- 
-    //Metoder
-    
-    
-    private void handleOkKnap(){
-        
-    }
-    
-    private void handleFortrydKnap(){
-        
-    }
-    
+public class DatalagringModel {
     
 }
