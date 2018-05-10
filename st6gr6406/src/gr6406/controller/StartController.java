@@ -8,6 +8,7 @@ package gr6406.controller;
 import gr6406.Applikation;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,25 +26,35 @@ import javafx.stage.Stage;
  *
  * @author Gruppe 18gr6406
  */
-public class StartController {//implements Initializable {
-    private Applikation main;
+public class StartController implements Initializable {
+    //private Applikation main;
+    //private Stage stage;
+    
+    @FXML
+    private Button OpretNyKontoKnap;
+    
+    @FXML
+    private Button OpretNyKontoFortryd;
     
     
-    
-    private Stage stage;
-    
-//    public void initialize(URL location){
-//        
-//    } 
+    /** 
+     * Initialize the control class
+     * @param url
+     * @param rb 
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb){
+        
+    } 
    
     
   
     /**
      * @param main  
-     */
+     *
     public void setMain(Applikation main) {
         this.main = main;
-    }
+    }*/
     
     
      /**
@@ -58,36 +69,30 @@ public class StartController {//implements Initializable {
      * 
      */
     @FXML
-    private void handleOpretNyKontoKnap() throws IOException{
-       //FXMLLoader loader = new FXMLLoader();
-      /* AnchorPane opret = (AnchorPane) FXMLLoader.load(getClass().getResource("/gr6406/view/OpretNyKontoView.fxml"));
-       Scene scene = new Scene(opret);
-       stage.setScene(scene);   */
-       
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/gr6406/view/OpretNyKontoView.fxml"));
-        AnchorPane opret = (AnchorPane) loader.load();
-        Scene scene = new Scene(opret);
+    private void handleOpretNyKontoKnap(ActionEvent event) throws IOException{
+        Stage stage;
+        Parent root;
+        if (event.getSource() == OpretNyKontoKnap){
+            stage = (Stage) OpretNyKontoKnap.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("/gr6406/view/OpretNyKontoView.fxml."));
+        } else {
+            stage = (Stage) OpretNyKontoFortryd.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("/gr6406/view/StartView.fxml."));
+        }
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
-             // Set person overview into the center of root layout.
-            //start.setCenter(opret);
-
-            // Give the controller access to the main app.
-        KontoController controller = loader.getController();
-            //(this);
-      
+                
       
     }
-    
+    /*
     private void handleLoginKnap() {
         
     }
     
     private boolean erInputValid(){
         return false;
-    }
+    }*/
 
    
     

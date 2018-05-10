@@ -30,8 +30,8 @@ import gr6406.model.ForaldreModel;
 public class Applikation extends Application{
     
     
-    public Stage primaryStage;
-    private Parent start;
+    //public Stage primaryStage;
+    //private Parent start;
     
     /**
      * Her oprettes en observableList navngivet familieDate, som indeholder konti fra StartModel
@@ -48,11 +48,15 @@ public class Applikation extends Application{
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        this.primaryStage = primaryStage;
+    public void start(Stage primaryStage) throws IOException {
+        //this.primaryStage = primaryStage;
         
-        open("view/StartView.fxml");
+        //open("view/StartView.fxml");
         
+        Parent root = FXMLLoader.load(getClass().getResource("view/StartView.fxml"));
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
        
     }
     
@@ -65,7 +69,7 @@ public class Applikation extends Application{
     * @param stiView
     * @return
     * @throws Exception 
-    */
+    *
     
      public Parent open(String stiView) throws Exception {
        
@@ -81,7 +85,7 @@ public class Applikation extends Application{
             primaryStage.sizeToScene();
             return start;
             
-        }
+        }*/
      
      
       /* 
