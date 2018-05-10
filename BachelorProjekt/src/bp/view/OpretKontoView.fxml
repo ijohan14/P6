@@ -2,14 +2,15 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="bp.controller.KontoController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bp.controller.KontoController">
    <children>
       <GridPane AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
         <columnConstraints>
@@ -25,18 +26,24 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Label" />
-            <Label text="Label" GridPane.rowIndex="1" />
-            <Label text="Label" GridPane.rowIndex="2" />
-            <Label text="Label" GridPane.rowIndex="3" />
-            <Label text="Label" GridPane.rowIndex="4" />
-            <Label text="Label" GridPane.rowIndex="5" />
+            <Label text="Fornavn" />
+            <Label text="Efternavn" GridPane.rowIndex="1" />
+            <Label text="CPR" GridPane.rowIndex="2" />
+            <Label text="FamilieID" GridPane.rowIndex="3" />
+            <Label text="Brugertype" GridPane.rowIndex="4" />
+            <Label text="Adgangskode" GridPane.rowIndex="5" />
+            <TextField fx:id="fornavnFelt" GridPane.columnIndex="1" />
+            <TextField fx:id="efternavnFelt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ChoiceBox fx:id="brugertypeBoks" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <ButtonBar layoutX="86.0" layoutY="346.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
         <buttons>
-          <Button mnemonicParsing="false" text="Gem" />
-            <Button fx:id="OpretKontoFortrydKnap" layoutX="205.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleOpretKonto" text="Fotryd" />
+          <Button fx:id="opretKontoGemKnap" mnemonicParsing="false" onAction="#handleOpretKontoGem" text="Gem" />
+            <Button fx:id="opretKontoFortrydKnap" layoutX="205.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleOpretKonto" text="Fotryd" />
         </buttons>
       </ButtonBar>
    </children>
