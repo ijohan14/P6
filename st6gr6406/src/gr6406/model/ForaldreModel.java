@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package gr6406.model;
 
 import javafx.beans.property.StringProperty;
 import javafx.beans.property.IntegerProperty;
@@ -25,11 +25,6 @@ public class ForaldreModel {
     private StringProperty familieID;
     private BooleanProperty brugertype;
     private StringProperty adgangskode;
-    public BooleanProperty sporgsmal1Svar;
-    public BooleanProperty sporgsmal2Svar;
-    public BooleanProperty sporgsmal3Svar;
-    public BooleanProperty sporgsmal4Svar;
-    public int startNiveau;
     
     /**
      * Default constructor

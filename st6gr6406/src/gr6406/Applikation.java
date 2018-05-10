@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main;
+package gr6406;
 
-import controller.StartController;
+import gr6406.controller.StartController;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -20,7 +20,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import model.ForaldreModel;
+import gr6406.model.ForaldreModel;
 
 
 /**
@@ -30,8 +30,8 @@ import model.ForaldreModel;
 public class Applikation extends Application{
     
     
-    private Stage primaryStage;
-    private AnchorPane rootLayout;
+    public Stage primaryStage;
+    private Parent start;
     
     /**
      * Her oprettes en observableList navngivet familieDate, som indeholder konti fra StartModel
@@ -50,35 +50,65 @@ public class Applikation extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
-        Start();
+        
+        open("view/StartView.fxml");
+        
+       
     }
     
      public static void main(String[] args) {
         launch(args);
     }
 
+   /**
+    * global metode, der kan bruges til at åbne et nyt view.
+    * @param stiView
+    * @return
+    * @throws Exception 
+    */
+    
+     public Parent open(String stiView) throws Exception {
+       
+            start = (Parent) FXMLLoader.load(getClass().getResource(stiView));
+            Scene scene = primaryStage.getScene();
+            if (scene == null) {
+                scene = new Scene(start);
+                primaryStage.setScene(scene);
+            } else {
+                primaryStage.getScene().setRoot(start);
+            }
+            primaryStage.show();
+            primaryStage.sizeToScene();
+            return start;
+            
+        }
+     
+     
+      /* 
     public void Start() {
         try{
-            //Her loades rootlayout fra fxml-fil. 
-            //Vore rootLayout er StartView, da dette er det nederste/bagerste view, man kan komme til
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("view/StartView.fxml"));
-            rootLayout = (AnchorPane) loader.load();
-            
-            
-            // Vi opretter nu en scene, der indeholder rootLayout
-            Scene scene = new Scene(rootLayout);
-            primaryStage.setScene(scene);
-            
-            // Her giver vi controlleren adgang til Main
-            StartController controller = loader.getController();
-            controller.setMain(this);
-            primaryStage.show();
+            FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("view/StartView.fxml"));
+        Parent root = loader.load();
+        
+        Scene scene = new Scene(root);
+        
+        StartController controller = loader.getController();
+        controller.setMain(this);
+        
+        primaryStage.setTitle("FUN HEALTH");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        
+        
             
         }
         catch(Exception e){
             System.out.println("Fejlmedelelse!");
         }
-    }
+    }*/
+     
+     
      
 }
 

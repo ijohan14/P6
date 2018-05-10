@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package gr6406.controller;
 
 
 /**
@@ -47,7 +47,7 @@ public class RegistreringController {
     }
     
     
-    private int registrerValgtBarn(i: int, Kon: String, Alder: int){ //De skal sikkert ikke stå her, fordi det er attributter fra andre klasser det gettes og settes. 
+   /* private int registrerValgtBarn(i: int, Kon: String, Alder: int){ //De skal sikkert ikke stå her, fordi det er attributter fra andre klasser det gettes og settes. 
         //noget med at gette så man får et cpr. og så tænker ch noget af følgende 
         i = Cpr; //altså det vi getter. 
         if (lastNumberCpr == lige){
@@ -58,7 +58,7 @@ public class RegistreringController {
         }
         //og så noget med at udregne alderen, som ch ikke kan gøre på en smart måde, derfor:
         Alder = 2018-i; //det er slet ikke fungerende, men det er lige mine tanker. 
-    }
+    }*/
     
 //    private boolean erIsoBmiInputValid(){
 //        return testBoo;

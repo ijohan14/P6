@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package gr6406.controller;
 
 
 /**
@@ -28,10 +28,10 @@ public class MenuBornController {
         
     }
 
-    private int visPoint(Point: int){
+    /*private int visPoint(Point: int){
         //noget med at gette point fra en anden klasse og sætte pointene lig i og så returneres i
         Point = 2;
-    }
+    }*/
 //    private int visPoint(){
 //        return testInt;
 //    }
