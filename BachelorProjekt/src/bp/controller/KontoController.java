@@ -25,6 +25,7 @@ import javafx.scene.control.TextField;
 import static javafx.scene.input.KeyCode.M;
 import javafx.stage.Stage;
 import javax.swing.JTable;
+import javafx.application.Application;
 
 /**
  * FXML Controller class
@@ -35,7 +36,8 @@ public class KontoController implements Initializable {
     
     private ForaldreModel konto;
     
-    ObservableList<String> brugertypeList = FXCollections.observableArrayList("Barn", "Forælder");
+    //ObservableList<String> brugertypeList = FXCollections.observableArrayList("Barn", "Forælder");
+    ObservableList brugertypeList=FXCollections.observableArrayList();
     
     private ObservableList<ForaldreModel> familieData = FXCollections.observableArrayList();
     
@@ -75,7 +77,7 @@ public class KontoController implements Initializable {
     private TextField familieIDFelt;
     
     @FXML
-    private ChoiceBox brugertypeBoks;
+    private ChoiceBox<String> brugertypeBoks;
     
     @FXML
     private TextField adgangskodeFelt;
@@ -102,8 +104,9 @@ public class KontoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    //loadBrugertypeBoks(); 
     }   
+    
     
     
      public void setKonto(ForaldreModel konto) {
@@ -201,7 +204,7 @@ public class KontoController implements Initializable {
         Parent root;
             if((event.getSource() == logIndKnap) && logIndIndtastet()){ //Der må skulle være en if, der spørger efter kontotype, og så afhænger view af dette. 
                 stage = (Stage) logIndKnap.getScene().getWindow();
-                root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
+                root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));
             } else {
                 stage = (Stage) opretKontoKnap.getScene().getWindow();
                 root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
@@ -264,22 +267,22 @@ public class KontoController implements Initializable {
         stage.show();
     }
     
+    
 //    @FXML
-//    private void handleLogInd(ActionEvent event) throws IOException {
-//        Stage stage;
-//        Parent root;
-//            if((event.getSource() == logIndKnap) && logIndIndtastet()){
-//                stage = (Stage) logIndKnap.getScene().getWindow();
-//                root = FXMLLoader.load(getClass().getResource("/bp/view/FXML.fxml"));
-//            } else {
-//                stage = (Stage) opretKontoKnap.getScene().getWindow();
-//                root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
-//            
-//            }
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
+//    private void displayChecked(ActionEvent event){
+//        String movie = brugertypeBoks.getValue();
+//        if (movie == null){
+//            screen.setText("selecstkn");
+//        }
+//        else {
+//            scren.setText("your betokæ");
+//        }
+//        
 //    }
-    
-    
+    private void loadBrugertypeBoks() {
+        String a="foralder"; 
+        String b="barn";
+        brugertypeList.addAll(a, b);
+        brugertypeBoks.getItems().setAll(brugertypeList);
+    }
 }

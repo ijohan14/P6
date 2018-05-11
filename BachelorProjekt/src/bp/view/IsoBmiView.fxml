@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="bp.controller.RegistreringController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bp.controller.RegistreringController">
    <children>
       <ButtonBar layoutX="86.0" layoutY="346.0" prefHeight="40.0" prefWidth="200.0">
         <buttons>
@@ -35,11 +35,16 @@
             <Label text="Højde:" GridPane.rowIndex="1" />
             <Label text="Vægt:" GridPane.rowIndex="2" />
             <Label text="ISO-BMI:" GridPane.rowIndex="3" />
-            <Label text="Udregnet BMI" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="(Udregnet BMI)" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <ChoiceBox prefHeight="27.0" prefWidth="173.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
+      <Label layoutX="69.0" layoutY="62.0" text="ISO-BMI udregning">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
