@@ -48,6 +48,7 @@ public class FXMLController implements Initializable {
         if(event.getSource() == btn1){
             stage = (Stage) btn1.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("FXML2.fxml"));
+            System.out.println("hello");
             
         } else {
             stage = (Stage) btn2.getScene().getWindow();

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="bp.controller.RegistreringController">
+   <children>
+      <GridPane layoutX="33.0" layoutY="140.0" prefHeight="90.0" prefWidth="235.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="114.0" minWidth="10.0" prefWidth="50.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="185.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <DatePicker GridPane.columnIndex="1" />
+            <Label text="Dato:" />
+            <Label text="Måltid:" GridPane.rowIndex="1" />
+            <ChoiceBox prefHeight="27.0" prefWidth="209.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Kost:" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+      <ButtonBar layoutX="86.0" layoutY="346.0" prefHeight="40.0" prefWidth="200.0">
+        <buttons>
+          <Button mnemonicParsing="false" text="Gem" />
+            <Button fx:id="kostRegistreringFortrydKnap" mnemonicParsing="false" onAction="#handleFortrydKostRegistrering" text="Fortryd" />
+        </buttons>
+      </ButtonBar>
+      <TextField layoutX="33.0" layoutY="230.0" prefHeight="90.0" prefWidth="235.0" />
+   </children>
+</AnchorPane>

@@ -20,9 +20,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import static javafx.scene.input.KeyCode.M;
 import javafx.stage.Stage;
+import javax.swing.JTable;
 
 /**
  * FXML Controller class
@@ -34,11 +36,25 @@ public class KontoController implements Initializable {
     private ForaldreModel konto;
     
     ObservableList<String> brugertypeList = FXCollections.observableArrayList("Barn", "Forælder");
+    
     private ObservableList<ForaldreModel> familieData = FXCollections.observableArrayList();
     
+//   String[] coloumnNames = {"fornavn", "efternavn", "crp", "familieID", "adgangskode"};
+//   Object[][] data = {
+//       setKonto
+//   } 
     
     @FXML
     private Button opretKontoKnap;
+    
+    @FXML
+    private Button logIndKnap;
+    
+    @FXML
+    private TextField cprLogIndFelt; 
+    
+    @FXML
+    private TextField adgangskodeLogIndFelt;
     
     @FXML
     private Button opretKontoFortrydKnap;
@@ -52,8 +68,26 @@ public class KontoController implements Initializable {
     @FXML
     private TextField efternavnFelt; 
     
+    @FXML 
+    private TextField cprFelt;
+    
+    @FXML
+    private TextField familieIDFelt;
+    
     @FXML
     private ChoiceBox brugertypeBoks;
+    
+    @FXML
+    private TextField adgangskodeFelt;
+    
+    @FXML
+    private Button visDataKnap;
+    
+//    @FXML
+//    private Label fornavnLabel;
+//    
+//    @FXML
+//    private Label efternavnLabel;
     
     @FXML
     private void initialize(){
@@ -76,12 +110,23 @@ public class KontoController implements Initializable {
         this.konto = konto;
         fornavnFelt.setText(konto.getFornavn());
         efternavnFelt.setText(konto.getEfternavn());
+        cprFelt.setText(konto.getCpr());
+        familieIDFelt.setText(konto.getFamilieID());
+        adgangskodeFelt.setText(konto.getAdgangskode());
         
     }
-     
+    
+    
+    
     public ObservableList<ForaldreModel> getFamilieData() {
+        ObservableList<ForaldreModel> familieData = FXCollections.observableArrayList();
+        familieData.add(new ForaldreModel());
         return familieData;
     }
+    
+//    public void setItems(ObservableList<ForaldreModel> familieData){
+//        familieDataTable.setItems(familieData);
+//    }
     
     
     @FXML
@@ -97,8 +142,7 @@ public class KontoController implements Initializable {
         }
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.show();
-            
+        stage.show(); 
     }
     
     @FXML
@@ -107,13 +151,13 @@ public class KontoController implements Initializable {
         Parent root;
             if(event.getSource() == opretKontoGemKnap){
                if(opretKontoValid()){
-                    familieData.add(new ForaldreModel(fornavnFelt.getText(), efternavnFelt.getText()));
+                    familieData.add(new ForaldreModel(fornavnFelt.getText(), efternavnFelt.getText(),cprFelt.getText(),familieIDFelt.getText(),adgangskodeFelt.getText()));
+                    System.out.println("Fornavn: "+fornavnFelt.getText()+"\nEfternavn: "+efternavnFelt.getText()+"\nCpr: "+cprFelt.getText()+"\nFamilieiD: "+familieIDFelt.getText()+"\nAdganskode: "+adgangskodeFelt.getText());
                     //konto.setFornavn(fornavnFelt.getText());
                     //konto.setEfternavn(efternavnFelt.getText());
-                    System.out.println(familieData.get(0));
                 }
-                stage = (Stage) opretKontoGemKnap.getScene().getWindow();
-                root = FXMLLoader.load(getClass().getResource("/bp/view/FXML.fxml"));
+               stage = (Stage) opretKontoGemKnap.getScene().getWindow();
+                root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
             } else {
                 stage = (Stage) opretKontoFortrydKnap.getScene().getWindow();
                 root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
@@ -133,13 +177,109 @@ public class KontoController implements Initializable {
         if (efternavnFelt.getText() == null || efternavnFelt.getText().length() == 0) {
             errorMessage += "Intet valid efternavn!\n"; 
         }
-        
+        if (cprFelt.getText() == null || cprFelt.getText().length() == 0) {
+            errorMessage += "Intet valid cpr!\n"; 
+        }
+        if (familieIDFelt.getText() == null || familieIDFelt.getText().length() == 0) {
+            errorMessage += "Intet valid familieID!\n"; 
+        }
+        if (adgangskodeFelt.getText() == null || adgangskodeFelt.getText().length() == 0) {
+            errorMessage += "Intet valid adgangekode!\n"; 
+        }
         if (errorMessage.length() == 0) {
             return true;
         } else {
-            System.out.println("Nope!");
+            System.out.println(errorMessage);
             return false;
         }
     }
+    
+    
+    @FXML
+    private void handleLogInd(ActionEvent event) throws IOException {
+        Stage stage;
+        Parent root;
+            if((event.getSource() == logIndKnap) && logIndIndtastet()){ //Der må skulle være en if, der spørger efter kontotype, og så afhænger view af dette. 
+                stage = (Stage) logIndKnap.getScene().getWindow();
+                root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
+            } else {
+                stage = (Stage) opretKontoKnap.getScene().getWindow();
+                root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
+            
+            }
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    private boolean logIndIndtastet(){
+        String errorMessage = "";
+        
+        if (cprLogIndFelt.getText() == null || cprLogIndFelt.getText().length() == 0) {
+            errorMessage += "Intet cpr indtastet!\n"; 
+        }
+        if (adgangskodeLogIndFelt.getText() == null || adgangskodeLogIndFelt.getText().length() == 0) {
+            errorMessage += "Ingen adgangskode indtastet!\n"; 
+        }
+        if (errorMessage.length() == 0) {
+            return true;
+        } else {
+            System.out.println(errorMessage);
+            return false;
+        }
+    }
+    
+    private boolean logIndValid(){
+        String errorMessage = "";
+        
+        if (cprFelt.getText() != cprLogIndFelt.getText()){
+            errorMessage += "cpr ikke validt\n";
+        }
+        if (adgangskodeFelt.getText() != adgangskodeLogIndFelt.getText()){
+            errorMessage += "adgangskode ikke valid\n";
+        }
+        if (errorMessage.length() == 0) {
+            return true;
+        } else {
+            System.out.println(errorMessage);
+            return false;
+        }
+    }
+    
+    @FXML
+    private void handleVisData(ActionEvent event) throws IOException{ 
+        Stage stage; 
+        Parent root;
+        if (event.getSource() == visDataKnap) {
+                stage = (Stage) visDataKnap.getScene().getWindow();
+                root = FXMLLoader.load(getClass().getResource("/bp/view/DatalagringView.fxml"));
+            } 
+        else {
+                stage = (Stage) opretKontoKnap.getScene().getWindow();
+                root = FXMLLoader.load(getClass().getResource("/bp/view/OpretKontoView.fxml"));
+            
+            }
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+//    @FXML
+//    private void handleLogInd(ActionEvent event) throws IOException {
+//        Stage stage;
+//        Parent root;
+//            if((event.getSource() == logIndKnap) && logIndIndtastet()){
+//                stage = (Stage) logIndKnap.getScene().getWindow();
+//                root = FXMLLoader.load(getClass().getResource("/bp/view/FXML.fxml"));
+//            } else {
+//                stage = (Stage) opretKontoKnap.getScene().getWindow();
+//                root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
+//            
+//            }
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+//    }
+    
     
 }

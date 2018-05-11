@@ -5,8 +5,13 @@
  */
 package stupidprojectbecauseleif;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import stupidprojectbecauseleif.Person;
 
 /**
  *
@@ -28,6 +34,22 @@ public class StupidProjectBecauseLeif extends Application {
     FlowPane pane1, pane2;
     Scene scene1, scene2;
     Stage theStage;*/
+    
+    private ObservableList<Person> personData = FXCollections.observableArrayList();
+
+    public StupidProjectBecauseLeif() {
+        personData.add(new Person("Inge", "Hansen")); 
+        personData.add(new Person("Nathalie", "Trane")); 
+        personData.add(new Person("Bodil", "Jørgensen")); 
+        personData.add(new Person("Jens-Peter", "Jensen"));
+    }
+    
+    public ObservableList<Person> getPersonData(){
+        return personData; 
+    }
+    
+    
+    
     
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -58,10 +80,24 @@ public class StupidProjectBecauseLeif extends Application {
         
         Parent root = FXMLLoader.load(getClass().getResource("FXML.fxml"));
         Scene scene = new Scene(root);
+        save("detteerentest");
         primaryStage.setScene(scene);
         primaryStage.show();
         
         
+        
+        
+        
+        
+        
+    }
+    
+    public void save(String fileName) throws FileNotFoundException {
+        PrintWriter pw = new PrintWriter(new FileOutputStream(fileName)); 
+        for (Person person :  personData)
+            pw.println(person);
+        System.out.println("hej");
+        pw.close();
     }
 
     /**

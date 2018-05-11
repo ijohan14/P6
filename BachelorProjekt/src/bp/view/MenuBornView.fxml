@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="bp.controller.MenuBornController">
+   <children>
+      <ButtonBar layoutX="86.0" layoutY="346.0" prefHeight="40.0" prefWidth="200.0">
+        <buttons>
+          <Button fx:id="bornLogUdKnap" mnemonicParsing="false" onAction="#handleBornLogUd" text="Log Ud" />
+        </buttons>
+      </ButtonBar>
+      <Button fx:id="malsatningKnap" layoutX="105.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleMalsatning" text="Målstæning" />
+      <Button fx:id="udfordringKnap" layoutX="108.0" layoutY="253.0" mnemonicParsing="false" onAction="#handleUdfordring" text="Udfordring" />
+   </children>
+</AnchorPane>

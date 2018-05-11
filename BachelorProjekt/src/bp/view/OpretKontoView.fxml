@@ -34,9 +34,9 @@
             <Label text="Adgangskode" GridPane.rowIndex="5" />
             <TextField fx:id="fornavnFelt" GridPane.columnIndex="1" />
             <TextField fx:id="efternavnFelt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="cprFelt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="familieIDFelt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="adgangskodeFelt" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <ChoiceBox fx:id="brugertypeBoks" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
