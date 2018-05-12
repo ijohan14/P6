@@ -1,43 +1,32 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modeller;
 
-import javafx.application.Application;
-import static javafx.application.Application.launch;
-import javafx.stage.Stage;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.text.Text;
 
-/**
- *
- * @author idav_
- */
-public class FysiskAktivitet extends Application {
-    // Attributter
-    
-    
-    
-    // Constructor
-    @Override
-    public void start(Stage primaryStage){
-    }
+public class FysiskAktivitet{
 
-    
-    // Metoder
-    
-    
-    
-    public FysiskAktivitet(){
-        
-    }
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
-    }
+    @FXML
+    private Text tTimer;
 
+    @FXML
+    private Text mTimer;
+
+    @FXML
+    private Text sTimer;
+
+    @FXML
+    private Button startTimerKnap;
+
+    @FXML
+    private Button stopTimerKnap;
     
+    static int sekunder = 0;
+    static int minutter = 0;
+    static int timer = 0;
+    static boolean stadie = true;
+    
+    
+    
+
 }
