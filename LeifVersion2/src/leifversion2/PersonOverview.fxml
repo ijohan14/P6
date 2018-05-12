@@ -13,6 +13,6 @@
           <TableColumn fx:id="efternavnKolonne" prefWidth="150.0" text="Efternavn" />
         </columns>
       </TableView>
-      <Button fx:id="opretKontoKnap" layoutX="171.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleOpretKonto" text="Opret Konto" />
+      <Button fx:id="personOverviewFortrydKnap" layoutX="171.0" layoutY="360.0" mnemonicParsing="false" onAction="#handlePersonOverviewFortryd" text="Fortryd" />
    </children>
 </AnchorPane>

@@ -33,7 +33,7 @@ public class LeifVersion2 extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("PersonOverview.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
         Scene scene = new Scene(root);
         //save("detteerentest");
         primaryStage.setScene(scene);
