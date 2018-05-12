@@ -18,27 +18,27 @@ import java.util.Date;
 public class CprController {
     
     /**kode for at få køn fra cpr nr**/
-    public String extractGenderFromCpr(String cpr){
+    public String udtrakKonFraCpr(String cpr){
         
-        String koen = cpr.substring(cpr.length()-1).trim();
+        String kon = cpr.substring(cpr.length()-1).trim();
         
-        int number = Integer.parseInt(koen);//transform format fra string til int, så kan man lave matematiske beregninger med int'en
+        int konInt = Integer.parseInt(kon);//transform format fra string til int, så kan man lave matematiske beregninger med int'en
         
-        koen = number%2==0?"F":"M"; //if else statement bare forkortet på en smartere måde, som vi lært i kursusgang "?", hvor ? er "if" statement og ":" er else
+        kon = konInt%2==0?"F":"M"; //if else statement bare forkortet på en smartere måde, som vi lært i kursusgang "?", hvor ? er "if" statement og ":" er else
       
-        return koen; 
+        return kon; 
     }
     /**kode for at få ælder fra cpr**/
-    public String extractAgeFromCpr(String cpr){
+    public String udtrakAlderFraCpr(String cpr){
         
-        String aar = cpr.substring(4, 6);//4 og 6 er de pladser i string hvor man finder året personen er blevet født i, fra cpr nr
-        int numberAar = Integer.parseInt(aar);//laver igen string format til int for at lave matematiske beregninger
+        String ar = cpr.substring(4, 6);//4 og 6 er de pladser i string hvor man finder året personen er blevet født i, fra cpr nr
+        int numberAr = Integer.parseInt(ar);//laver igen string format til int for at lave matematiske beregninger
         
-        String month = cpr.substring(2, 4);//2 og 4 er de pladser hvor man finder måned personen er blevet født i, fra cpr nr
-        int numberMonth = Integer.parseInt(month);//omndaner til int igen...
+        String maned = cpr.substring(2, 4);//2 og 4 er de pladser hvor man finder måned personen er blevet født i, fra cpr nr
+        int numberManed = Integer.parseInt(maned);//omndaner til int igen...
         
-        String date = cpr.substring(0, 2);// o og 2 er de plandser man finder den dage person er blevet født i, fra cpr nr
-        int numberDate = Integer.parseInt(date);//omdanning 
+        String dato = cpr.substring(0, 2);// o og 2 er de plandser man finder den dage person er blevet født i, fra cpr nr
+        int numberDato = Integer.parseInt(dato);//omdanning 
         
         /*grudet at pladser padser ikke med cpr nr orden, er fordi i en string man tæller fra 0 af, så dvs at hvis jeg vil gerne få fat i
         plaser 1 og 2 fra cpr nr i så skal det skrives som 0 og 1, men for et andet grung som jeg ikke fattede, man skal ikke skrive plads 1
@@ -51,11 +51,11 @@ public class CprController {
          cal1.setTimeInMillis(System.currentTimeMillis()); //indlæser nuværende tid i millis sek ved at spørge pc'en
          
          Calendar cal2 = Calendar.getInstance();//dette er kalendar fra cpr nr.
-         cal2.set(YEAR, numberAar);//jeg sætter YEAR til at være number aar, som er år fra cpr nr
-         cal2.set(MONTH, numberMonth);//det samme bare måned
-         cal2.set(DATE, numberDate);//og igen, men fra dag
+         cal2.set(YEAR, numberAr);//jeg sætter YEAR til at være number aar, som er år fra cpr nr
+         cal2.set(MONTH, numberManed);//det samme bare måned
+         cal2.set(DATE, numberDato);//og igen, men fra dag
          
-         int diff = (cal1.get(YEAR)-cal2.get(YEAR))-1900;//her trækker jeg den nuværende år fra den fra cpr nr og minus 1900, så for man alder.
+         int diff = (cal1.get(YEAR)-cal2.get(YEAR))-2000;//her trækker jeg den nuværende år fra den fra cpr nr og minus 1900, så for man alder.
                  //eks        2018 - 84(ming fødsår)-1900 = 34 år
                  /*problemmet med min kode er at hvi man er født efter 2000, så for personen 100 år mere :,(, så skal man nok trække
                  2000 i stedet for 1900, så vil det virke for personer født efter 2000.*/
@@ -72,8 +72,8 @@ public class CprController {
         
         CprController controller = new CprController();
         
-        System.out.println("Køn: "+ controller.extractGenderFromCpr("1402843443"));
-        System.out.println("Alder: "+ controller.extractAgeFromCpr("1402843443"));
+        System.out.println("Køn: "+ controller.udtrakKonFraCpr("1402083443"));
+        System.out.println("Alder: "+ controller.udtrakAlderFraCpr("1402083443"));
     }
     
     
