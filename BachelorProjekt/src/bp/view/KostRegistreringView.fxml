@@ -1,48 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bp.controller.RegistreringController">
    <children>
-      <GridPane layoutX="33.0" layoutY="140.0" prefHeight="90.0" prefWidth="235.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="114.0" minWidth="10.0" prefWidth="50.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="185.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+      <VBox alignment="TOP_CENTER" prefHeight="344.0" prefWidth="300.0" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <DatePicker GridPane.columnIndex="1" />
-            <Label text="Dato:" />
-            <Label text="Måltid:" GridPane.rowIndex="1" />
-            <ChoiceBox prefHeight="27.0" prefWidth="209.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Kost:" GridPane.rowIndex="2" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kostregistrering" textAlignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </VBox.margin>
+            </Text>
+            <GridPane prefHeight="112.0" prefWidth="260.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="114.0" minWidth="10.0" prefWidth="46.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="214.0" minWidth="10.0" prefWidth="214.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <DatePicker prefHeight="27.0" prefWidth="229.0" GridPane.columnIndex="1" />
+                  <Label text="Dato:" />
+                  <Label text="Måltid:" GridPane.rowIndex="1" />
+                  <Label text="Kost:" GridPane.rowIndex="3" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <RadioButton fx:id="morgenmadKnap" mnemonicParsing="false" selected="true" text="Morgenmad">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="maltid" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="middagsmadKnap" mnemonicParsing="false" text="Middagsmad" toggleGroup="$maltid" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <RadioButton fx:id="aftensmadKnap" mnemonicParsing="false" prefHeight="18.0" prefWidth="98.0" text="Aftensmad" toggleGroup="$maltid" />
+                        <RadioButton fx:id="snackKnap" mnemonicParsing="false" text="Snack" toggleGroup="$maltid" />
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" top="20.0" />
+               </VBox.margin>
+            </GridPane>
+            <TextField alignment="TOP_LEFT" prefHeight="108.0" prefWidth="300.0">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" />
+               </VBox.margin>
+            </TextField>
          </children>
-      </GridPane>
+      </VBox>
       <ButtonBar layoutX="86.0" layoutY="346.0" prefHeight="40.0" prefWidth="200.0">
         <buttons>
           <Button mnemonicParsing="false" text="Gem" />
             <Button fx:id="kostRegistreringFortrydKnap" mnemonicParsing="false" onAction="#handleFortrydKostRegistrering" text="Fortryd" />
         </buttons>
       </ButtonBar>
-      <TextField layoutX="33.0" layoutY="230.0" prefHeight="90.0" prefWidth="235.0" />
-      <Label layoutX="82.0" layoutY="66.0" text="Kostregistrering">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

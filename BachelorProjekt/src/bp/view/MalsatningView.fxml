@@ -1,51 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bp.controller.SpilController">
    <children>
-      <GridPane layoutX="28.0" layoutY="104.0" prefHeight="150.0" prefWidth="245.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="142.0" minWidth="10.0" prefWidth="119.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0" prefWidth="126.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+      <VBox alignment="TOP_CENTER" prefHeight="338.0" prefWidth="300.0" AnchorPane.bottomAnchor="62.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label text="Type målsætning:" />
-            <Label text="Varighed af målsætning:" GridPane.rowIndex="1" />
-            <Label text="Målsætning:" GridPane.rowIndex="2" />
-            <Label text="Type: " GridPane.rowIndex="3" />
-            <Label text="Varighed: " GridPane.rowIndex="4" />
-            <Label text="(varighed af målsætning)" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label text="(typen af målsætning)" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" />
-            <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Målsætning" textAlignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </VBox.margin>
+            </Text>
+            <GridPane alignment="TOP_CENTER" prefHeight="88.0" prefWidth="260.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="142.0" minWidth="10.0" prefWidth="81.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.0" minWidth="10.0" prefWidth="179.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Målsætning:" />
+                  <Label text="Varighed:" GridPane.rowIndex="1" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                     <children>
+                        <RadioButton fx:id="cykelSkoleKnap" mnemonicParsing="false" prefHeight="18.0" prefWidth="107.0" text="Cyke i skole">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="malsatning" />
+                           </toggleGroup></RadioButton>
+                        <RadioButton fx:id="gaTurKnap" mnemonicParsing="false" text="Gåtur " toggleGroup="$malsatning" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <RadioButton fx:id="enDagMalKnap" mnemonicParsing="false" prefHeight="18.0" prefWidth="70.0" text="1 dag ">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="varighed" />
+                           </toggleGroup></RadioButton>
+                        <RadioButton fx:id="treDageMalKnap" mnemonicParsing="false" text="3 dage " toggleGroup="$varighed" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <RadioButton fx:id="femDageMalKnap" mnemonicParsing="false" text="5 dage " toggleGroup="$varighed" />
+                        <RadioButton fx:id="enUgeMalKnap" mnemonicParsing="false" text="1 uge " toggleGroup="$varighed" />
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </VBox.margin>
+            </GridPane>
          </children>
-      </GridPane>
+      </VBox>
       <ButtonBar layoutX="86.0" layoutY="346.0" prefHeight="40.0" prefWidth="200.0">
         <buttons>
-          <Button mnemonicParsing="false" text="Gem" />
+          <Button fx:id="malsatningGemKnap" mnemonicParsing="false" text="Gem" />
             <Button fx:id="malsatningFortrydKnap" mnemonicParsing="false" onAction="#handleFortrydMalsatning" text="Fortryd" />
         </buttons>
       </ButtonBar>
-      <Label layoutX="101.0" layoutY="54.0" text="Målsætning">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>
