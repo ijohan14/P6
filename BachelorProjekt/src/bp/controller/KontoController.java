@@ -131,45 +131,80 @@ public class KontoController implements Initializable {
 //        familieDataTable.setItems(familieData);
 //    }
     
-    
     @FXML
-    private void handleOpretKonto(ActionEvent event) throws IOException {
+    public void handleOpretKonto() throws IOException {
         Stage stage;
         Parent root;
-        if(event.getSource() == opretKontoKnap){
-            stage = (Stage) opretKontoKnap.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("/bp/view/OpretKontoView.fxml"));
-        } else {
-            stage = (Stage) opretKontoFortrydKnap.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
-        }
+        stage = (Stage) opretKontoKnap.getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("/bp/view/OpretKontoView.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.show(); 
+        stage.show();   
     }
     
     @FXML
-    private void handleOpretKontoGem(ActionEvent event) throws IOException {
+    public void handleOpretKontoFortryd() throws IOException {
         Stage stage;
         Parent root;
-            if(event.getSource() == opretKontoGemKnap){
-               if(opretKontoValid()){
-                    familieData.add(new ForaldreModel(fornavnFelt.getText(), efternavnFelt.getText(),cprFelt.getText(),familieIDFelt.getText(),adgangskodeFelt.getText()));
-                    System.out.println("Fornavn: "+fornavnFelt.getText()+"\nEfternavn: "+efternavnFelt.getText()+"\nCpr: "+cprFelt.getText()+"\nFamilieiD: "+familieIDFelt.getText()+"\nAdganskode: "+adgangskodeFelt.getText());
-                    //konto.setFornavn(fornavnFelt.getText());
-                    //konto.setEfternavn(efternavnFelt.getText());
-                }
-               stage = (Stage) opretKontoGemKnap.getScene().getWindow();
-                root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
-            } else {
-                stage = (Stage) opretKontoFortrydKnap.getScene().getWindow();
-                root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
-            
-        }
+        stage = (Stage) opretKontoFortrydKnap.getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.show();
+        stage.show();   
     }
+    
+    @FXML
+    public void handleOpretKontoGem() throws IOException {
+        Stage stage;
+        Parent root;
+        if(opretKontoValid()){
+            familieData.add(new ForaldreModel(fornavnFelt.getText(), efternavnFelt.getText(),cprFelt.getText(),familieIDFelt.getText(),adgangskodeFelt.getText()));
+            System.out.println("Fornavn: "+fornavnFelt.getText()+"\nEfternavn: "+efternavnFelt.getText()+"\nCpr: "+cprFelt.getText()+"\nFamilieiD: "+familieIDFelt.getText()+"\nAdganskode: "+adgangskodeFelt.getText());
+        }
+        stage = (Stage) opretKontoFortrydKnap.getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+    }
+      
+//    @FXML
+//    private void handleOpretKonto(ActionEvent event) throws IOException {
+//        Stage stage;
+//        Parent root;
+//        if(event.getSource() == opretKontoKnap){
+//            stage = (Stage) opretKontoKnap.getScene().getWindow();
+//            root = FXMLLoader.load(getClass().getResource("/bp/view/OpretKontoView.fxml"));
+//        } else {
+//            stage = (Stage) opretKontoFortrydKnap.getScene().getWindow();
+//            root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
+//        }
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show(); 
+//    }
+    
+//    @FXML
+//    private void handleOpretKontoGem(ActionEvent event) throws IOException {
+//        Stage stage;
+//        Parent root;
+//            if(event.getSource() == opretKontoGemKnap){
+//               if(opretKontoValid()){
+//                    familieData.add(new ForaldreModel(fornavnFelt.getText(), efternavnFelt.getText(),cprFelt.getText(),familieIDFelt.getText(),adgangskodeFelt.getText()));
+//                    System.out.println("Fornavn: "+fornavnFelt.getText()+"\nEfternavn: "+efternavnFelt.getText()+"\nCpr: "+cprFelt.getText()+"\nFamilieiD: "+familieIDFelt.getText()+"\nAdganskode: "+adgangskodeFelt.getText());
+//                    //konto.setFornavn(fornavnFelt.getText());
+//                    //konto.setEfternavn(efternavnFelt.getText());
+//                }
+//               stage = (Stage) opretKontoGemKnap.getScene().getWindow();
+//                root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
+//            } else {
+//                stage = (Stage) opretKontoFortrydKnap.getScene().getWindow();
+//                root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
+//            
+//        }
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+//    }
     
     private boolean opretKontoValid(){
         String errorMessage = "";
@@ -199,21 +234,35 @@ public class KontoController implements Initializable {
     
     
     @FXML
-    private void handleLogInd(ActionEvent event) throws IOException {
+    public void handleLogInd() throws IOException {
         Stage stage;
         Parent root;
-            if((event.getSource() == logIndKnap) && logIndIndtastet()){ //Der må skulle være en if, der spørger efter kontotype, og så afhænger view af dette. 
+        if(logIndIndtastet() ){ //Der må skulle være en if, der spørger efter kontotype, og så afhænger view af dette. 
                 stage = (Stage) logIndKnap.getScene().getWindow();
-                root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
+                root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));
             } else {
-                stage = (Stage) opretKontoKnap.getScene().getWindow();
+                stage = (Stage) logIndKnap.getScene().getWindow();
                 root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
-            
             }
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.show();
     }
+    
+//    @FXML
+//    private void handleLogInd(ActionEvent event) throws IOException {
+//        Stage stage;
+//        Parent root;
+//            if((event.getSource() == logIndKnap) && logIndIndtastet()){ //Der må skulle være en if, der spørger efter kontotype, og så afhænger view af dette. 
+//                stage = (Stage) logIndKnap.getScene().getWindow();
+//                root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
+//            } else {
+//                stage = (Stage) opretKontoKnap.getScene().getWindow();
+//                root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
+//            }
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+//    }
     
     private boolean logIndIndtastet(){
         String errorMessage = "";
@@ -250,22 +299,33 @@ public class KontoController implements Initializable {
     }
     
     @FXML
-    private void handleVisData(ActionEvent event) throws IOException{ 
-        Stage stage; 
+    public void handleVisData() throws IOException {
+        Stage stage;
         Parent root;
-        if (event.getSource() == visDataKnap) {
-                stage = (Stage) visDataKnap.getScene().getWindow();
-                root = FXMLLoader.load(getClass().getResource("/bp/view/DatalagringView.fxml"));
-            } 
-        else {
-                stage = (Stage) opretKontoKnap.getScene().getWindow();
-                root = FXMLLoader.load(getClass().getResource("/bp/view/OpretKontoView.fxml"));
-            
-            }
+        stage = (Stage) visDataKnap.getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("/bp/view/DatalagringView.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.show();
+        stage.show();   
     }
+    
+//    @FXML
+//    private void handleVisData(ActionEvent event) throws IOException{ 
+//        Stage stage; 
+//        Parent root;
+//        if (event.getSource() == visDataKnap) {
+//                stage = (Stage) visDataKnap.getScene().getWindow();
+//                root = FXMLLoader.load(getClass().getResource("/bp/view/DatalagringView.fxml"));
+//            } 
+//        else {
+//                stage = (Stage) opretKontoKnap.getScene().getWindow();
+//                root = FXMLLoader.load(getClass().getResource("/bp/view/OpretKontoView.fxml"));
+//            
+//            }
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+//    }
     
     
 //    @FXML

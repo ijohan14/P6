@@ -42,9 +42,9 @@
                   <Label text="Vægt:" GridPane.rowIndex="2" />
                   <Label text="ISO-BMI:" GridPane.rowIndex="3" />
                   <Label text="(Udregnet BMI)" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="1" />
+                  <TextField fx:id="isoBmiHojdeFelt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="isoBmiVagtFelt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="isoBmiCprFelt" GridPane.columnIndex="1" />
                </children>
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -54,7 +54,7 @@
       </VBox>
       <ButtonBar layoutX="86.0" layoutY="346.0" prefHeight="40.0" prefWidth="200.0">
         <buttons>
-          <Button fx:id="isoBmiGemKnap" mnemonicParsing="false" text="Gem" />
+          <Button fx:id="isoBmiGemKnap" mnemonicParsing="false" onAction="#handleGemIsoBmiRegistrering" text="Gem" />
             <Button fx:id="isoBmiFortrydKnap" mnemonicParsing="false" onAction="#handleFortrydIsoBmi" text="Fortryd" />
         </buttons>
       </ButtonBar>

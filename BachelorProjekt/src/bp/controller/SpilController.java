@@ -43,42 +43,65 @@ public class SpilController implements Initializable {
     }    
     
     @FXML
-    private void handleFortrydMalsatning(ActionEvent event) throws IOException {
+    public void handleFortrydMalsatning() throws IOException {
         Stage stage;
         Parent root;
-        if(event.getSource() == malsatningFortrydKnap){
-            stage = (Stage) malsatningFortrydKnap.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
-        } 
-        else {
-            stage = (Stage) malsatningFortrydKnap.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
-        }
+        stage = (Stage) malsatningFortrydKnap.getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.show(); 
+        stage.show();   
     }
     
-    @FXML
-    private void handleFortrydUdfordring(ActionEvent event) throws IOException {
-        Stage stage;
-        Parent root;
-        if((event.getSource() == udfordringFortrydKnap) || (event.getSource() == udfordringTilbageKnap)){
-            stage = (Stage) udfordringFortrydKnap.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
-        } 
-//        if(event.getSource() == udfordringTilbageKnap){
-//            stage = (Stage) udfordringTilbageKnap.getScene().getWindow();
+//    @FXML
+//    private void handleFortrydMalsatning(ActionEvent event) throws IOException {
+//        Stage stage;
+//        Parent root;
+//        if(event.getSource() == malsatningFortrydKnap){
+//            stage = (Stage) malsatningFortrydKnap.getScene().getWindow();
+//            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
+//        } 
+//        else {
+//            stage = (Stage) malsatningFortrydKnap.getScene().getWindow();
 //            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
 //        }
-        else {
-            stage = (Stage) udfordringFortrydKnap.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
-        }
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show(); 
+//    }
+    
+    @FXML
+    public void handleFortrydUdfordring() throws IOException {
+        Stage stage;
+        Parent root;
+        stage = (Stage) udfordringFortrydKnap.getScene().getWindow();
+        stage = (Stage) udfordringTilbageKnap.getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.show(); 
+        stage.show();   
     }
+    
+//    @FXML
+//    private void handleFortrydUdfordring(ActionEvent event) throws IOException {
+//        Stage stage;
+//        Parent root;
+//        if((event.getSource() == udfordringFortrydKnap) || (event.getSource() == udfordringTilbageKnap)){
+//            stage = (Stage) udfordringFortrydKnap.getScene().getWindow();
+//            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
+//        } 
+////        if(event.getSource() == udfordringTilbageKnap){
+////            stage = (Stage) udfordringTilbageKnap.getScene().getWindow();
+////            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
+////        }
+//        else {
+//            stage = (Stage) udfordringFortrydKnap.getScene().getWindow();
+//            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
+//        }
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show(); 
+//    }
     
     
     

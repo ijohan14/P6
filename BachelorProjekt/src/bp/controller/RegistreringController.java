@@ -16,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
@@ -43,6 +44,14 @@ public class RegistreringController implements Initializable {
     private RadioButton aftensmadKnap;
     @FXML
     private RadioButton snackKnap;
+    @FXML
+    private TextField kostFelt;
+    @FXML
+    private TextField isoBmiCprFelt;
+    @FXML
+    private TextField isoBmiHojdeFelt;
+    @FXML
+    private TextField isoBmiVagtFelt;
     
     /**
      * Initializes the controller class.
@@ -53,37 +62,125 @@ public class RegistreringController implements Initializable {
     }    
     
     @FXML
-    private void handleFortrydKostRegistrering(ActionEvent event) throws IOException {
+    public void handleFortrydKostRegistrering() throws IOException {
         Stage stage;
         Parent root;
-        if(event.getSource() == kostRegistreringFortrydKnap){
-            stage = (Stage) kostRegistreringFortrydKnap.getScene().getWindow();
+        stage = (Stage) kostRegistreringFortrydKnap.getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();   
+    }
+    
+//    @FXML
+//    private void handleFortrydKostRegistrering(ActionEvent event) throws IOException {
+//        Stage stage;
+//        Parent root;
+//        if(event.getSource() == kostRegistreringFortrydKnap){
+//            stage = (Stage) kostRegistreringFortrydKnap.getScene().getWindow();
+//            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));
+//        } 
+//        else {
+//            stage = (Stage) kostRegistreringFortrydKnap.getScene().getWindow();
+//            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));
+//        }
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show(); 
+//    }
+    
+    @FXML
+    public void handleGemKostRegistrering() throws IOException {
+        Stage stage;
+        Parent root;
+        if (registrerKostValid()){
+            stage = (Stage) kostRegistreringGemKnap.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));
-        } 
-        else {
-            stage = (Stage) kostRegistreringFortrydKnap.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));
+        } else {
+            stage = (Stage) kostRegistreringGemKnap.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("/bp/view/KostRegistreringView.fxml"));
         }
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.show(); 
+        stage.show();   
+    }
+    
+    private boolean registrerKostValid(){
+        String errorMessage = "";
+        
+        if (kostFelt.getText() == null || kostFelt.getText().length() == 0) {
+            errorMessage += "Intet valid kost!\n"; 
+        }
+        if (errorMessage.length() == 0) {
+            return true;
+        } else {
+            System.out.println(errorMessage);
+            return false;
+        }
     }
     
     @FXML
-    private void handleFortrydIsoBmi(ActionEvent event) throws IOException {
+    public void handleFortrydIsoBmi() throws IOException {
         Stage stage;
         Parent root;
-        if(event.getSource() == isoBmiFortrydKnap){
-            stage = (Stage) isoBmiFortrydKnap.getScene().getWindow();
+        stage = (Stage) isoBmiFortrydKnap.getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();   
+    }
+    
+    @FXML
+    public void handleGemIsoBmiRegistrering() throws IOException {
+        Stage stage;
+        Parent root;
+        if (registrerIsoBmiValid()){
+            stage = (Stage) isoBmiGemKnap.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));
-        } 
-        else {
-            stage = (Stage) isoBmiFortrydKnap.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));
+        } else {
+            stage = (Stage) isoBmiGemKnap.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("/bp/view/IsoBmiView.fxml"));
         }
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.show(); 
+        stage.show();   
     }
     
+    private boolean registrerIsoBmiValid(){
+        String errorMessage = "";
+        
+        if (isoBmiCprFelt.getText() == null || isoBmiCprFelt.getText().length() == 0) {
+            errorMessage += "Intet valid CPR!\n"; 
+        }
+        if (isoBmiHojdeFelt.getText() == null || isoBmiHojdeFelt.getText().length() == 0) {
+            errorMessage += "Intet valid højde!\n"; 
+        }
+        if (isoBmiVagtFelt.getText() == null || isoBmiVagtFelt.getText().length() == 0) {
+            errorMessage += "Intet valid vægt!\n"; 
+        }
+        if (errorMessage.length() == 0) {
+            return true;
+        } else {
+            System.out.println(errorMessage);
+            return false;
+        }
+    }
+    
+//    @FXML
+//    private void handleFortrydIsoBmi(ActionEvent event) throws IOException {
+//        Stage stage;
+//        Parent root;
+//        if(event.getSource() == isoBmiFortrydKnap){
+//            stage = (Stage) isoBmiFortrydKnap.getScene().getWindow();
+//            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));
+//        } 
+//        else {
+//            stage = (Stage) isoBmiFortrydKnap.getScene().getWindow();
+//            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));
+//        }
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show(); 
+//    }
+//    
 }

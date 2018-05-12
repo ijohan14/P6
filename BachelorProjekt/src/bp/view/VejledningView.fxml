@@ -45,7 +45,7 @@
       </VBox>
       <ButtonBar layoutX="86.0" layoutY="346.0" prefHeight="40.0" prefWidth="200.0">
         <buttons>
-          <Button fx:id="vejledningTilbageKnap" mnemonicParsing="false" onAction="#handleVejledning" text="Tilbage" />
+          <Button fx:id="vejledningTilbageKnap" mnemonicParsing="false" onAction="#handleVejledningTilbage" text="Tilbage" />
         </buttons>
       </ButtonBar>
    </children>

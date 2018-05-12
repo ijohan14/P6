@@ -41,51 +41,84 @@ public class MenuBornController implements Initializable {
     }    
     
     @FXML
-    private void handleBornLogUd(ActionEvent event) throws IOException {
+    public void handleBornLogUd() throws IOException {
         Stage stage;
         Parent root;
-        if(event.getSource() == bornLogUdKnap){
-            stage = (Stage) bornLogUdKnap.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
-        } else {
-            stage = (Stage) bornLogUdKnap.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
-        }
+        stage = (Stage) bornLogUdKnap.getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.show(); 
+        stage.show();   
     }
     
-    @FXML
-    private void handleMalsatning(ActionEvent event) throws IOException {
-        Stage stage;
-        Parent root;
-        if(event.getSource() == malsatningKnap){
-            stage = (Stage) malsatningKnap.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("/bp/view/MalsatningView.fxml"));
-        } else {
-            stage = (Stage) malsatningKnap.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("/bp/view/MalsatningView.fxml"));
-        }
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show(); 
-    }
+//    @FXML
+//    private void handleBornLogUd(ActionEvent event) throws IOException {
+//        Stage stage;
+//        Parent root;
+//        if(event.getSource() == bornLogUdKnap){
+//            stage = (Stage) bornLogUdKnap.getScene().getWindow();
+//            root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
+//        } else {
+//            stage = (Stage) bornLogUdKnap.getScene().getWindow();
+//            root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
+//        }
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show(); 
+//    }
     
     @FXML
-    private void handleUdfordring(ActionEvent event) throws IOException {
+    public void handleMalsatning() throws IOException {
         Stage stage;
         Parent root;
-        if(event.getSource() == udfordringKnap){
-            stage = (Stage) udfordringKnap.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("/bp/view/UdfordringView.fxml"));
-        } else {
-            stage = (Stage) udfordringKnap.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("/bp/view/UdfordringView.fxml"));
-        }
+        stage = (Stage) malsatningKnap.getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("/bp/view/MalsatningView.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.show(); 
+        stage.show();   
     }
+    
+//    @FXML
+//    private void handleMalsatning(ActionEvent event) throws IOException {
+//        Stage stage;
+//        Parent root;
+//        if(event.getSource() == malsatningKnap){
+//            stage = (Stage) malsatningKnap.getScene().getWindow();
+//            root = FXMLLoader.load(getClass().getResource("/bp/view/MalsatningView.fxml"));
+//        } else {
+//            stage = (Stage) malsatningKnap.getScene().getWindow();
+//            root = FXMLLoader.load(getClass().getResource("/bp/view/MalsatningView.fxml"));
+//        }
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show(); 
+//    }
+    
+    @FXML
+    public void handleUdfordring() throws IOException {
+        Stage stage;
+        Parent root;
+        stage = (Stage) udfordringKnap.getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("/bp/view/UdfordringView.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();   
+    }
+    
+//    @FXML
+//    private void handleUdfordring(ActionEvent event) throws IOException {
+//        Stage stage;
+//        Parent root;
+//        if(event.getSource() == udfordringKnap){
+//            stage = (Stage) udfordringKnap.getScene().getWindow();
+//            root = FXMLLoader.load(getClass().getResource("/bp/view/UdfordringView.fxml"));
+//        } else {
+//            stage = (Stage) udfordringKnap.getScene().getWindow();
+//            root = FXMLLoader.load(getClass().getResource("/bp/view/UdfordringView.fxml"));
+//        }
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show(); 
+//    }
     
 }
