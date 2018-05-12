@@ -72,23 +72,6 @@ public class RegistreringController implements Initializable {
         stage.show();   
     }
     
-//    @FXML
-//    private void handleFortrydKostRegistrering(ActionEvent event) throws IOException {
-//        Stage stage;
-//        Parent root;
-//        if(event.getSource() == kostRegistreringFortrydKnap){
-//            stage = (Stage) kostRegistreringFortrydKnap.getScene().getWindow();
-//            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));
-//        } 
-//        else {
-//            stage = (Stage) kostRegistreringFortrydKnap.getScene().getWindow();
-//            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));
-//        }
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show(); 
-//    }
-    
     @FXML
     public void handleGemKostRegistrering() throws IOException {
         Stage stage;
@@ -166,21 +149,4 @@ public class RegistreringController implements Initializable {
         }
     }
     
-//    @FXML
-//    private void handleFortrydIsoBmi(ActionEvent event) throws IOException {
-//        Stage stage;
-//        Parent root;
-//        if(event.getSource() == isoBmiFortrydKnap){
-//            stage = (Stage) isoBmiFortrydKnap.getScene().getWindow();
-//            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));
-//        } 
-//        else {
-//            stage = (Stage) isoBmiFortrydKnap.getScene().getWindow();
-//            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));
-//        }
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show(); 
-//    }
-//    
 }

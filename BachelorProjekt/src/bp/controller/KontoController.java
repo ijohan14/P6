@@ -36,7 +36,6 @@ public class KontoController implements Initializable {
     
     private ForaldreModel konto;
     
-    //ObservableList<String> brugertypeList = FXCollections.observableArrayList("Barn", "Forælder");
     ObservableList brugertypeList=FXCollections.observableArrayList();
     
     private ObservableList<ForaldreModel> familieData = FXCollections.observableArrayList();
@@ -48,53 +47,34 @@ public class KontoController implements Initializable {
     
     @FXML
     private Button opretKontoKnap;
-    
     @FXML
     private Button logIndKnap;
-    
     @FXML
     private TextField cprLogIndFelt; 
-    
     @FXML
     private TextField adgangskodeLogIndFelt;
-    
     @FXML
     private Button opretKontoFortrydKnap;
-    
     @FXML
     private Button opretKontoGemKnap;
-    
     @FXML
     private TextField fornavnFelt;
-    
     @FXML
     private TextField efternavnFelt; 
-    
     @FXML 
     private TextField cprFelt;
-    
     @FXML
     private TextField familieIDFelt;
-    
     @FXML
     private ChoiceBox<String> brugertypeBoks;
-    
     @FXML
     private TextField adgangskodeFelt;
-    
     @FXML
     private Button visDataKnap;
     
-//    @FXML
-//    private Label fornavnLabel;
-//    
-//    @FXML
-//    private Label efternavnLabel;
     
     @FXML
     private void initialize(){
-        brugertypeBoks.setValue("Vælg");
-        brugertypeBoks.setItems(brugertypeList);
         
     }
             
@@ -104,9 +84,7 @@ public class KontoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    //loadBrugertypeBoks(); 
     }   
-    
     
     
      public void setKonto(ForaldreModel konto) {
@@ -119,17 +97,11 @@ public class KontoController implements Initializable {
         
     }
     
-    
-    
     public ObservableList<ForaldreModel> getFamilieData() {
         ObservableList<ForaldreModel> familieData = FXCollections.observableArrayList();
         familieData.add(new ForaldreModel());
         return familieData;
     }
-    
-//    public void setItems(ObservableList<ForaldreModel> familieData){
-//        familieDataTable.setItems(familieData);
-//    }
     
     @FXML
     public void handleOpretKonto() throws IOException {
@@ -167,45 +139,6 @@ public class KontoController implements Initializable {
         stage.setScene(scene);
     }
       
-//    @FXML
-//    private void handleOpretKonto(ActionEvent event) throws IOException {
-//        Stage stage;
-//        Parent root;
-//        if(event.getSource() == opretKontoKnap){
-//            stage = (Stage) opretKontoKnap.getScene().getWindow();
-//            root = FXMLLoader.load(getClass().getResource("/bp/view/OpretKontoView.fxml"));
-//        } else {
-//            stage = (Stage) opretKontoFortrydKnap.getScene().getWindow();
-//            root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
-//        }
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show(); 
-//    }
-    
-//    @FXML
-//    private void handleOpretKontoGem(ActionEvent event) throws IOException {
-//        Stage stage;
-//        Parent root;
-//            if(event.getSource() == opretKontoGemKnap){
-//               if(opretKontoValid()){
-//                    familieData.add(new ForaldreModel(fornavnFelt.getText(), efternavnFelt.getText(),cprFelt.getText(),familieIDFelt.getText(),adgangskodeFelt.getText()));
-//                    System.out.println("Fornavn: "+fornavnFelt.getText()+"\nEfternavn: "+efternavnFelt.getText()+"\nCpr: "+cprFelt.getText()+"\nFamilieiD: "+familieIDFelt.getText()+"\nAdganskode: "+adgangskodeFelt.getText());
-//                    //konto.setFornavn(fornavnFelt.getText());
-//                    //konto.setEfternavn(efternavnFelt.getText());
-//                }
-//               stage = (Stage) opretKontoGemKnap.getScene().getWindow();
-//                root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
-//            } else {
-//                stage = (Stage) opretKontoFortrydKnap.getScene().getWindow();
-//                root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
-//            
-//        }
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
-//    }
-    
     private boolean opretKontoValid(){
         String errorMessage = "";
         
@@ -232,7 +165,6 @@ public class KontoController implements Initializable {
         }
     }
     
-    
     @FXML
     public void handleLogInd() throws IOException {
         Stage stage;
@@ -247,22 +179,6 @@ public class KontoController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
     }
-    
-//    @FXML
-//    private void handleLogInd(ActionEvent event) throws IOException {
-//        Stage stage;
-//        Parent root;
-//            if((event.getSource() == logIndKnap) && logIndIndtastet()){ //Der må skulle være en if, der spørger efter kontotype, og så afhænger view af dette. 
-//                stage = (Stage) logIndKnap.getScene().getWindow();
-//                root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
-//            } else {
-//                stage = (Stage) opretKontoKnap.getScene().getWindow();
-//                root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
-//            }
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
-//    }
     
     private boolean logIndIndtastet(){
         String errorMessage = "";
@@ -309,40 +225,4 @@ public class KontoController implements Initializable {
         stage.show();   
     }
     
-//    @FXML
-//    private void handleVisData(ActionEvent event) throws IOException{ 
-//        Stage stage; 
-//        Parent root;
-//        if (event.getSource() == visDataKnap) {
-//                stage = (Stage) visDataKnap.getScene().getWindow();
-//                root = FXMLLoader.load(getClass().getResource("/bp/view/DatalagringView.fxml"));
-//            } 
-//        else {
-//                stage = (Stage) opretKontoKnap.getScene().getWindow();
-//                root = FXMLLoader.load(getClass().getResource("/bp/view/OpretKontoView.fxml"));
-//            
-//            }
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
-//    }
-    
-    
-//    @FXML
-//    private void displayChecked(ActionEvent event){
-//        String movie = brugertypeBoks.getValue();
-//        if (movie == null){
-//            screen.setText("selecstkn");
-//        }
-//        else {
-//            scren.setText("your betokæ");
-//        }
-//        
-//    }
-    private void loadBrugertypeBoks() {
-        String a="foralder"; 
-        String b="barn";
-        brugertypeList.addAll(a, b);
-        brugertypeBoks.getItems().setAll(brugertypeList);
-    }
 }

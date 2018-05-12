@@ -26,16 +26,12 @@ public class MenuForaldreController implements Initializable {
     
     @FXML
     public Button kostRegistreringKnap;
-    
     @FXML
     public Button isoBmiKnap;
-    
     @FXML
     public Button vejledningKnap;
-    
     @FXML
     public Button foraldreLogUdKnap;
-    
     @FXML
     public Button vejledningTilbageKnap;
 
@@ -58,22 +54,6 @@ public class MenuForaldreController implements Initializable {
         stage.show();   
     }
     
-//    @FXML
-//    private void handleForaldreLogUd(ActionEvent event) throws IOException {
-//        Stage stage;
-//        Parent root;
-//        if(event.getSource() == foraldreLogUdKnap){
-//            stage = (Stage) foraldreLogUdKnap.getScene().getWindow();
-//            root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
-//        } else {
-//            stage = (Stage) foraldreLogUdKnap.getScene().getWindow();
-//            root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
-//        }
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show(); 
-//    }
-    
     @FXML
     public void handleVejledning() throws IOException {
         Stage stage;
@@ -85,24 +65,6 @@ public class MenuForaldreController implements Initializable {
         stage.show();   
     }
     
-//    @FXML
-//    private void handleVejledning(ActionEvent event) throws IOException {
-//        Stage stage;
-//        Parent root;
-//        if(event.getSource() == vejledningKnap){
-//            stage = (Stage) vejledningKnap.getScene().getWindow();
-//            root = FXMLLoader.load(getClass().getResource("/bp/view/VejledningView.fxml"));
-//        } 
-//        else {
-//            stage = (Stage) vejledningTilbageKnap.getScene().getWindow();
-//            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));
-//        }
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show(); 
-//    }
-    
-    
     @FXML
     public void handleKostRegistrering() throws IOException {
         Stage stage;
@@ -113,23 +75,7 @@ public class MenuForaldreController implements Initializable {
         stage.setScene(scene);
         stage.show();   
     }
-    
-//    @FXML
-//    private void handleKostRegistrering(ActionEvent event) throws IOException {
-//        Stage stage;
-//        Parent root;
-//        if(event.getSource() == kostRegistreringKnap){
-//            stage = (Stage) kostRegistreringKnap.getScene().getWindow();
-//            root = FXMLLoader.load(getClass().getResource("/bp/view/KostRegistreringView.fxml"));
-//        } else {
-//            stage = (Stage) kostRegistreringKnap.getScene().getWindow();
-//            root = FXMLLoader.load(getClass().getResource("/bp/view/KostRegistreringView.fxml"));
-//        }
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show(); 
-//    }
-    
+ 
     @FXML
     public void handleIsoBmi() throws IOException {
         Stage stage;
@@ -140,22 +86,6 @@ public class MenuForaldreController implements Initializable {
         stage.setScene(scene);
         stage.show();   
     }
-    
-//    @FXML
-//    private void handleIsoBmi(ActionEvent event) throws IOException {
-//        Stage stage;
-//        Parent root;
-//        if(event.getSource() == isoBmiKnap){
-//            stage = (Stage) isoBmiKnap.getScene().getWindow();
-//            root = FXMLLoader.load(getClass().getResource("/bp/view/IsoBmiView.fxml"));
-//        } else {
-//            stage = (Stage) isoBmiKnap.getScene().getWindow();
-//            root = FXMLLoader.load(getClass().getResource("/bp/view/IsoBmiView.fxml"));
-//        }
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show(); 
-//    }
     
     @FXML
     public void handleVejledningTilbage() throws IOException {

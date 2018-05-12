@@ -26,10 +26,8 @@ public class SpilController implements Initializable {
 
     @FXML
     public Button malsatningFortrydKnap; 
-    
     @FXML
     public Button udfordringFortrydKnap;
-    
     @FXML
     public Button udfordringTilbageKnap; 
     
@@ -53,23 +51,6 @@ public class SpilController implements Initializable {
         stage.show();   
     }
     
-//    @FXML
-//    private void handleFortrydMalsatning(ActionEvent event) throws IOException {
-//        Stage stage;
-//        Parent root;
-//        if(event.getSource() == malsatningFortrydKnap){
-//            stage = (Stage) malsatningFortrydKnap.getScene().getWindow();
-//            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
-//        } 
-//        else {
-//            stage = (Stage) malsatningFortrydKnap.getScene().getWindow();
-//            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
-//        }
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show(); 
-//    }
-    
     @FXML
     public void handleFortrydUdfordring() throws IOException {
         Stage stage;
@@ -81,28 +62,5 @@ public class SpilController implements Initializable {
         stage.setScene(scene);
         stage.show();   
     }
-    
-//    @FXML
-//    private void handleFortrydUdfordring(ActionEvent event) throws IOException {
-//        Stage stage;
-//        Parent root;
-//        if((event.getSource() == udfordringFortrydKnap) || (event.getSource() == udfordringTilbageKnap)){
-//            stage = (Stage) udfordringFortrydKnap.getScene().getWindow();
-//            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
-//        } 
-////        if(event.getSource() == udfordringTilbageKnap){
-////            stage = (Stage) udfordringTilbageKnap.getScene().getWindow();
-////            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
-////        }
-//        else {
-//            stage = (Stage) udfordringFortrydKnap.getScene().getWindow();
-//            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
-//        }
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show(); 
-//    }
-    
-    
     
 }
