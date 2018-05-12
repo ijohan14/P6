@@ -15,6 +15,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
 /**
@@ -23,18 +25,24 @@ import javafx.stage.Stage;
  * @author christinemariegrabow
  */
 public class RegistreringController implements Initializable {
-
     @FXML
     public Button kostRegistreringGemKnap;
-    
     @FXML
     public Button kostRegistreringFortrydKnap;
-    
     @FXML
     public Button isoBmiGemKnap;
-    
     @FXML
     public Button isoBmiFortrydKnap;
+    @FXML
+    private RadioButton morgenmadKnap;
+    @FXML
+    private ToggleGroup maltid;
+    @FXML
+    private RadioButton middagsmadKnap;
+    @FXML
+    private RadioButton aftensmadKnap;
+    @FXML
+    private RadioButton snackKnap;
     
     /**
      * Initializes the controller class.
