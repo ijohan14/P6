@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="leifversion2.PersonOverviewController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="leifversion2.AddPersonController">
    <children>
-      <Button fx:id="opretKontoFortrydKnap" layoutX="224.0" layoutY="360.0" mnemonicParsing="false" text="Fortryd" />
+      <Button fx:id="opretKontoFortrydKnap" layoutX="224.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleOpretKontoFortryd" text="Fortryd" />
+      <Label layoutX="46.0" layoutY="76.0" text="Fornavn" />
+      <Label layoutX="46.0" layoutY="119.0" text="Efternavn" />
+      <TextField fx:id="fornavnFelt" layoutX="115.0" layoutY="71.0" />
+      <TextField fx:id="efternavnFelt" layoutX="115.0" layoutY="114.0" />
+      <Button fx:id="addPersonGemKnap" layoutX="150.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleAddPersonGem" text="Gem" />
    </children>
 </AnchorPane>

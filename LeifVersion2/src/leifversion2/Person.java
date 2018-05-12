@@ -30,20 +30,12 @@ public class Person {
         this.fornavn.set(fornavn);
     }
 
-    public StringProperty fornavnProperty() {
-        return fornavn;
-    }
-
     public String getEfternavn() {
         return efternavn.get();
     }
 
     public void setEfternavn(String efternavn) {
         this.efternavn.set(efternavn);
-    }
-
-    public StringProperty efternavnProperty() {
-        return efternavn;
     }
     
 }

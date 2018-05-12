@@ -23,13 +23,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
+import leifversion2.AddPersonController;
 /**
  * FXML Controller class
  *
  * @author nathalie
  */
-public class PersonOverviewController {// implements Initializable {
+public class PersonOverviewController {
     @FXML
     private TableView<Person> visDataTabel;
     @FXML
@@ -37,96 +37,43 @@ public class PersonOverviewController {// implements Initializable {
     @FXML
     private TableColumn<Person, String> efternavnKolonne;
     
-    @FXML
-    private Button opretKontoKnap;
-    @FXML
-    private Button opretKontoFortrydKnap;
-    @FXML
-    private Button opretKontoGemKnap;    
-    @FXML
-    private TextField fornavnFelt;    
-    @FXML
-    private TextField efternavnFelt; 
+    @FXML Button personOverviewFortrydKnap;
     
-    
-   
-    ObservableList<Person> personData = FXCollections.observableArrayList(new Person("Nathalie", "Trane"), new Person("Christine", "Grabow"));
+       
+    ObservableList<Person> p = new AddPersonController().getContent();
+//    public ObservableList<Person> getContent() {
+//        ObservableList<Person> personData = FXCollections.observableArrayList();
+//        personData.add(new Person("Nathalie", "Trane"));
+//        personData.add(new Person("Christine", "Grabow")); // your data
+//        gem(personData,"h","j");
+//        return personData;
+//    }
     
    
+      
     @FXML
-    public void init() {
+    public void initialize() {
         fornavnKolonne.setCellValueFactory(new PropertyValueFactory<>("fornavn"));
         efternavnKolonne.setCellValueFactory(new PropertyValueFactory<>("efternavn"));
         
         visDataTabel.getColumns().clear();
         
-        visDataTabel.setItems(personData);
+        visDataTabel.setItems(p);
         visDataTabel.getColumns().addAll(fornavnKolonne, efternavnKolonne);
+        
+        
     }
     
-   
-
     @FXML
-    private void handleOpretKonto(ActionEvent event) throws IOException {
+    private void handlePersonOverviewFortryd() throws IOException{
         Stage stage;
         Parent root;
-        if(event.getSource() == opretKontoKnap){
-            stage = (Stage) opretKontoKnap.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("AddPerson.fxml"));
-        } else {
-            stage = (Stage) opretKontoFortrydKnap.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("PersonOverview.fxml"));
-        }
+        stage = (Stage) personOverviewFortrydKnap.getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.show(); 
+        stage.show();
     }
-    
-    
-    
-//    @FXML
-//    private void handleOpretKontoGem(ActionEvent event) throws IOException {
-//        Stage stage;
-//        Parent root;
-//            if(event.getSource() == opretKontoGemKnap){
-//               if(opretKontoValid()){
-//                    personData.add(new Person(fornavnFelt.getText(), efternavnFelt.getText()));
-//                    System.out.println("Fornavn: "+fornavnFelt.getText()+"\nEfternavn: "+efternavnFelt.getText());
-//                }
-//               stage = (Stage) opretKontoGemKnap.getScene().getWindow();
-//                root = FXMLLoader.load(getClass().getResource("PersonOverview.fxml"));
-//            } else {
-//                stage = (Stage) opretKontoFortrydKnap.getScene().getWindow();
-//                root = FXMLLoader.load(getClass().getResource("PersonOverview.fxml"));
-//            
-//        }
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
-//    }
-//    
-//    private boolean opretKontoValid(){
-//        String errorMessage = "";
-//        
-//        if (fornavnFelt.getText() == null || fornavnFelt.getText().length() == 0) {
-//            errorMessage += "Intet valid fornavn!\n"; 
-//        }
-//        if (efternavnFelt.getText() == null || efternavnFelt.getText().length() == 0) {
-//            errorMessage += "Intet valid efternavn!\n"; 
-//        }
-//        
-//        if (errorMessage.length() == 0) {
-//            return true;
-//        } else {
-//            System.out.println(errorMessage);
-//            return false;
-//        }
-//    }
-
-//    @Override
-//    public void initialize(URL location, ResourceBundle resources) {
-//        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//        
-//    }
+   
     
 }
