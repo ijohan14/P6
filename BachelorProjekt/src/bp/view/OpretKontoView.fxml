@@ -1,46 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bp.controller.KontoController">
    <children>
-      <GridPane AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+      <VBox alignment="TOP_CENTER" prefHeight="343.0" prefWidth="300.0" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label text="Fornavn" />
-            <Label text="Efternavn" GridPane.rowIndex="1" />
-            <Label text="CPR" GridPane.rowIndex="2" />
-            <Label text="FamilieID" GridPane.rowIndex="3" />
-            <Label text="Brugertype" GridPane.rowIndex="4" />
-            <Label text="Adgangskode" GridPane.rowIndex="5" />
-            <TextField fx:id="fornavnFelt" GridPane.columnIndex="1" />
-            <TextField fx:id="efternavnFelt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="cprFelt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="familieIDFelt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="adgangskodeFelt" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <ChoiceBox fx:id="brugertypeBoks" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Opret konto">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="125.0" minWidth="10.0" prefWidth="93.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="173.0" minWidth="10.0" prefWidth="167.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Fornavn:" />
+                  <Label text="Efternavn:" GridPane.rowIndex="1" />
+                  <Label text="CPR:" GridPane.rowIndex="2" />
+                  <Label text="FamilieID:" GridPane.rowIndex="3" />
+                  <Label text="Brugertype:" GridPane.rowIndex="4" />
+                  <Label text="Adgangskode:" GridPane.rowIndex="5" />
+                  <TextField fx:id="fornavnFelt" GridPane.columnIndex="1" />
+                  <TextField fx:id="efternavnFelt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="cprFelt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="familieIDFelt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="adgangskodeFelt" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <children>
+                        <RadioButton fx:id="foralderKnap" mnemonicParsing="false" selected="true" text="Forælder">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="brugertype" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="barnKnap" mnemonicParsing="false" text="Barn" toggleGroup="$brugertype" />
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </VBox.margin>
+            </GridPane>
          </children>
-      </GridPane>
-      <ButtonBar layoutX="86.0" layoutY="346.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+      </VBox>
+      <ButtonBar layoutX="94.0" layoutY="346.0" prefHeight="40.0" prefWidth="192.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="94.0" AnchorPane.rightAnchor="14.0">
         <buttons>
           <Button fx:id="opretKontoGemKnap" mnemonicParsing="false" onAction="#handleOpretKontoGem" text="Gem" />
             <Button fx:id="opretKontoFortrydKnap" layoutX="205.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleOpretKonto" text="Fotryd" />

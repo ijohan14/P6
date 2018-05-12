@@ -204,7 +204,7 @@ public class KontoController implements Initializable {
         Parent root;
             if((event.getSource() == logIndKnap) && logIndIndtastet()){ //Der må skulle være en if, der spørger efter kontotype, og så afhænger view af dette. 
                 stage = (Stage) logIndKnap.getScene().getWindow();
-                root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));
+                root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
             } else {
                 stage = (Stage) opretKontoKnap.getScene().getWindow();
                 root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
