@@ -26,6 +26,7 @@ import static javafx.scene.input.KeyCode.M;
 import javafx.stage.Stage;
 import javax.swing.JTable;
 import javafx.application.Application;
+import javafx.scene.control.CheckBox;
 
 /**
  * FXML Controller class
@@ -44,7 +45,6 @@ public class KontoController implements Initializable {
 //   Object[][] data = {
 //       setKonto
 //   } 
-    
     @FXML
     private Button opretKontoKnap;
     @FXML
@@ -56,27 +56,37 @@ public class KontoController implements Initializable {
     @FXML
     private Button opretKontoFortrydKnap;
     @FXML
-    private Button opretKontoGemKnap;
-    @FXML
     private TextField fornavnFelt;
     @FXML
     private TextField efternavnFelt; 
-    @FXML 
+    @FXML
     private TextField cprFelt;
     @FXML
     private TextField familieIDFelt;
     @FXML
-    private ChoiceBox<String> brugertypeBoks;
-    @FXML
     private TextField adgangskodeFelt;
     @FXML
     private Button visDataKnap;
-    
-    
     @FXML
-    private void initialize(){
-        
-    }
+    private CheckBox sporgsmalEtJaBoks;
+    @FXML
+    private CheckBox sporgsmalEtNejBoks;
+    @FXML
+    private CheckBox sporgsmalToJaBoks;
+    @FXML
+    private CheckBox sporgsmalToNejBoks;
+    @FXML
+    private CheckBox sporgsmalTreJaBoks;
+    @FXML
+    private CheckBox sporgsmalTreNejBoks;
+    @FXML
+    private CheckBox sporgsmalFireJaBoks;
+    @FXML
+    private CheckBox sporgsmalFireNejBoks;
+    @FXML
+    private Button sporgeskemaGemKnap;
+    @FXML
+    private Button sporgeskemaFortrydKnap;
             
             
     /**
