@@ -21,13 +21,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+import bp.model.ForaldreModel;
 
 /**
  * FXML Controller class
  *
  * @author christinemariegrabow
  */
-public class DatalagringController implements Initializable {
+public class DatalagringController {
 
     @FXML
     public TableView visDataTabel;
@@ -45,6 +46,9 @@ public class DatalagringController implements Initializable {
     public TableColumn<ForaldreModel, String> familieIDKolonne;
     
     @FXML
+    public TableColumn<ForaldreModel, String> brugertypeKolonne;
+    
+    @FXML
     public TableColumn<ForaldreModel, String> adgangskodeKolonne;
     
     @FXML
@@ -53,39 +57,39 @@ public class DatalagringController implements Initializable {
     private ObservableList<ForaldreModel> familieData = FXCollections.observableArrayList();
 
     public DatalagringController(){
-        familieData.add(new ForaldreModel("Nathalie", "T", "1", "2","5"));
+        familieData.add(new ForaldreModel("Nathalie", "Trane", "1212070004", "3", false,"07"));
+        familieData.add(new ForaldreModel("Christine", "Grabow", "0101090002", "5", false, "09"));
+        familieData.add(new ForaldreModel("Ingeborg", "Jensen", "04041000006", "8" ,false, "10")); 
+        familieData.add(new ForaldreModel("Lise", "Jensen", "05059200008", "8", true, "92")); 
+        familieData.add(new ForaldreModel("Peter", "Jensen", "0420900003", "8", true, "90"));
     }
     
     public ObservableList<ForaldreModel> getFamilieData(){
         return familieData;
     }
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        
-    }    
+       
     
     @FXML
     private void initialize(){
         fornavnKolonne.setCellValueFactory(cellData -> cellData.getValue().fornavnProperty());
+        efternavnKolonne.setCellValueFactory(cellData -> cellData.getValue().efternavnProperty());
+        cprKolonne.setCellValueFactory(cellData -> cellData.getValue().cprProperty());
+        familieIDKolonne.setCellValueFactory(cellData -> cellData.getValue().familieIDProperty());
+        //brugertypeKolonne.setCellValueFactory(cellData -> cellData.getValue().brugertypeProperty());
+        adgangskodeKolonne.setCellValueFactory(cellData -> cellData.getValue().adgangskodeProperty());
+        
+        visDataTabel.getColumns().clear();
+        visDataTabel.setItems(getFamilieData());
+        visDataTabel.getColumns().addAll(fornavnKolonne, efternavnKolonne, cprKolonne, familieIDKolonne, brugertypeKolonne, adgangskodeKolonne);
+        
     }
  
     @FXML
-    private void handleTilbage(ActionEvent event) throws IOException{ 
+    private void handleTilbage() throws IOException{ 
         Stage stage; 
         Parent root;
-        if (event.getSource() == visDataTilbageKnap) {
-                stage = (Stage) visDataTilbageKnap.getScene().getWindow();
-                root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
-            } 
-        else {
-                stage = (Stage) visDataTilbageKnap.getScene().getWindow();
-                root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
-            
-            }
+        stage = (Stage) visDataTilbageKnap.getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

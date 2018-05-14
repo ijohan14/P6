@@ -14,6 +14,7 @@
           <TableColumn fx:id="efternavnKolonne" prefWidth="58.0" text="Efternavn" />
             <TableColumn fx:id="cprKolonne" prefWidth="45.0" text="cpr" />
             <TableColumn fx:id="familieIDKolonne" prefWidth="68.0" text="FamilieID" />
+            <TableColumn fx:id="brugertypeKolonne" prefWidth="75.0" text="Brugertype" />
             <TableColumn fx:id="adgangskodeKolonne" prefWidth="76.0" text="Adgangskode" />
         </columns>
       </TableView>

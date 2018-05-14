@@ -19,6 +19,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
+import bp.model.RegistreringModel;
 
 /**
  * FXML Controller class
@@ -60,6 +61,23 @@ public class RegistreringController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    @FXML
+    public void radioSelectMaltid(){
+        String message = "";
+        if (morgenmadKnap.isSelected()){
+            message += morgenmadKnap.getText()+"\n";
+        }
+        if (middagsmadKnap.isSelected()){
+            message += middagsmadKnap.getText()+"\n";
+        }
+        if (aftensmadKnap.isSelected()){
+            message += aftensmadKnap.getText()+"\n";
+        }
+        if (snackKnap.isSelected()){
+            message += snackKnap.getText()+"\n";
+        }
+        System.out.println(message);
+    }
     
     @FXML
     public void handleFortrydKostRegistrering() throws IOException {
@@ -78,7 +96,7 @@ public class RegistreringController implements Initializable {
         Parent root;
         if (registrerKostValid()){
             stage = (Stage) kostRegistreringGemKnap.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));           
         } else {
             stage = (Stage) kostRegistreringGemKnap.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("/bp/view/KostRegistreringView.fxml"));
@@ -113,11 +131,16 @@ public class RegistreringController implements Initializable {
         stage.show();   
     }
     
+    RegistreringModel RegMod = new RegistreringModel();
+    
     @FXML
     public void handleGemIsoBmiRegistrering() throws IOException {
         Stage stage;
         Parent root;
         if (registrerIsoBmiValid()){
+            float Hojde = Float.valueOf(isoBmiHojdeFelt.getText());
+            float Vagt = Float.valueOf(isoBmiVagtFelt.getText());
+            RegMod.bmiUdregning(Hojde, Vagt);
             stage = (Stage) isoBmiGemKnap.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));
         } else {

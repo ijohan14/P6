@@ -27,15 +27,19 @@ import javafx.stage.Stage;
 import javax.swing.JTable;
 import javafx.application.Application;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 
 /**
  * FXML Controller class
  *
  * @author nathalie
  */
-public class KontoController implements Initializable {
+public class KontoController {//implements Initializable {
     
     private ForaldreModel konto;
+    
+    private boolean brugertypeTest;
     
     ObservableList brugertypeList=FXCollections.observableArrayList();
     
@@ -68,33 +72,105 @@ public class KontoController implements Initializable {
     @FXML
     private Button visDataKnap;
     @FXML
-    private CheckBox sporgsmalEtJaBoks;
+    private RadioButton spEtJaKnap;
     @FXML
-    private CheckBox sporgsmalEtNejBoks;
+    private RadioButton spEtNejKnap;
     @FXML
-    private CheckBox sporgsmalToJaBoks;
+    private RadioButton spJaToKnap; 
     @FXML
-    private CheckBox sporgsmalToNejBoks;
+    private RadioButton spToNejKnap; 
     @FXML
-    private CheckBox sporgsmalTreJaBoks;
+    private RadioButton spTreJaKnap;
     @FXML
-    private CheckBox sporgsmalTreNejBoks;
+    private RadioButton spTreNejKnap;
     @FXML
-    private CheckBox sporgsmalFireJaBoks;
-    @FXML
-    private CheckBox sporgsmalFireNejBoks;
+    private RadioButton spFireJaKnap; 
+    @FXML 
+    private RadioButton spFireNejKnap; 
     @FXML
     private Button sporgeskemaGemKnap;
     @FXML
     private Button sporgeskemaFortrydKnap;
-            
+    @FXML
+    private ToggleGroup brugertype;
+    @FXML
+    private RadioButton foralderKnap; 
+    @FXML
+    private RadioButton barnKnap;
+    
+    
+    @FXML
+    public void radioSelectBrugertype(ActionEvent event){
+        String message = "";
+        if (foralderKnap.isSelected()){
+            brugertypeTest = true; 
+            brugertype.setUserData("Forælder");
+            message += foralderKnap.getText()+"\n";
+        }
+        if (barnKnap.isSelected()){
+            brugertypeTest = false; 
+            brugertype.setUserData("Barn");
+            message += barnKnap.getText()+"\n";
+        }
+        System.out.println(message);
+    }
+    
+    @FXML
+    public void radioSelectSpEt(ActionEvent event){
+        String message = "";
+        if (spEtJaKnap.isSelected()){
+            message += spEtJaKnap.getText()+"\n";
+        }
+        if (spEtNejKnap.isSelected()){
+            message += spEtNejKnap.getText()+"\n";
+        }
+        System.out.println(message);
+    }
+    
+    @FXML
+    public void radioSelectSpTo(ActionEvent event){
+        String message = "";
+        if (spJaToKnap.isSelected()){
+            message += spJaToKnap.getText()+"\n";
+        }
+        if (spToNejKnap.isSelected()){
+            message += spToNejKnap.getText()+"\n";
+        }
+        System.out.println(message);
+    }
+    
+    @FXML
+    public void radioSelectSpTre(ActionEvent event){
+        String message = "";
+        if (spTreJaKnap.isSelected()){
+            message += spTreJaKnap.getText()+"\n";
+        }
+        if (spTreNejKnap.isSelected()){
+            message += spTreNejKnap.getText()+"\n";
+        }
+        System.out.println(message);
+    }
+    
+    @FXML
+    public void radioSelectSpFire(ActionEvent event){
+        String message = "";
+        if (spFireJaKnap.isSelected()){
+            message += spFireJaKnap.getText()+"\n";
+        }
+        if (spFireNejKnap.isSelected()){
+            message += spFireNejKnap.getText()+"\n";
+        }
+        System.out.println(message);
+    }
+    
             
     /**
      * Initializes the controller class.
      */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    }   
+    
+    
+
+    
     
     
      public void setKonto(ForaldreModel konto) {
@@ -140,11 +216,14 @@ public class KontoController implements Initializable {
         Stage stage;
         Parent root;
         if(opretKontoValid()){
-            familieData.add(new ForaldreModel(fornavnFelt.getText(), efternavnFelt.getText(),cprFelt.getText(),familieIDFelt.getText(),adgangskodeFelt.getText()));
+            familieData.add(new ForaldreModel(fornavnFelt.getText(), efternavnFelt.getText(),cprFelt.getText(),familieIDFelt.getText(),brugertypeTest,adgangskodeFelt.getText()));
             System.out.println("Fornavn: "+fornavnFelt.getText()+"\nEfternavn: "+efternavnFelt.getText()+"\nCpr: "+cprFelt.getText()+"\nFamilieiD: "+familieIDFelt.getText()+"\nAdganskode: "+adgangskodeFelt.getText());
+            stage = (Stage) opretKontoFortrydKnap.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
+        } else {
+            stage = (Stage) opretKontoFortrydKnap.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("/bp/view/OpretKontoView.fxml"));
         }
-        stage = (Stage) opretKontoFortrydKnap.getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
     }
@@ -174,6 +253,8 @@ public class KontoController implements Initializable {
             return false;
         }
     }
+   
+    
     
     @FXML
     public void handleLogInd() throws IOException {

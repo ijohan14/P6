@@ -5,6 +5,7 @@
  */
 package bp.model;
 
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -18,20 +19,22 @@ public class ForaldreModel {
     private SimpleStringProperty efternavn =new SimpleStringProperty("");
     private SimpleStringProperty cpr = new SimpleStringProperty("");
     private SimpleStringProperty familieID = new SimpleStringProperty("");
+    private SimpleBooleanProperty brugertype = new SimpleBooleanProperty();
     private SimpleStringProperty adgangskode = new SimpleStringProperty("");
     
     /**
      * Default
      */
     public ForaldreModel() {
-        this("","","","","");
+        this("","","","",true,"");
     }
     
-    public ForaldreModel(String fornavn, String efternavn, String cpr, String familieID, String adgangskode) {
+    public ForaldreModel(String fornavn, String efternavn, String cpr, String familieID, boolean brugertype, String adgangskode) {
         setFornavn(fornavn);
         setEfternavn(efternavn); 
         setCpr(cpr);
         setFamilieID(familieID);
+        setBrugertype(brugertype);
         setAdgangskode(adgangskode);
     }
     
@@ -122,6 +125,22 @@ public class ForaldreModel {
         return familieID;
     }
     
+    public boolean getBrugertype() {
+        return brugertype.get();
+    }
+    
+    /**
+     * 
+     * @param adgangskode 
+     */
+    public void setBrugertype(boolean brugertype){
+        this.brugertype.set(brugertype);
+    }
+    
+    public SimpleBooleanProperty brugertypeProperty(){
+        return brugertype;
+    }
+    
     /**
      * 
      * @param adgangskode 
@@ -141,4 +160,6 @@ public class ForaldreModel {
     public StringProperty adgangskodeProperty(){
         return adgangskode;
     }
+    
+  
 }

@@ -55,12 +55,12 @@
                   <TextField fx:id="adgangskodeFelt" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <children>
-                        <RadioButton fx:id="foralderKnap" mnemonicParsing="false" selected="true" text="Forælder">
+                        <RadioButton fx:id="foralderKnap" mnemonicParsing="false" onAction="#radioSelectBrugertype" selected="true" text="Forælder">
                            <toggleGroup>
                               <ToggleGroup fx:id="brugertype" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="barnKnap" mnemonicParsing="false" text="Barn" toggleGroup="$brugertype" />
+                        <RadioButton fx:id="barnKnap" mnemonicParsing="false" onAction="#radioSelectBrugertype" text="Barn" toggleGroup="$brugertype" />
                      </children>
                   </HBox>
                </children>

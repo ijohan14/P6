@@ -3,8 +3,9 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -14,8 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="bp.controller.KontoController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bp.controller.KontoController">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="78.0" layoutY="36.0" prefHeight="355.0" prefWidth="300.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -42,35 +42,52 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
                <children>
-                  <Label text="Spørgsmål 1:" />
-                  <Label text="Spørgsmål 2:" GridPane.rowIndex="1" />
-                  <Label text="Spørgsmål 3:" GridPane.rowIndex="2" />
-                  <Label text="Spørgsmål 4:" GridPane.rowIndex="3" />
+                  <Label text="Spørgsmål 1: " />
+                  <Label text="Spørgsmål 2: " GridPane.rowIndex="1" />
+                  <Label text="Spørgsmål 3: " GridPane.rowIndex="2" />
+                  <Label text="Spørgsmål 4: " GridPane.rowIndex="3" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
-                        <CheckBox fx:id="sporgsmalEtJaBoks" mnemonicParsing="false" prefHeight="18.0" prefWidth="50.0" text="Ja" />
-                        <CheckBox fx:id="sporgsmalEtNejBoks" mnemonicParsing="false" text="Nej" />
+                        <RadioButton fx:id="spEtJaKnap" mnemonicParsing="false" onAction="#radioSelectSpEt" text="Ja">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="spEt" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="spEtNejKnap" mnemonicParsing="false" onAction="#radioSelectSpEt" text="Nej" toggleGroup="$spEt" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <CheckBox fx:id="sporgsmalToJaBoks" mnemonicParsing="false" prefHeight="18.0" prefWidth="50.0" text="Ja" />
-                        <CheckBox fx:id="sporgsmalToNejBoks" mnemonicParsing="false" text="Nej" />
+                        <RadioButton fx:id="spJaToKnap" mnemonicParsing="false" onAction="#radioSelectSpTo" text="Ja">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="spTo" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="spToNejKnap" mnemonicParsing="false" onAction="#radioSelectSpTo" text="Nej" toggleGroup="$spTo" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <CheckBox fx:id="sporgsmalTreJaBoks" mnemonicParsing="false" prefHeight="18.0" prefWidth="50.0" text="Ja" />
-                        <CheckBox fx:id="sporgsmalTreNejBoks" mnemonicParsing="false" text="Nej" />
+                        <RadioButton fx:id="spTreJaKnap" mnemonicParsing="false" onAction="#radioSelectSpTre" text="Ja">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="spTre" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="spTreNejKnap" mnemonicParsing="false" onAction="#radioSelectSpTre" text="Nej" toggleGroup="$spTre" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
-                        <CheckBox fx:id="sporgsmalFireJaBoks" mnemonicParsing="false" prefHeight="18.0" prefWidth="50.0" text="Ja" />
-                        <CheckBox fx:id="sporgsmalFireNejBoks" mnemonicParsing="false" text="Nej" />
+                        <RadioButton fx:id="spFireJaKnap" mnemonicParsing="false" onAction="#radioSelectSpFire" text="Ja">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="spFire" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="spFireNejKnap" mnemonicParsing="false" onAction="#radioSelectSpFire" text="Nej" toggleGroup="$spFire" />
                      </children>
                   </HBox>
                </children>
+               
             </GridPane>
          </children>
       </VBox>
