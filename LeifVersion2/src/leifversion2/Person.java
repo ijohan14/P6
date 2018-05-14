@@ -17,6 +17,10 @@ public class Person {
     private final SimpleStringProperty fornavn;
     private final SimpleStringProperty efternavn;
     
+    public Person(){
+        this(null, null);
+    }
+    
     public Person(String fornavn, String efternavn){
         this.fornavn = new SimpleStringProperty(fornavn);
         this.efternavn = new SimpleStringProperty(efternavn);

@@ -24,18 +24,12 @@ import javafx.stage.Stage;
  */
 public class LeifVersion2 extends Application {
     
-//    ObservableList<Person> personData = FXCollections.observableArrayList(new Person("Nathalie", "Trane"), new Person("Christine", "Grabow"));
-//    
-//    public ObservableList<Person> getPersonData() {
-//        return personData;
-//    }
-    
+  
     
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
         Scene scene = new Scene(root);
-        //save("detteerentest");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

@@ -8,6 +8,7 @@ package leifversion2;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -34,13 +35,13 @@ public class AddPersonController {//implements Initializable{
     
     private Person person;
     //ObservableList<Person> personData = new PersonOverviewController().getContent();
-    ObservableList<Person> personData = FXCollections.observableArrayList();
+    /*ObservableList<Person> personData = FXCollections.observableArrayList();
     
     public ObservableList<Person> getContent() {        
         personData.add(new Person("Nathalie", "Trane"));
         personData.add(new Person("Christine", "Grabow")); // your data
         return personData;
-    }
+    }*/
     
 //    @Override
 //    public void initialize(URL url, ResourceBundle rb) {
@@ -64,10 +65,7 @@ public class AddPersonController {//implements Initializable{
         Stage stage;
         Parent root;
         if(isInputValid()){
-           //personData.add(new Person(fornavnFelt.getText(),efternavnFelt.getText()));
-            personData.add(new Person("j","je"));
-            System.out.println(personData.get(0).toString());
-           System.out.println("Fornavn: "+fornavnFelt.getText()+"\nEfternavn: "+efternavnFelt.getText());
+            
         }
         stage = (Stage) addPersonGemKnap.getScene().getWindow();
         root = FXMLLoader.load(getClass().getResource("PersonOverview.fxml"));
