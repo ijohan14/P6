@@ -29,6 +29,7 @@ import javafx.application.Application;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import bp.model.ForaldreModel;
 
 /**
  * FXML Controller class
@@ -221,7 +222,7 @@ public class KontoController {//implements Initializable {
             stage = (Stage) opretKontoFortrydKnap.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
         } else {
-            stage = (Stage) opretKontoFortrydKnap.getScene().getWindow();
+        stage = (Stage) opretKontoFortrydKnap.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("/bp/view/OpretKontoView.fxml"));
         }
         Scene scene = new Scene(root);
@@ -270,6 +271,9 @@ public class KontoController {//implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
     }
+    
+    ForaldreModel ForMod = new ForaldreModel();  
+    
     
     private boolean logIndIndtastet(){
         String errorMessage = "";

@@ -24,7 +24,7 @@ public class CprController {
         
         int konInt = Integer.parseInt(kon);//transform format fra string til int, så kan man lave matematiske beregninger med int'en
         
-        //kon = konInt%2==0?"F":"M"; //if else statement bare forkortet på en smartere måde, som vi lært i kursusgang "?", hvor ? er "if" statement og ":" er else
+        kon = konInt%2==0?"M":"F"; //if else statement bare forkortet på en smartere måde, som vi lært i kursusgang "?", hvor ? er "if" statement og ":" er else
       
         return kon; 
     }
@@ -72,8 +72,8 @@ public class CprController {
         
         CprController controller = new CprController();
         
-        System.out.println("Køn: "+ controller.udtrakKonFraCpr("1402083443"));
-        System.out.println("Alder: "+ controller.udtrakAlderFraCpr("1402083443"));
+        System.out.println("Køn: "+ controller.udtrakKonFraCpr("1402083444"));
+        System.out.println("Alder: "+ controller.udtrakAlderFraCpr("1402093443"));
     }
     
     
