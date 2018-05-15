@@ -5,6 +5,7 @@
  */
 package leifversion2;
 
+import java.io.Serializable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -33,6 +34,10 @@ public class Person {
     public void setFornavn(String fornavn) {
         this.fornavn.set(fornavn);
     }
+    
+    public StringProperty fornavnProperty() {
+        return fornavn;
+    }
 
     public String getEfternavn() {
         return efternavn.get();
@@ -40,6 +45,10 @@ public class Person {
 
     public void setEfternavn(String efternavn) {
         this.efternavn.set(efternavn);
+    }
+    
+    public StringProperty efternavnProperty() {
+        return efternavn;
     }
     
 }

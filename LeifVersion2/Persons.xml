@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_161" class="java.beans.XMLDecoder">
+ <object class="javafx.scene.control.TableView" id="TableView0">
+  <void property="id">
+   <string>visDataTabel</string>
+  </void>
+  <void property="items">
+   <void method="add">
+    <object class="leifversion2.Person">
+     <void property="efternavn">
+      <string>Tran</string>
+     </void>
+     <void property="fornavn">
+      <string>Nath</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="leifversion2.Person">
+     <void property="efternavn">
+      <string>vire</string>
+     </void>
+     <void property="fornavn">
+      <string>ida</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="leifversion2.Person">
+     <void property="efternavn">
+      <string>grab</string>
+     </void>
+     <void property="fornavn">
+      <string>chris</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="leifversion2.Person">
+     <void property="efternavn">
+      <string>hansen</string>
+     </void>
+     <void property="fornavn">
+      <string>raul</string>
+     </void>
+    </object>
+   </void>
+  </void>
+  <void property="prefHeight">
+   <double>291.0</double>
+  </void>
+  <void property="prefWidth">
+   <double>300.0</double>
+  </void>
+ </object>
+</java>

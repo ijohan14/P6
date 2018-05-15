@@ -5,68 +5,42 @@
  */
 package leifversion2;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javafx.application.Application;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
 /**
  *
  * @author nathalie
  */
-public class LeifVersion2 extends Application {
-    public Stage stage;
+public class DatalagringController {
     
-    ObservableList<Person> personData = FXCollections.observableArrayList();
-     
-     /**
-      * 
-      * @return 
-      */
-     public ObservableList<Person> getPersonData(){
-         ObservableList<Person> personData = FXCollections.observableArrayList();
-         personData.add(new Person());
-         return personData;
-     }
+    private ObservableList<Person> personData = FXCollections.observableArrayList();
     
     private DBClass objDbClass = new DBClass();
     java.sql.Connection con;
-  
     
-  
     
-    @Override
-    public void start(Stage stage) throws IOException, ClassNotFoundException, SQLException{
-        this.stage = stage;
-        
+    public DatalagringController() throws ClassNotFoundException, SQLException{
         con = objDbClass.getConnection();
         buildData();
-        
-        Parent root = FXMLLoader.load(getClass().getResource("PersonOverview.fxml"));
-        stage.setScene(new Scene(root));
-        stage.show();
-        
-    } 
-    
+    }
     
     private void buildData() {
         try{
-            String SQL = "Select Fornavn, Efternavn from Person Order By Efternavn";
+            String SQL = "Select FirstName, LastName from Person Order By LastName";
            
             ResultSet rs = con.createStatement().executeQuery(SQL);
             
             while(rs.next()){
                 Person p = new Person();
-                p.setFornavn(rs.getString("Fornavn"));
-                p.setEfternavn(rs.getString("Efternavn"));
+                p.setFornavn(rs.getString("FirstName"));
+                p.setEfternavn(rs.getString("LastName"));
                
                 personData.add(p);
             }
@@ -97,16 +71,12 @@ public class LeifVersion2 extends Application {
         }
 }
     
-  
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
+    public class DBClass {
+    public Connection getConnection() throws ClassNotFoundException, SQLException {
+        Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+        return
+        DriverManager.getConnection("jdbc:derby://localhost:1527/LeifVersion2DB","leif","leif");
     }
-    
-
- 
-   
+}
     
 }
