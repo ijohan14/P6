@@ -36,6 +36,7 @@ public class MenuBornController implements Initializable {
     static int timer = 0;
     static boolean stadie = false;
     String timerTid;
+    int aktivitetIntensitet;
     
     @FXML
     public Button malsatningFortrydKnap; 
@@ -69,6 +70,8 @@ public class MenuBornController implements Initializable {
     private RadioButton lobeturKnap;
     @FXML
     private RadioButton rulleskojteKnap;
+    @FXML
+    private Label pointsumLabel;
     /**
      * Initializes the controller class.
      */
@@ -143,12 +146,12 @@ public class MenuBornController implements Initializable {
                                     milisekunder = 0;
                                     sekunder ++;
                                 }
-                                if(sekunder > 60){
+                                if(sekunder > 59){
                                     milisekunder = 0;
                                     sekunder = 0;
                                     minutter ++;
                                 }
-                                if(minutter > 60){
+                                if(minutter > 59){
                                     milisekunder = 0;
                                     sekunder = 0;
                                     minutter = 0;
@@ -158,14 +161,10 @@ public class MenuBornController implements Initializable {
                                 String timerString = String.valueOf(timer);
                                 String minutterString = String.valueOf(minutter);
                                 String sekunderString = String.valueOf(sekunder);
-//                                sekunderDisplay.setText(" : "+sekunder);
-//
-//                                minutterDisplay.setText(" : "+minutter);
-//                                timerDisplay.setText(" "+timer);
+
                                 System.out.println(" "+timer+" : "+minutter+" : "+sekunder);
                                 timerTid = " "+timerString+" : "+minutterString+" : "+sekunderString;
                                 timerText.setText(timerTid);
-//                                timerText.setText(" "+timer+" : "+minutter+" : "+sekunder);
                             }
                             catch(Exception e){
                             }
@@ -188,15 +187,19 @@ public class MenuBornController implements Initializable {
         udfordringOpsummeringLabel.setText("");
         if (sjippetovKnap.isSelected()){
             message += sjippetovKnap.getText();
+            aktivitetIntensitet = 3; 
         }
         if (gaturKnap.isSelected()){
             message += gaturKnap.getText();
+            aktivitetIntensitet = 1;
         }
         if (lobeturKnap.isSelected()){
             message += lobeturKnap.getText();
+            aktivitetIntensitet = 3;
         }
         if (rulleskojteKnap.isSelected()){
             message += rulleskojteKnap.getText();
+            aktivitetIntensitet = 2; 
         } 
 
         return message;
@@ -206,7 +209,11 @@ public class MenuBornController implements Initializable {
     @FXML
     public void handleStopTimer (){
         stadie = false;
-        udfordringOpsummeringLabel.setText("Udfordring: "+radioSelectUdfordring()+"\nVarighed: "+timerTid);
+        int point = 240; //skal ideelt hentes fra database 
+        String p = SpilMod.point(minutter, aktivitetIntensitet,point);
+        int po = Integer.parseInt(p);
+        
+        udfordringOpsummeringLabel.setText("Udfordring: "+radioSelectUdfordring()+"\nVarighed: "+timerTid+"\nNy pointsum: "+p +"\n"+SpilMod.level(po, 1));
         
         timer = 0;
         minutter = 0;

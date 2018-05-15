@@ -110,10 +110,8 @@ public class RegistreringController implements Initializable {
     
     @FXML
     public void handleGemKostRegistrering() throws IOException {
-        Stage stage;
         String message = "";
         if (registrerKostValid()){
-            stage = (Stage) kostRegistreringGemKnap.getScene().getWindow();
             LocalDate dato = datoKostFelt.getValue();
             String datoString = String.valueOf(dato);
             kostGemtLabel.setText(radioSelectMaltid()+" for "+datoString+ " er gemt!");
@@ -160,7 +158,6 @@ public class RegistreringController implements Initializable {
     
     @FXML
     public void handleGemIsoBmiRegistrering() throws IOException {
-        Stage stage;
         bmiUdregnetLabel.setText("");
         if (registrerIsoBmiValid()){
             float Hojde = Float.valueOf(isoBmiHojdeFelt.getText());
@@ -170,7 +167,6 @@ public class RegistreringController implements Initializable {
             bmiUdregnetLabel.setText(RegMod.bmiUdregning(Hojde, Vagt, Alder, Kon));
             bmiGemtLabel.setText("Registering af ISO-BMI fuldført!");
             bmiFejlLabel.setText("");
-            stage = (Stage) isoBmiGemKnap.getScene().getWindow();
         }
           
     }

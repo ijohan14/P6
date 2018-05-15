@@ -5,31 +5,32 @@
  */
 package bp.controller;
 
-import bp.model.ForaldreModel;
+//import bp.model.ForaldreModel;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+//import java.net.URL;
+//import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
+//import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+//import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
+//import javafx.scene.control.ChoiceBox;
+//import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import static javafx.scene.input.KeyCode.M;
+//import static javafx.scene.input.KeyCode.M;
 import javafx.stage.Stage;
-import javax.swing.JTable;
-import javafx.application.Application;
-import javafx.scene.control.CheckBox;
+//import javax.swing.JTable;
+//import javafx.application.Application;
+//import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import bp.model.ForaldreModel;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -50,6 +51,8 @@ public class KontoController {//implements Initializable {
 //   Object[][] data = {
 //       setKonto
 //   } 
+    
+    //StartVIew
     @FXML
     private Button opretKontoKnap;
     @FXML
@@ -59,7 +62,15 @@ public class KontoController {//implements Initializable {
     @FXML
     private TextField adgangskodeLogIndFelt;
     @FXML
-    private Button opretKontoFortrydKnap;
+    private Button visDataKnap;
+    @FXML 
+    private Label logIndFejlLabel;
+    
+    //OpretKontoView
+    @FXML
+    private Button opretKontoFardigKnap;
+    @FXML
+    private Button opretKontoGemKnap;
     @FXML
     private TextField fornavnFelt;
     @FXML
@@ -70,14 +81,24 @@ public class KontoController {//implements Initializable {
     private TextField familieIDFelt;
     @FXML
     private TextField adgangskodeFelt;
+//    @FXML
+//    private ToggleGroup brugertype;
     @FXML
-    private Button visDataKnap;
+    private RadioButton foralderKnap; 
+    @FXML
+    private RadioButton barnKnap;
+    @FXML
+    private Label kontoGemtLabel;
+    @FXML
+    private Label opretKontoFejlLabel;
+    
+    //SporgeskemaBornView
     @FXML
     private RadioButton spEtJaKnap;
     @FXML
     private RadioButton spEtNejKnap;
     @FXML
-    private RadioButton spJaToKnap; 
+    private RadioButton spToJaKnap; 
     @FXML
     private RadioButton spToNejKnap; 
     @FXML
@@ -88,91 +109,85 @@ public class KontoController {//implements Initializable {
     private RadioButton spFireJaKnap; 
     @FXML 
     private RadioButton spFireNejKnap; 
+//    @FXML
+//    private Button sporgeskemaGemKnap;
     @FXML
-    private Button sporgeskemaGemKnap;
+    private Label sporgeskemaGemtLabel;
     @FXML
-    private Button sporgeskemaFortrydKnap;
+    private Label sporgeskemaFejlLabel;
     @FXML
-    private ToggleGroup brugertype;
-    @FXML
-    private RadioButton foralderKnap; 
-    @FXML
-    private RadioButton barnKnap;
+    private Button sporgeskemaFardigKnap;
     
     
     @FXML
-    public void radioSelectBrugertype(ActionEvent event){
-        String message = "";
-        if (foralderKnap.isSelected()){
-            brugertypeTest = true; 
-            brugertype.setUserData("Forælder");
-            message += foralderKnap.getText()+"\n";
-        }
-        if (barnKnap.isSelected()){
-            brugertypeTest = false; 
-            brugertype.setUserData("Barn");
-            message += barnKnap.getText()+"\n";
-        }
-        System.out.println(message);
+    public void handleVisData() throws IOException {
+        Stage stage;
+        Parent root;
+        stage = (Stage) visDataKnap.getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("/bp/view/DatalagringView.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();   
     }
     
     @FXML
-    public void radioSelectSpEt(ActionEvent event){
-        String message = "";
-        if (spEtJaKnap.isSelected()){
-            message += spEtJaKnap.getText()+"\n";
+    public void handleLogInd() throws IOException{
+        Stage stage;
+        Parent root;
+        if(logIndIndtastet() ){ //Der må skulle være en if, der spørger efter kontotype, og så afhænger view af dette. 
+                stage = (Stage) logIndKnap.getScene().getWindow();
+                root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
         }
-        if (spEtNejKnap.isSelected()){
-            message += spEtNejKnap.getText()+"\n";
-        }
-        System.out.println(message);
     }
     
-    @FXML
-    public void radioSelectSpTo(ActionEvent event){
-        String message = "";
-        if (spJaToKnap.isSelected()){
-            message += spJaToKnap.getText()+"\n";
+    private boolean logIndIndtastet(){
+        String errorMessage = "";
+        if (cprLogIndFelt.getText() == null || cprLogIndFelt.getText().length() == 0) {
+            errorMessage += "Intet cpr indtastet!\n"; 
+            logIndFejlLabel.setText(errorMessage);
         }
-        if (spToNejKnap.isSelected()){
-            message += spToNejKnap.getText()+"\n";
+        if (adgangskodeLogIndFelt.getText() == null || adgangskodeLogIndFelt.getText().length() == 0) {
+            errorMessage += "Ingen adgangskode indtastet!\n"; 
+            logIndFejlLabel.setText(errorMessage);
         }
-        System.out.println(message);
+        if (errorMessage.length() == 0) {
+            return true;
+        } else {
+            System.out.println(errorMessage);
+            return false;
+        }
     }
     
-    @FXML
-    public void radioSelectSpTre(ActionEvent event){
-        String message = "";
-        if (spTreJaKnap.isSelected()){
-            message += spTreJaKnap.getText()+"\n";
+    private boolean logIndValid(){
+        String errorMessage = "";
+        
+        if (cprFelt.getText() != cprLogIndFelt.getText()){
+            errorMessage += "cpr ikke validt\n";
         }
-        if (spTreNejKnap.isSelected()){
-            message += spTreNejKnap.getText()+"\n";
+        if (adgangskodeFelt.getText() != adgangskodeLogIndFelt.getText()){
+            errorMessage += "adgangskode ikke valid\n";
         }
-        System.out.println(message);
+        if (errorMessage.length() == 0) {
+            return true;
+        } else {
+            System.out.println(errorMessage);
+            return false;
+        }
     }
-    
-    @FXML
-    public void radioSelectSpFire(ActionEvent event){
-        String message = "";
-        if (spFireJaKnap.isSelected()){
-            message += spFireJaKnap.getText()+"\n";
-        }
-        if (spFireNejKnap.isSelected()){
-            message += spFireNejKnap.getText()+"\n";
-        }
-        System.out.println(message);
-    }
-    
-            
-    /**
-     * Initializes the controller class.
-     */
-    
     
 
-    
-    
+    public String radioSelectBrugertype(){
+        String message = "";
+        if (foralderKnap.isSelected()){
+            message = "forælder";
+        }
+        if (barnKnap.isSelected()){
+            message = "barn";
+        }
+        return message;
+    }
     
      public void setKonto(ForaldreModel konto) {
         this.konto = konto;
@@ -205,7 +220,7 @@ public class KontoController {//implements Initializable {
     public void handleOpretKontoFortryd() throws IOException {
         Stage stage;
         Parent root;
-        stage = (Stage) opretKontoFortrydKnap.getScene().getWindow();
+        stage = (Stage) opretKontoFardigKnap.getScene().getWindow();
         root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -214,19 +229,20 @@ public class KontoController {//implements Initializable {
     
     @FXML
     public void handleOpretKontoGem() throws IOException {
-        Stage stage;
-        Parent root;
         if(opretKontoValid()){
-            familieData.add(new ForaldreModel(fornavnFelt.getText(), efternavnFelt.getText(),cprFelt.getText(),familieIDFelt.getText(),brugertypeTest,adgangskodeFelt.getText()));
-            System.out.println("Fornavn: "+fornavnFelt.getText()+"\nEfternavn: "+efternavnFelt.getText()+"\nCpr: "+cprFelt.getText()+"\nFamilieiD: "+familieIDFelt.getText()+"\nAdganskode: "+adgangskodeFelt.getText());
-            stage = (Stage) opretKontoFortrydKnap.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
-        } else {
-        stage = (Stage) opretKontoFortrydKnap.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("/bp/view/OpretKontoView.fxml"));
-        }
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+//            familieData.add(new ForaldreModel(fornavnFelt.getText(), efternavnFelt.getText(),cprFelt.getText(),familieIDFelt.getText(),brugertypeTest,adgangskodeFelt.getText()));
+//            System.out.println("Fornavn: "+fornavnFelt.getText()+"\nEfternavn: "+efternavnFelt.getText()+"\nCpr: "+cprFelt.getText()+"\nFamilieiD: "+familieIDFelt.getText()+"\nAdganskode: "+adgangskodeFelt.getText());
+            kontoGemtLabel.setText("Konto af brugertypen "+radioSelectBrugertype()+ " er gemt!");
+            if((opretKontoValid())&&(radioSelectBrugertype() == "barn")){
+                Stage stage; 
+                Parent root;
+                stage = (Stage) opretKontoGemKnap.getScene().getWindow();
+                root = FXMLLoader.load(getClass().getResource("/bp/view/SporgeskemaBornView.fxml"));
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                
+            }
+        } 
     }
       
     private boolean opretKontoValid(){
@@ -234,18 +250,27 @@ public class KontoController {//implements Initializable {
         
         if (fornavnFelt.getText() == null || fornavnFelt.getText().length() == 0) {
             errorMessage += "Intet valid fornavn!\n"; 
+            opretKontoFejlLabel.setText(errorMessage);
         }
         if (efternavnFelt.getText() == null || efternavnFelt.getText().length() == 0) {
-            errorMessage += "Intet valid efternavn!\n"; 
+            errorMessage += "Intet valid efternavn!\n";
+            opretKontoFejlLabel.setText(errorMessage);
         }
         if (cprFelt.getText() == null || cprFelt.getText().length() == 0) {
             errorMessage += "Intet valid cpr!\n"; 
+            opretKontoFejlLabel.setText(errorMessage);
         }
         if (familieIDFelt.getText() == null || familieIDFelt.getText().length() == 0) {
             errorMessage += "Intet valid familieID!\n"; 
+            opretKontoFejlLabel.setText(errorMessage);
+        }
+        if((barnKnap.isSelected() == false) && (foralderKnap.isSelected() == false)){
+            errorMessage += "Ingen valid brugertype!\n"; 
+            opretKontoFejlLabel.setText(errorMessage);
         }
         if (adgangskodeFelt.getText() == null || adgangskodeFelt.getText().length() == 0) {
             errorMessage += "Intet valid adgangekode!\n"; 
+            opretKontoFejlLabel.setText(errorMessage);
         }
         if (errorMessage.length() == 0) {
             return true;
@@ -255,69 +280,100 @@ public class KontoController {//implements Initializable {
         }
     }
    
-    
-    
     @FXML
-    public void handleLogInd() throws IOException {
-        Stage stage;
-        Parent root;
-        if(logIndIndtastet() ){ //Der må skulle være en if, der spørger efter kontotype, og så afhænger view af dette. 
-                stage = (Stage) logIndKnap.getScene().getWindow();
-                root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
-            } else {
-                stage = (Stage) logIndKnap.getScene().getWindow();
-                root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
-            }
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+    public void radioSelectSpEt(ActionEvent event){
+        String message = "";
+        if (spEtJaKnap.isSelected()){
+            message += spEtJaKnap.getText()+"\n";
+        }
+        if (spEtNejKnap.isSelected()){
+            message += spEtNejKnap.getText()+"\n";
+        }
+        System.out.println(message);
     }
     
-    ForaldreModel ForMod = new ForaldreModel();  
-    
-    
-    private boolean logIndIndtastet(){
-        String errorMessage = "";
-        
-        if (cprLogIndFelt.getText() == null || cprLogIndFelt.getText().length() == 0) {
-            errorMessage += "Intet cpr indtastet!\n"; 
+    @FXML
+    public void radioSelectSpTo(ActionEvent event){
+        String message = "";
+        if (spToJaKnap.isSelected()){
+            message += spToJaKnap.getText()+"\n";
         }
-        if (adgangskodeLogIndFelt.getText() == null || adgangskodeLogIndFelt.getText().length() == 0) {
-            errorMessage += "Ingen adgangskode indtastet!\n"; 
+        if (spToNejKnap.isSelected()){
+            message += spToNejKnap.getText()+"\n";
+        }
+        System.out.println(message);
+    }
+    
+    @FXML
+    public void radioSelectSpTre(ActionEvent event){
+        String message = "";
+        if (spTreJaKnap.isSelected()){
+            message += spTreJaKnap.getText()+"\n";
+        }
+        if (spTreNejKnap.isSelected()){
+            message += spTreNejKnap.getText()+"\n";
+        }
+        System.out.println(message);
+    }
+    
+    @FXML
+    public void radioSelectSpFire(ActionEvent event){
+        String message = "";
+        if (spFireJaKnap.isSelected()){
+            message += spFireJaKnap.getText()+"\n";
+        }
+        if (spFireNejKnap.isSelected()){
+            message += spFireNejKnap.getText()+"\n";
+        }
+        System.out.println(message);
+    }
+    
+    public boolean validSporgeskemaBesvarelse(){
+        String errorMessage = "";
+        sporgeskemaGemtLabel.setText("");
+        
+        if ((spEtJaKnap.isSelected() == false) && (spEtNejKnap.isSelected() == false)){
+            errorMessage += "Spørgsmål 1 mangler besvarelse!\n";
+            sporgeskemaFejlLabel.setText(errorMessage);
+        }
+        if ((spToJaKnap.isSelected() == false) && (spToNejKnap.isSelected() == false)){
+            errorMessage += "Spørgsmål 2 mangler besvarelse!\n";
+            sporgeskemaFejlLabel.setText(errorMessage);
+        }
+        if ((spTreJaKnap.isSelected() == false) && (spTreNejKnap.isSelected() == false)){
+            errorMessage += "Spørgsmål 3 mangler besvarelse!\n";
+            sporgeskemaFejlLabel.setText(errorMessage);
+        }
+        if ((spFireJaKnap.isSelected() == false) && (spFireNejKnap.isSelected() == false)){
+            errorMessage += "Spørgsmål 4 mangler besvarelse!\n";
+            sporgeskemaFejlLabel.setText(errorMessage);
         }
         if (errorMessage.length() == 0) {
             return true;
         } else {
-            System.out.println(errorMessage);
-            return false;
-        }
-    }
-    
-    private boolean logIndValid(){
-        String errorMessage = "";
-        
-        if (cprFelt.getText() != cprLogIndFelt.getText()){
-            errorMessage += "cpr ikke validt\n";
-        }
-        if (adgangskodeFelt.getText() != adgangskodeLogIndFelt.getText()){
-            errorMessage += "adgangskode ikke valid\n";
-        }
-        if (errorMessage.length() == 0) {
-            return true;
-        } else {
-            System.out.println(errorMessage);
             return false;
         }
     }
     
     @FXML
-    public void handleVisData() throws IOException {
+    public void handleSporgeskemaGem() {
+        if(validSporgeskemaBesvarelse()){
+            sporgeskemaFejlLabel.setText("");
+            sporgeskemaGemtLabel.setText("Besvarelse af spørgeskema gemt!");
+        }
+    }
+    
+    @FXML
+    public void handleSporgeskemaFardig() throws IOException{
         Stage stage;
         Parent root;
-        stage = (Stage) visDataKnap.getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("/bp/view/DatalagringView.fxml"));
+        stage = (Stage) sporgeskemaFardigKnap.getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.show();   
+        stage.show();  
     }
+    
+   
     
 }

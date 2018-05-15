@@ -58,7 +58,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <RadioButton fx:id="spJaToKnap" mnemonicParsing="false" onAction="#radioSelectSpTo" text="Ja">
+                        <RadioButton fx:id="spToJaKnap" mnemonicParsing="false" onAction="#radioSelectSpTo" text="Ja">
                            <toggleGroup>
                               <ToggleGroup fx:id="spTo" />
                            </toggleGroup>
@@ -89,12 +89,14 @@
                </children>
                
             </GridPane>
+            <Label fx:id="sporgeskemaGemtLabel" textFill="#51d045" />
+            <Label fx:id="sporgeskemaFejlLabel" textFill="RED" />
          </children>
       </VBox>
       <ButtonBar layoutX="86.0" layoutY="346.0" prefHeight="40.0" prefWidth="200.0">
         <buttons>
-          <Button fx:id="sporgeskemaGemKnap" mnemonicParsing="false" text="Gem" />
-            <Button fx:id="sporgeskemaFortrydKnap" mnemonicParsing="false" text="Fortryd" />
+          <Button fx:id="sporgeskemaGemKnap" mnemonicParsing="false" onAction="#handleSporgeskemaGem" text="Gem" />
+            <Button fx:id="sporgeskemaFardigKnap" mnemonicParsing="false" onAction="#handleSporgeskemaFardig" text="Færdig" />
         </buttons>
       </ButtonBar>
    </children>
