@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bp.controller.SpilController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bp.controller.MenuBornController">
    <children>
       <VBox alignment="TOP_CENTER" layoutY="-32.0" prefHeight="323.0" prefWidth="300.0" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -27,15 +27,14 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <GridPane prefHeight="90.0" prefWidth="199.0">
+            <GridPane prefHeight="60.0" prefWidth="260.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0" prefWidth="78.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="187.0" minWidth="10.0" prefWidth="182.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -44,23 +43,23 @@
                   <Label text="Udfordring: " />
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
-                        <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="88.0" text="Sjippetov">
+                        <RadioButton fx:id="sjippetovKnap" mnemonicParsing="false" onAction="#radioSelectUdfordring" prefHeight="18.0" prefWidth="88.0" text="Sjippetov">
                            <toggleGroup>
                               <ToggleGroup fx:id="udfordring" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" text="Gåtur" toggleGroup="$udfordring" />
+                        <RadioButton fx:id="gaturKnap" mnemonicParsing="false" onAction="#radioSelectUdfordring" text="Gåtur" toggleGroup="$udfordring" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="88.0" text="Løbetur" toggleGroup="$udfordring" />
-                        <RadioButton mnemonicParsing="false" text="Rulleskøjter" toggleGroup="$udfordring" />
+                        <RadioButton fx:id="lobeturKnap" mnemonicParsing="false" onAction="#radioSelectUdfordring" prefHeight="18.0" prefWidth="88.0" text="Løbetur" toggleGroup="$udfordring" />
+                        <RadioButton fx:id="rulleskojteKnap" mnemonicParsing="false" onAction="#radioSelectUdfordring" text="Rulleskøjter" toggleGroup="$udfordring" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
+            <Text fx:id="timerText" strokeType="OUTSIDE" strokeWidth="0.0" text="0 : 0 : 0" />
             <GridPane alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -69,24 +68,24 @@
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
                <children>
-                  <Button fx:id="startTimerKnap" mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" text="Star timer " textAlignment="CENTER" />
-                  <Button fx:id="stopTimerKnap" mnemonicParsing="false" prefHeight="27.0" prefWidth="201.0" text="Stop timer " GridPane.columnIndex="2" />
+                  <Button fx:id="startTimerKnap" mnemonicParsing="false" onAction="#handleStartTimer" prefHeight="27.0" prefWidth="155.0" text="Star timer " textAlignment="CENTER" />
+                  <Button fx:id="stopTimerKnap" mnemonicParsing="false" onAction="#handleStopTimer" prefHeight="27.0" prefWidth="201.0" text="Stop timer " GridPane.columnIndex="2" />
                </children>
             </GridPane>
+            <Label fx:id="udfordringOpsummeringLabel" />
+            <Label fx:id="udfordringGemtLabel" textFill="#51d045" />
+            <Label fx:id="udfordringFejlLabel" textFill="RED" />
          </children>
       </VBox>
       <ButtonBar layoutX="26.0" layoutY="346.0" prefHeight="40.0" prefWidth="260.0">
         <buttons>
-          <Button fx:id="udfordringTilbageKnap" mnemonicParsing="false" onAction="#handleFortrydUdfordring" text="Tilbage" />
-            <Button mnemonicParsing="false" text="Gem" />
-            <Button fx:id="udfordringFortrydKnap" mnemonicParsing="false" onAction="#handleFortrydUdfordring" prefHeight="26.0" text="Fortryd" />
+            <Button mnemonicParsing="false" onAction="#handleGemUdfordring" text="Gem" />
+          <Button fx:id="udfordringTilbageKnap" mnemonicParsing="false" onAction="#handleTilbageUdfordring" text="Tilbage" />
         </buttons>
       </ButtonBar>
    </children>
