@@ -91,7 +91,7 @@ public class RegistreringController implements Initializable {
         }
         if (snackKnap.isSelected()){
             message += snackKnap.getText();
-            snackKnap.getText();
+          //  snackKnap.getText();
         } 
 
         return message;
@@ -112,26 +112,14 @@ public class RegistreringController implements Initializable {
     public void handleGemKostRegistrering() throws IOException {
         Stage stage;
         String message = "";
-
-        //Parent root;
         if (registrerKostValid()){
             stage = (Stage) kostRegistreringGemKnap.getScene().getWindow();
             LocalDate dato = datoKostFelt.getValue();
             String datoString = String.valueOf(dato);
-//            String maltid = radioSelectMaltid();
             kostGemtLabel.setText(radioSelectMaltid()+" for "+datoString+ " er gemt!");
             kostFejlLabel.setText("");
             
-            //root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));           
         } 
-//        else {
-//            stage = (Stage) kostRegistreringGemKnap.getScene().getWindow();
-//            root = FXMLLoader.load(getClass().getResource("/bp/view/KostRegistreringView.fxml"));
-//        }
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();   
-//        System.out.println(datoKostFelt.getValue());
     }
     
     private boolean registrerKostValid(){
@@ -153,7 +141,6 @@ public class RegistreringController implements Initializable {
         if (errorMessage.length() == 0) {
             return true;
         } else {
-//            System.out.println(errorMessage);
             return false;
         }
     }
@@ -184,13 +171,6 @@ public class RegistreringController implements Initializable {
             bmiGemtLabel.setText("Registering af ISO-BMI fuldført!");
             bmiFejlLabel.setText("");
             stage = (Stage) isoBmiGemKnap.getScene().getWindow();
-           ///root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));
-//        } else {
-//            stage = (Stage) isoBmiGemKnap.getScene().getWindow();
-//            root = FXMLLoader.load(getClass().getResource("/bp/view/IsoBmiView.fxml"));
-//            Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show(); 
         }
           
     }
@@ -216,7 +196,6 @@ public class RegistreringController implements Initializable {
         if (errorMessage.length() == 0) {
             return true;
         } else {
-            //System.out.println(errorMessage);
             return false;
         }
     }
