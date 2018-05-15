@@ -20,6 +20,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import bp.model.RegistreringModel;
+import java.time.LocalDate;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 
 /**
@@ -41,7 +43,7 @@ public class RegistreringController implements Initializable {
     @FXML
     private ToggleGroup maltid;
     @FXML
-    private RadioButton middagsmadKnap;
+    private RadioButton frokostKnap;
     @FXML
     private RadioButton aftensmadKnap;
     @FXML
@@ -60,6 +62,12 @@ public class RegistreringController implements Initializable {
     private Label bmiGemtLabel;
     @FXML
     private Label bmiFejlLabel;
+    @FXML
+    private DatePicker datoKostFelt; 
+    @FXML
+    private Label kostFejlLabel;
+    @FXML
+    private Label kostGemtLabel;
     
     /**
      * Initializes the controller class.
@@ -68,22 +76,25 @@ public class RegistreringController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    @FXML
-    public void radioSelectMaltid(){
+   
+    public String radioSelectMaltid(){
         String message = "";
+//        kostFejlLabel.setText("");
         if (morgenmadKnap.isSelected()){
-            message += morgenmadKnap.getText()+"\n";
+            message += morgenmadKnap.getText();
         }
-        if (middagsmadKnap.isSelected()){
-            message += middagsmadKnap.getText()+"\n";
+        if (frokostKnap.isSelected()){
+            message += frokostKnap.getText();
         }
         if (aftensmadKnap.isSelected()){
-            message += aftensmadKnap.getText()+"\n";
+            message += aftensmadKnap.getText();
         }
         if (snackKnap.isSelected()){
-            message += snackKnap.getText()+"\n";
-        }
-        System.out.println(message);
+            message += snackKnap.getText();
+            snackKnap.getText();
+        } 
+
+        return message;
     }
     
     @FXML
@@ -100,29 +111,49 @@ public class RegistreringController implements Initializable {
     @FXML
     public void handleGemKostRegistrering() throws IOException {
         Stage stage;
-        Parent root;
+        String message = "";
+
+        //Parent root;
         if (registrerKostValid()){
             stage = (Stage) kostRegistreringGemKnap.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));           
-        } else {
-            stage = (Stage) kostRegistreringGemKnap.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("/bp/view/KostRegistreringView.fxml"));
-        }
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();   
+            LocalDate dato = datoKostFelt.getValue();
+            String datoString = String.valueOf(dato);
+//            String maltid = radioSelectMaltid();
+            kostGemtLabel.setText(radioSelectMaltid()+" for "+datoString+ " er gemt!");
+            kostFejlLabel.setText("");
+            
+            //root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));           
+        } 
+//        else {
+//            stage = (Stage) kostRegistreringGemKnap.getScene().getWindow();
+//            root = FXMLLoader.load(getClass().getResource("/bp/view/KostRegistreringView.fxml"));
+//        }
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();   
+//        System.out.println(datoKostFelt.getValue());
     }
     
     private boolean registrerKostValid(){
         String errorMessage = "";
+        kostGemtLabel.setText("");
         
+        if (datoKostFelt.getValue() == null){
+            errorMessage += "Ingen dato valgt!\n";
+            kostFejlLabel.setText(errorMessage);
+        }
+        if ((snackKnap.isSelected() == false) && (morgenmadKnap.isSelected() == false) && (aftensmadKnap.isSelected() == false) && (frokostKnap.isSelected() == false)){
+            errorMessage += "Intet måltid valgt!\n";
+            kostFejlLabel.setText(errorMessage);
+        }
         if (kostFelt.getText() == null || kostFelt.getText().length() == 0) {
-            errorMessage += "Intet valid kost!\n"; 
+            errorMessage += "Ingen valid kost!\n"; 
+            kostFejlLabel.setText(errorMessage);
         }
         if (errorMessage.length() == 0) {
             return true;
         } else {
-            System.out.println(errorMessage);
+//            System.out.println(errorMessage);
             return false;
         }
     }
@@ -143,10 +174,8 @@ public class RegistreringController implements Initializable {
     @FXML
     public void handleGemIsoBmiRegistrering() throws IOException {
         Stage stage;
-        Parent root;
         bmiUdregnetLabel.setText("");
         if (registrerIsoBmiValid()){
-            
             float Hojde = Float.valueOf(isoBmiHojdeFelt.getText());
             float Vagt = Float.valueOf(isoBmiVagtFelt.getText());
             int Alder = RegMod.udtrakAlderFraCpr(isoBmiCprFelt.getText());
@@ -170,17 +199,17 @@ public class RegistreringController implements Initializable {
         String errorMessage = "";
         
         if (isoBmiCprFelt.getText() == null || isoBmiCprFelt.getText().length() == 0) {
-            errorMessage += "Intet valid CPR!\n"; 
+            errorMessage += "Intet validt CPR!\n"; 
             bmiGemtLabel.setText("");
             bmiFejlLabel.setText(errorMessage);
         }
         if (isoBmiHojdeFelt.getText() == null || isoBmiHojdeFelt.getText().length() == 0) {
-            errorMessage += "Intet valid højde!\n"; 
+            errorMessage += "Ingen valid højde!\n"; 
             bmiGemtLabel.setText("");
             bmiFejlLabel.setText(errorMessage);
         }
         if (isoBmiVagtFelt.getText() == null || isoBmiVagtFelt.getText().length() == 0) {
-            errorMessage += "Intet valid vægt!\n"; 
+            errorMessage += "Ingen valid vægt!\n"; 
             bmiGemtLabel.setText("");
             bmiFejlLabel.setText(errorMessage);
         }

@@ -32,11 +32,10 @@ public class RegistreringModel {
     
     public String bmiUdregning(float hojde, float vagt, int alder, boolean kon){
         bmi = ((100*100*vagt)/(hojde*hojde));
+        String bmiString = String.valueOf(bmi);
         //Iso-Bmi resultat for 8 årig dreng
-        String returMeddelelse = "BMI: ";
+        String returMeddelelse = "BMI: "+bmiString;
         if(kon == false && alder == 8){
-            String bmiString = String.valueOf(bmi);
-            returMeddelelse += bmiString; 
 //            System.out.println(bmiBarn+bmi);
             granseSvarOvervagt = 21.6;
             String gsoString = String.valueOf(granseSvarOvervagt);
@@ -66,8 +65,6 @@ public class RegistreringModel {
 
         // Iso-Bmi resultat for en 8 årig pige
         else if (kon == true && alder == 8){
-            String bmiString = String.valueOf(bmi);
-            returMeddelelse += bmiString; 
             granseSvarOvervagt = 21.57;
             String gsoString = String.valueOf(granseSvarOvervagt);
             granseOvervagt = 18.35;
@@ -88,8 +85,6 @@ public class RegistreringModel {
 
         // Iso-Bmi resultat for 9 årig dreng
         else if(kon == false && alder == 9){
-            String bmiString = String.valueOf(bmi);
-            returMeddelelse += bmiString; 
             granseSvarOvervagt = 22.77;
             String gsoString = String.valueOf(granseSvarOvervagt);
             granseOvervagt = 19.2;
@@ -110,8 +105,7 @@ public class RegistreringModel {
 
         // Iso-Bmi resultat for en 9 årig pige
         else if (kon == true && alder == 9){
-            String bmiString = String.valueOf(bmi);
-            returMeddelelse += bmiString; 
+
             granseSvarOvervagt = 22.81;
             String gsoString = String.valueOf(granseSvarOvervagt);
             granseOvervagt = 19.07;
@@ -132,8 +126,6 @@ public class RegistreringModel {
 
         // Iso-Bmi resultat for 10 årig dreng
         else if(kon == false && alder == 10){
-            String bmiString = String.valueOf(bmi);
-            returMeddelelse += bmiString; 
             granseSvarOvervagt = 24.00;
             String gsoString = String.valueOf(granseSvarOvervagt);
             granseOvervagt = 19.84;
@@ -154,8 +146,6 @@ public class RegistreringModel {
 
         // Iso-Bmi resultat for en 10 årig pige
         else if (kon == true && alder == 10){
-            String bmiString = String.valueOf(bmi);
-            returMeddelelse += bmiString; 
             granseSvarOvervagt = 24.11;
             String gsoString = String.valueOf(granseSvarOvervagt);
             granseOvervagt = 19.86;
@@ -176,8 +166,6 @@ public class RegistreringModel {
 
         // Iso-Bmi resultat for 11 årig dreng
         else if(kon == false && alder == 11){
-            String bmiString = String.valueOf(bmi);
-            returMeddelelse += bmiString; 
             granseSvarOvervagt = 25.10;
             String gsoString = String.valueOf(granseSvarOvervagt);
             granseOvervagt = 20.55;
@@ -198,8 +186,6 @@ public class RegistreringModel {
 
         // Iso-Bmi resultat for en 11 årig pige
         else if (kon == true && alder == 11){
-            String bmiString = String.valueOf(bmi);
-            returMeddelelse += bmiString; 
             granseSvarOvervagt = 25.42;
             String gsoString = String.valueOf(granseSvarOvervagt);
             granseOvervagt = 20.74;
@@ -220,8 +206,6 @@ public class RegistreringModel {
 
         // Iso-Bmi resultat for 12 årig dreng
         else if(kon == false && alder == 12){
-            String bmiString = String.valueOf(bmi);
-            returMeddelelse += bmiString; 
             granseSvarOvervagt = 26.02;
             String gsoString = String.valueOf(granseSvarOvervagt);
             granseOvervagt = 21.22;
@@ -242,8 +226,6 @@ public class RegistreringModel {
 
         // Iso-Bmi resultat for en 12 årig pige
         else if (kon == true && alder == 12){
-            String bmiString = String.valueOf(bmi);
-            returMeddelelse += bmiString; 
             granseSvarOvervagt = 26.67;
             String gsoString = String.valueOf(granseSvarOvervagt);
             granseOvervagt = 21.68;
