@@ -355,8 +355,8 @@ public class KontoController {//implements Initializable {
     @FXML
     public void handleSporgeskemaGem() {
         if(validSporgeskemaBesvarelse()){
-            int hej = BornMod.startniveau(radioSelectSpEt(),radioSelectSpTo(),radioSelectSpTre(),radioSelectSpFire());
-            sporgeskemaFejlLabel.setText(Integer.toString(hej));
+            BornMod.startniveau(radioSelectSpEt(),radioSelectSpTo(),radioSelectSpTre(),radioSelectSpFire());
+            sporgeskemaFejlLabel.setText("");
             sporgeskemaGemtLabel.setText("Besvarelse af spørgeskema gemt!");
         }
     }

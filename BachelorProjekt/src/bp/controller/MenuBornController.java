@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -90,6 +91,26 @@ public class MenuBornController implements Initializable {
     private Label malsatningGemtLabel;
     @FXML
     private Label malsatningFejlLabel;
+    @FXML
+    private Button manuelIndtastningMalsatningKnap;
+    @FXML
+    private Button manuelIndtastningUdfordringKnap;
+    
+    //ManuelIndtastiningFysiskAktivitetView
+    @FXML
+    private TextField typeManuelIndtastningFelt;
+    @FXML
+    private TextField varighedManuelIndtastningFelt;
+    @FXML
+    private TextField intensitetManuelIndtastningFelt;
+    @FXML
+    private Button manuelIndtastningGemKnap;
+    @FXML
+    private Button manuelIndtastningTilbageKnap;
+    @FXML
+    private Label manuelIndtastningGemtLabel;
+    @FXML
+    private Label manuelIndtastningFejlLabel;
     /**
      * Initializes the controller class.
      */
@@ -171,6 +192,14 @@ public class MenuBornController implements Initializable {
         if (malsatningValid()){
             malsatningGemtLabel.setText("Målsætningen "+radioSelectMalsatning()+ " \naf længden "+ radioSelectMalsatningVarighed()+ " er gemt!");
         }
+    }
+    
+    @FXML 
+    public void handleManuelIndtastningMalsatning() throws IOException{
+        Stage stage = (Stage) manuelIndtastningMalsatningKnap.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/bp/view/ManuelIndtastningFysiskAktivitetView.fxml"));
+        stage.setScene(new Scene(root));
+        stage.show();
     }
     
     @FXML
@@ -296,6 +325,51 @@ public class MenuBornController implements Initializable {
     @FXML 
     public void handleGemUdfordring(){
         udfordringGemtLabel.setText("Udfordringen er gemt!");
+    }
+    
+    @FXML 
+    public void handleManuelIndtastningUdfordring() throws IOException{
+        Stage stage = (Stage) manuelIndtastningUdfordringKnap.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/bp/view/ManuelIndtastningFysiskAktivitetView.fxml"));
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+    
+    @FXML 
+    public void handleManuelIndtastningTilbage() throws IOException{
+        Stage stage = (Stage) manuelIndtastningTilbageKnap.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+    private boolean manuelIndtastningValid(){
+        String errorMessage = "";
+        if (typeManuelIndtastningFelt.getText() == null || typeManuelIndtastningFelt.getText().length() == 0) {
+            errorMessage += "Ingen valid type af fysisk aktivitet!\n"; 
+            manuelIndtastningFejlLabel.setText(errorMessage);
+        }
+        if (varighedManuelIndtastningFelt.getText() == null || varighedManuelIndtastningFelt.getText().length() == 0) {
+            errorMessage += "Ingen valid varighed af fysisk aktivitet!\n";
+            manuelIndtastningFejlLabel.setText(errorMessage);
+        }
+        if (intensitetManuelIndtastningFelt.getText() == null || intensitetManuelIndtastningFelt.getText().length() == 0) {
+            errorMessage += "Ingen valid intensitet af fysisk aktivitet!\n"; 
+            manuelIndtastningFejlLabel.setText(errorMessage);
+        }
+        if (errorMessage.length() == 0) {
+            return true;
+        } else {
+            System.out.println(errorMessage);
+            return false;
+        }
+    }
+    
+    @FXML 
+    public void handleManuelIndtastningGem(){
+        if(manuelIndtastningValid()){
+            manuelIndtastningFejlLabel.setText("");
+            manuelIndtastningGemtLabel.setText("Fysisk aktivitet gemt!");
+        }
     }
     
     @FXML

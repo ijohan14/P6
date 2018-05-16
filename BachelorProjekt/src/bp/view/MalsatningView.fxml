@@ -74,8 +74,9 @@
             <Label fx:id="malsatningFejlLabel" textFill="RED" />
          </children>
       </VBox>
-      <ButtonBar layoutX="86.0" layoutY="346.0" prefHeight="40.0" prefWidth="200.0">
+      <ButtonBar layoutX="6.0" layoutY="346.0" prefHeight="40.0" prefWidth="280.0">
         <buttons>
+            <Button fx:id="manuelIndtastningMalsatningKnap" mnemonicParsing="false" onAction="#handleManuelIndtastningMalsatning" text="Manuel" />
           <Button fx:id="malsatningGemKnap" mnemonicParsing="false" onAction="#handleGemMalsatning" text="Gem" />
             <Button fx:id="malsatningTilbageKnap" mnemonicParsing="false" onAction="#handleTilbageMalsatning" text="Tilbage" />
         </buttons>
