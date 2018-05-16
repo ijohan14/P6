@@ -6,6 +6,7 @@
 package bp.controller;
 
 //import bp.model.ForaldreModel;
+import bp.model.BornModel;
 import java.io.IOException;
 //import java.net.URL;
 //import java.util.ResourceBundle;
@@ -280,53 +281,48 @@ public class KontoController {//implements Initializable {
         }
     }
    
-    @FXML
-    public void radioSelectSpEt(ActionEvent event){
-        String message = "";
-        if (spEtJaKnap.isSelected()){
-            message += spEtJaKnap.getText()+"\n";
+    public boolean radioSelectSpEt(){
+        boolean svar = true;
+        if (spEtJaKnap.isSelected() == true){
+            svar = true;
         }
-        if (spEtNejKnap.isSelected()){
-            message += spEtNejKnap.getText()+"\n";
+        if (spEtNejKnap.isSelected() == true){
+            svar = false;
         }
-        System.out.println(message);
+        return svar;
     }
     
-    @FXML
-    public void radioSelectSpTo(ActionEvent event){
-        String message = "";
-        if (spToJaKnap.isSelected()){
-            message += spToJaKnap.getText()+"\n";
+    public boolean radioSelectSpTo(){
+        boolean svar = true;
+        if (spToJaKnap.isSelected() == true){
+            svar = true;
         }
-        if (spToNejKnap.isSelected()){
-            message += spToNejKnap.getText()+"\n";
+        if (spToNejKnap.isSelected() == true){
+            svar = false;
         }
-        System.out.println(message);
+        return svar;
+    }
+    public boolean radioSelectSpTre(){
+        boolean svar = true;
+        if (spTreJaKnap.isSelected() == true){
+            svar = true;
+        }
+        if (spTreNejKnap.isSelected() == true){
+            svar = false;
+        }
+        return svar;
+    }
+    public boolean radioSelectSpFire(){
+        boolean svar = true;
+        if (spFireJaKnap.isSelected() == true){
+            svar = true;
+        }
+        if (spFireNejKnap.isSelected() == true){
+            svar = false;
+        }
+        return svar;
     }
     
-    @FXML
-    public void radioSelectSpTre(ActionEvent event){
-        String message = "";
-        if (spTreJaKnap.isSelected()){
-            message += spTreJaKnap.getText()+"\n";
-        }
-        if (spTreNejKnap.isSelected()){
-            message += spTreNejKnap.getText()+"\n";
-        }
-        System.out.println(message);
-    }
-    
-    @FXML
-    public void radioSelectSpFire(ActionEvent event){
-        String message = "";
-        if (spFireJaKnap.isSelected()){
-            message += spFireJaKnap.getText()+"\n";
-        }
-        if (spFireNejKnap.isSelected()){
-            message += spFireNejKnap.getText()+"\n";
-        }
-        System.out.println(message);
-    }
     
     public boolean validSporgeskemaBesvarelse(){
         String errorMessage = "";
@@ -354,11 +350,13 @@ public class KontoController {//implements Initializable {
             return false;
         }
     }
+    BornModel BornMod = new BornModel();
     
     @FXML
     public void handleSporgeskemaGem() {
         if(validSporgeskemaBesvarelse()){
-            sporgeskemaFejlLabel.setText("");
+            int hej = BornMod.startniveau(radioSelectSpEt(),radioSelectSpTo(),radioSelectSpTre(),radioSelectSpFire());
+            sporgeskemaFejlLabel.setText(Integer.toString(hej));
             sporgeskemaGemtLabel.setText("Besvarelse af spørgeskema gemt!");
         }
     }

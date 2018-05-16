@@ -43,7 +43,7 @@
                   <Label text="Varighed:" GridPane.rowIndex="2" />
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
-                        <RadioButton fx:id="cykelSkoleMalKnap" mnemonicParsing="false" onAction="#radioSelectMalsatning" prefHeight="18.0" prefWidth="107.0" text="Cyke i skole">
+                        <RadioButton fx:id="cykelSkoleMalKnap" mnemonicParsing="false" onAction="#radioSelectMalsatning" prefHeight="18.0" prefWidth="107.0" text="Cykle i skole">
                            <toggleGroup>
                               <ToggleGroup fx:id="malsatning" />
                            </toggleGroup></RadioButton>
