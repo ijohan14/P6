@@ -69,7 +69,7 @@ public class KontoController {//implements Initializable {
     
     //OpretKontoView
     @FXML
-    private Button opretKontoFardigKnap;
+    private Button opretKontoTilbageKnap;
     @FXML
     private Button opretKontoGemKnap;
     @FXML
@@ -209,8 +209,8 @@ public class KontoController {//implements Initializable {
     }
     
     @FXML
-    public void handleOpretKontoFortryd() throws IOException {
-        Stage stage = (Stage) opretKontoFardigKnap.getScene().getWindow();
+    public void handleTilbageOpretKonto() throws IOException {
+        Stage stage = (Stage) opretKontoTilbageKnap.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
         stage.setScene(new Scene(root));
         stage.show();   
