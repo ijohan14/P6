@@ -15,6 +15,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import bp.controller.DatalagringController;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
@@ -22,8 +25,10 @@ import javafx.stage.Stage;
  */
 public class MainApp extends Application {
     
+    
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage) throws IOException, SQLException {
+        
         Parent root = FXMLLoader.load(getClass().getResource("view/StartView.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
