@@ -50,11 +50,14 @@ public class LeifVersion2 extends Application {
   
     
     @Override
-    public void start(Stage stage) throws IOException, ClassNotFoundException, SQLException{
+    public void start(Stage stage) throws IOException, SQLException{
         this.stage = stage;
         
         con = DriverManager.getConnection(dbAdress, dbUser, dbPassword); 
-                
+        
+        
+        insertPersonData(new Person("Ida", "Vire"));
+        
         buildData();
         
        
