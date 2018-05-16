@@ -121,23 +121,17 @@ public class MenuBornController implements Initializable {
     
     @FXML
     public void handleBornLogUd() throws IOException {
-        Stage stage;
-        Parent root;
-        stage = (Stage) bornLogUdKnap.getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        Stage stage = (Stage) bornLogUdKnap.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
+        stage.setScene(new Scene(root));
         stage.show();   
     }
 
     @FXML
     public void handleMalsatning() throws IOException {
-        Stage stage;
-        Parent root;
-        stage = (Stage) malsatningKnap.getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("/bp/view/MalsatningView.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        Stage stage = (Stage) malsatningKnap.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/bp/view/MalsatningView.fxml"));
+        stage.setScene(new Scene(root));
         stage.show();   
     }
     
@@ -204,12 +198,9 @@ public class MenuBornController implements Initializable {
     
     @FXML
     public void handleUdfordring() throws IOException {
-        Stage stage;
-        Parent root;
-        stage = (Stage) udfordringKnap.getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("/bp/view/UdfordringView.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        Stage stage = (Stage) udfordringKnap.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/bp/view/UdfordringView.fxml"));
+        stage.setScene(new Scene(root));
         stage.show();   
     }
     
@@ -374,23 +365,17 @@ public class MenuBornController implements Initializable {
     
     @FXML
     public void handleTilbageMalsatning() throws IOException {
-        Stage stage;
-        Parent root;
-        stage = (Stage) malsatningTilbageKnap.getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        Stage stage = (Stage) malsatningTilbageKnap.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
+        stage.setScene(new Scene(root));
         stage.show();   
     }
     
     @FXML
     public void handleTilbageUdfordring() throws IOException {
-        Stage stage;
-        Parent root;
-        stage = (Stage) udfordringTilbageKnap.getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        Stage stage = (Stage) udfordringTilbageKnap.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
+        stage.setScene(new Scene(root));
         stage.show();   
     }
 

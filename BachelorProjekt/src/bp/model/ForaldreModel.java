@@ -22,6 +22,11 @@ public class ForaldreModel {
     private SimpleBooleanProperty brugertype = new SimpleBooleanProperty();
     private SimpleStringProperty adgangskode = new SimpleStringProperty("");
     
+    
+    
+    
+    
+    
     /**
      * Default
      */

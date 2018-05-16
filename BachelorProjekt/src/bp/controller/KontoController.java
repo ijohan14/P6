@@ -122,24 +122,18 @@ public class KontoController {//implements Initializable {
     
     @FXML
     public void handleVisData() throws IOException {
-        Stage stage;
-        Parent root;
-        stage = (Stage) visDataKnap.getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("/bp/view/DatalagringView.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        Stage stage = (Stage) visDataKnap.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/bp/view/DatalagringView.fxml"));
+        stage.setScene(new Scene(root));
         stage.show();   
     }
     
     @FXML
     public void handleLogInd() throws IOException{
-        Stage stage;
-        Parent root;
         if(logIndIndtastet() ){ //Der må skulle være en if, der spørger efter kontotype, og så afhænger view af dette. 
-                stage = (Stage) logIndKnap.getScene().getWindow();
-                root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
+                Stage stage = (Stage) logIndKnap.getScene().getWindow();
+                Parent root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));
+                stage.setScene(new Scene(root));
         }
     }
     
@@ -208,23 +202,17 @@ public class KontoController {//implements Initializable {
     
     @FXML
     public void handleOpretKonto() throws IOException {
-        Stage stage;
-        Parent root;
-        stage = (Stage) opretKontoKnap.getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("/bp/view/OpretKontoView.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        Stage stage = (Stage) opretKontoKnap.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/bp/view/OpretKontoView.fxml"));
+        stage.setScene(new Scene(root));
         stage.show();   
     }
     
     @FXML
     public void handleOpretKontoFortryd() throws IOException {
-        Stage stage;
-        Parent root;
-        stage = (Stage) opretKontoFardigKnap.getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        Stage stage = (Stage) opretKontoFardigKnap.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
+        stage.setScene(new Scene(root));
         stage.show();   
     }
     
@@ -235,12 +223,9 @@ public class KontoController {//implements Initializable {
 //            System.out.println("Fornavn: "+fornavnFelt.getText()+"\nEfternavn: "+efternavnFelt.getText()+"\nCpr: "+cprFelt.getText()+"\nFamilieiD: "+familieIDFelt.getText()+"\nAdganskode: "+adgangskodeFelt.getText());
             kontoGemtLabel.setText("Konto af brugertypen "+radioSelectBrugertype()+ " er gemt!");
             if((opretKontoValid())&&(radioSelectBrugertype() == "barn")){
-                Stage stage; 
-                Parent root;
-                stage = (Stage) opretKontoGemKnap.getScene().getWindow();
-                root = FXMLLoader.load(getClass().getResource("/bp/view/SporgeskemaBornView.fxml"));
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
+                Stage stage = (Stage) opretKontoGemKnap.getScene().getWindow();
+                Parent root = FXMLLoader.load(getClass().getResource("/bp/view/SporgeskemaBornView.fxml"));
+                stage.setScene(new Scene(root));
                 
             }
         } 
@@ -363,12 +348,9 @@ public class KontoController {//implements Initializable {
     
     @FXML
     public void handleSporgeskemaFardig() throws IOException{
-        Stage stage;
-        Parent root;
-        stage = (Stage) sporgeskemaFardigKnap.getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        Stage stage = (Stage) sporgeskemaFardigKnap.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
+        stage.setScene(new Scene(root));
         stage.show();  
     }
     
