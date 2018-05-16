@@ -144,7 +144,7 @@ public class RegistreringController implements Initializable {
     }
     
     @FXML
-    public void handleFortrydIsoBmi() throws IOException {
+    public void handleTilbageIsoBmi() throws IOException {
         Stage stage;
         Parent root;
         stage = (Stage) isoBmiTilbageKnap.getScene().getWindow();

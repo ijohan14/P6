@@ -65,7 +65,7 @@
       <ButtonBar layoutX="86.0" layoutY="346.0" prefHeight="40.0" prefWidth="200.0">
         <buttons>
           <Button fx:id="isoBmiGemKnap" mnemonicParsing="false" onAction="#handleGemIsoBmiRegistrering" text="Gem" />
-            <Button fx:id="isoBmiTilbageKnap" mnemonicParsing="false" onAction="#handleFortrydIsoBmi" text="Tilbage" />
+            <Button fx:id="isoBmiTilbageKnap" mnemonicParsing="false" onAction="#handleTilbageIsoBmi" text="Tilbage" />
         </buttons>
       </ButtonBar>
    </children>
