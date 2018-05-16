@@ -68,6 +68,7 @@ public class ForaldreModel {
      */
     public void setFornavn(String fornavn) {
         this.fornavn.set(fornavn);
+        
     }
     
     public StringProperty fornavnProperty(){
