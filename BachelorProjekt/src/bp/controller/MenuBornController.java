@@ -39,7 +39,7 @@ public class MenuBornController implements Initializable {
     int aktivitetIntensitet;
     
     @FXML
-    public Button malsatningFortrydKnap; 
+    public Button malsatningTilbageKnap; 
     @FXML
     public Button startTimerKnap;
     @FXML
@@ -72,6 +72,24 @@ public class MenuBornController implements Initializable {
     private RadioButton rulleskojteKnap;
     @FXML
     private Label pointsumLabel;
+    @FXML
+    private RadioButton cykelSkoleMalKnap;
+    @FXML
+    private RadioButton gaturMalKnap;
+    @FXML
+    private RadioButton enDagMalKnap;
+    @FXML
+    private RadioButton treDageMalKnap;
+    @FXML
+    private RadioButton femDageMalKnap;
+    @FXML
+    private RadioButton enUgeMalKnap;
+    @FXML
+    private Label malsatningLabel;
+    @FXML
+    private Label malsatningGemtLabel;
+    @FXML
+    private Label malsatningFejlLabel;
     /**
      * Initializes the controller class.
      */
@@ -100,6 +118,59 @@ public class MenuBornController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();   
+    }
+    
+    public boolean malsatningValid(){
+        String errorMessage = "";
+        if ((gaturMalKnap.isSelected() == false) && (cykelSkoleMalKnap.isSelected() == false)){
+            errorMessage += "Intet mål valgt!\n";
+            malsatningFejlLabel.setText(errorMessage);
+        }
+        if ((enDagMalKnap.isSelected() == false) && (treDageMalKnap.isSelected() == false) && (femDageMalKnap.isSelected() == false) && (enUgeMalKnap.isSelected() == false)){
+            errorMessage += "Ingen varighed for mål valgt!";
+            malsatningFejlLabel.setText(errorMessage);
+        }
+        if (errorMessage.length() == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public String radioSelectMalsatning(){
+        String message = "";
+        if (cykelSkoleMalKnap.isSelected()){
+            message = "at cykle i skole";
+        }
+        if (gaturMalKnap.isSelected()){
+            message = "at gå en tur";
+        }
+        return message;
+    }
+    
+    public String radioSelectMalsatningVarighed(){
+        String message = "";
+        if (enDagMalKnap.isSelected()){
+            message += enDagMalKnap.getText();
+        }
+        if (treDageMalKnap.isSelected()){
+            message += treDageMalKnap.getText();
+        }
+        if (femDageMalKnap.isSelected()){
+            message += femDageMalKnap.getText();
+        }
+        if (enUgeMalKnap.isSelected()){
+            message += enUgeMalKnap.getText();
+        }
+        return message;
+    }
+    
+    @FXML
+    public void handleGemMalsatning(){
+        malsatningFejlLabel.setText("");
+        if (malsatningValid()){
+            malsatningGemtLabel.setText("Målsætningen "+radioSelectMalsatning()+ " \naf længden "+ radioSelectMalsatningVarighed()+ " er gemt!");
+        }
     }
     
     @FXML
@@ -228,10 +299,10 @@ public class MenuBornController implements Initializable {
     }
     
     @FXML
-    public void handleFortrydMalsatning() throws IOException {
+    public void handleTilbageMalsatning() throws IOException {
         Stage stage;
         Parent root;
-        stage = (Stage) malsatningFortrydKnap.getScene().getWindow();
+        stage = (Stage) malsatningTilbageKnap.getScene().getWindow();
         root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);

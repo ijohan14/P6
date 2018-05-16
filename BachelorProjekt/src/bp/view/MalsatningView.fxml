@@ -43,26 +43,26 @@
                   <Label text="Varighed:" GridPane.rowIndex="2" />
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
-                        <RadioButton fx:id="cykelSkoleKnap" mnemonicParsing="false" prefHeight="18.0" prefWidth="107.0" text="Cyke i skole">
+                        <RadioButton fx:id="cykelSkoleMalKnap" mnemonicParsing="false" onAction="#radioSelectMalsatning" prefHeight="18.0" prefWidth="107.0" text="Cyke i skole">
                            <toggleGroup>
                               <ToggleGroup fx:id="malsatning" />
                            </toggleGroup></RadioButton>
-                        <RadioButton fx:id="gaTurKnap" mnemonicParsing="false" text="Gåtur " toggleGroup="$malsatning" />
+                        <RadioButton fx:id="gaturMalKnap" mnemonicParsing="false" onAction="#radioSelectMalsatning" text="Gåtur " toggleGroup="$malsatning" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <RadioButton fx:id="enDagMalKnap" mnemonicParsing="false" prefHeight="18.0" prefWidth="70.0" text="1 dag ">
+                        <RadioButton fx:id="enDagMalKnap" mnemonicParsing="false" onAction="#radioSelectMalsatningVarighed" prefHeight="18.0" prefWidth="70.0" text="1 dag ">
                            <toggleGroup>
                               <ToggleGroup fx:id="varighed" />
                            </toggleGroup></RadioButton>
-                        <RadioButton fx:id="treDageMalKnap" mnemonicParsing="false" text="3 dage " toggleGroup="$varighed" />
+                        <RadioButton fx:id="treDageMalKnap" mnemonicParsing="false" onAction="#radioSelectMalsatningVarighed" text="3 dage " toggleGroup="$varighed" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
-                        <RadioButton fx:id="femDageMalKnap" mnemonicParsing="false" text="5 dage " toggleGroup="$varighed" />
-                        <RadioButton fx:id="enUgeMalKnap" mnemonicParsing="false" text="1 uge " toggleGroup="$varighed" />
+                        <RadioButton fx:id="femDageMalKnap" mnemonicParsing="false" onAction="#radioSelectMalsatningVarighed" text="5 dage " toggleGroup="$varighed" />
+                        <RadioButton fx:id="enUgeMalKnap" mnemonicParsing="false" onAction="#radioSelectMalsatningVarighed" text="1 uge " toggleGroup="$varighed" />
                      </children>
                   </HBox>
                </children>
@@ -70,13 +70,14 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
             </GridPane>
-            <Label text="Label" />
+            <Label fx:id="malsatningGemtLabel" textFill="#51d045" />
+            <Label fx:id="malsatningFejlLabel" textFill="RED" />
          </children>
       </VBox>
       <ButtonBar layoutX="86.0" layoutY="346.0" prefHeight="40.0" prefWidth="200.0">
         <buttons>
-          <Button fx:id="malsatningGemKnap" mnemonicParsing="false" text="Gem" />
-            <Button fx:id="malsatningFortrydKnap" mnemonicParsing="false" onAction="#handleFortrydMalsatning" text="Fortryd" />
+          <Button fx:id="malsatningGemKnap" mnemonicParsing="false" onAction="#handleGemMalsatning" text="Gem" />
+            <Button fx:id="malsatningTilbageKnap" mnemonicParsing="false" onAction="#handleTilbageMalsatning" text="Tilbage" />
         </buttons>
       </ButtonBar>
    </children>

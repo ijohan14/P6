@@ -78,7 +78,7 @@
       <ButtonBar layoutX="86.0" layoutY="346.0" prefHeight="40.0" prefWidth="200.0">
         <buttons>
           <Button fx:id="kostRegistreringGemKnap" mnemonicParsing="false" onAction="#handleGemKostRegistrering" text="Gem" />
-            <Button fx:id="kostRegistreringFortrydKnap" mnemonicParsing="false" onAction="#handleFortrydKostRegistrering" text="Fortryd" />
+            <Button fx:id="kostRegistreringTilbageKnap" mnemonicParsing="false" onAction="#handleTilbageKostRegistrering" text="Tilbage" />
         </buttons>
       </ButtonBar>
    </children>

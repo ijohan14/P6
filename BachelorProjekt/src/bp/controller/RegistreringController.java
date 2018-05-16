@@ -33,7 +33,7 @@ public class RegistreringController implements Initializable {
     @FXML
     public Button kostRegistreringGemKnap;
     @FXML
-    public Button kostRegistreringFortrydKnap;
+    public Button kostRegistreringTilbageKnap;
     @FXML
     public Button isoBmiGemKnap;
     @FXML
@@ -98,10 +98,10 @@ public class RegistreringController implements Initializable {
     }
     
     @FXML
-    public void handleFortrydKostRegistrering() throws IOException {
+    public void handleTilbageKostRegistrering() throws IOException {
         Stage stage;
         Parent root;
-        stage = (Stage) kostRegistreringFortrydKnap.getScene().getWindow();
+        stage = (Stage) kostRegistreringTilbageKnap.getScene().getWindow();
         root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
