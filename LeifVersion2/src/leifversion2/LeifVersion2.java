@@ -17,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import static leifversion2.DBClass.dbUser;
 
 /**
  *
@@ -24,6 +25,11 @@ import javafx.stage.Stage;
  */
 public class LeifVersion2 extends Application {
     public Stage stage;
+    
+    String dbAdress   = "jdbc:mysql://db.course.hst.aau.dk:3306/hst_2018_18gr6406?autoReconnect=true&useSSL=false";
+    static String dbUser     = "hst_2018_18gr6406";
+    static String dbPassword = "aehiechahbuogheebaec";
+     java.sql.Connection con;
     
     ObservableList<Person> personData = FXCollections.observableArrayList();
      
@@ -37,8 +43,8 @@ public class LeifVersion2 extends Application {
          return personData;
      }
     
-    private DBClass objDbClass = new DBClass();
-    java.sql.Connection con;
+   // private DBClass objDbClass = new DBClass();
+   
   
     
   
@@ -47,8 +53,11 @@ public class LeifVersion2 extends Application {
     public void start(Stage stage) throws IOException, ClassNotFoundException, SQLException{
         this.stage = stage;
         
-        con = objDbClass.getConnection();
+        con = DriverManager.getConnection(dbAdress, dbUser, dbPassword); 
+                
         buildData();
+        
+       
         
         Parent root = FXMLLoader.load(getClass().getResource("PersonOverview.fxml"));
         stage.setScene(new Scene(root));
@@ -59,7 +68,7 @@ public class LeifVersion2 extends Application {
     
     private void buildData() {
         try{
-            String SQL = "Select Fornavn, Efternavn from Person Order By Efternavn";
+            String SQL = "SELECT * FROM `PERSON`";
            
             ResultSet rs = con.createStatement().executeQuery(SQL);
             
@@ -71,10 +80,10 @@ public class LeifVersion2 extends Application {
                 personData.add(p);
             }
             for (Person person : personData){
-                System.out.println(person.getFornavn());
+                System.out.println(person.getFornavn()+" "+person.getEfternavn());
             }
         }
-        catch(Exception e){
+        catch(SQLException e){
             e.printStackTrace();
             System.out.println("Error on Building Data");
         }
@@ -83,7 +92,7 @@ public class LeifVersion2 extends Application {
     
     public void insertPersonData(Person tempPerson) {
         try {
-            String SQL = "INSERT INTO LEIF.PERSON (Fornavn, Efternavn)"            
+            String SQL = "INSERT INTO PERSON (Fornavn, Efternavn)"            
             + " VALUES  ("
                     + "'" + tempPerson.getFornavn()+ "',"
                     + "'" + tempPerson.getEfternavn()+  "')"; 
