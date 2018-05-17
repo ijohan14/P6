@@ -20,35 +20,43 @@ import javafx.collections.ObservableList;
  */
 public class DatalagringController {
     
-    private ObservableList<Person> personData = FXCollections.observableArrayList();
-    
-    private DBClass objDbClass = new DBClass();
     java.sql.Connection con;
+    DBMySQLClass myDBClass = new DBMySQLClass();
     
+    ObservableList<Person> personData = FXCollections.observableArrayList();
+     
+     /**
+      * 
+      * @return 
+      */
+     public ObservableList<Person> getPersonData(){
+         ObservableList<Person> personData = FXCollections.observableArrayList();
+         personData.add(new Person());
+         return personData;
+     }
     
-    public DatalagringController() throws ClassNotFoundException, SQLException{
-        con = objDbClass.getConnection();
-        buildData();
+    public DatalagringController(){
+        
     }
-    
-    private void buildData() {
+     public void buildData() {
+         con = myDBClass.getConnection();
         try{
-            String SQL = "Select FirstName, LastName from Person Order By LastName";
+            String SQL = "SELECT * FROM PERSON";
            
             ResultSet rs = con.createStatement().executeQuery(SQL);
             
             while(rs.next()){
                 Person p = new Person();
-                p.setFornavn(rs.getString("FirstName"));
-                p.setEfternavn(rs.getString("LastName"));
+                p.setFornavn(rs.getString("Fornavn"));
+                p.setEfternavn(rs.getString("Efternavn"));
                
                 personData.add(p);
             }
             for (Person person : personData){
-                System.out.println(person.getFornavn());
+                System.out.println(person.getFornavn()+" "+person.getEfternavn());
             }
         }
-        catch(Exception e){
+        catch(SQLException e){
             e.printStackTrace();
             System.out.println("Error on Building Data");
         }
@@ -57,7 +65,7 @@ public class DatalagringController {
     
     public void insertPersonData(Person tempPerson) {
         try {
-            String SQL = "INSERT INTO LEIF.PERSON (Fornavn, Efternavn)"            
+            String SQL = "INSERT INTO PERSON (Fornavn, Efternavn)"            
             + " VALUES  ("
                     + "'" + tempPerson.getFornavn()+ "',"
                     + "'" + tempPerson.getEfternavn()+  "')"; 
@@ -69,14 +77,6 @@ public class DatalagringController {
         catch(SQLException e){
             System.out.println("Error on inserting Data");
         }
-}
-    
-    public class DBClass {
-    public Connection getConnection() throws ClassNotFoundException, SQLException {
-        Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-        return
-        DriverManager.getConnection("jdbc:derby://localhost:1527/LeifVersion2DB","leif","leif");
-    }
 }
     
 }

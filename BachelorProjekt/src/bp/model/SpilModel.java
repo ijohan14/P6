@@ -16,8 +16,15 @@ public class SpilModel {
     float mangelPoint;
     
     
+    //metode udfordring()
+    //metode malsatning(type, varighed)
     
-    public String point(int aktivitetLangde, int aktivitetIntensitet, int pointsum){
+    
+    //metode 
+    
+    
+    
+    public String point(int aktivitetLangde, int aktivitetIntensitet, int pointsum){ //udregnpoint
         aktivPoint = ((aktivitetLangde *2) * aktivitetIntensitet);
         pointsum += aktivPoint; 
         String nyPointsum = String.valueOf(pointsum);

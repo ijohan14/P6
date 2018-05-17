@@ -25,7 +25,7 @@ public class DBMySQLClass {
         Connection con = null;
         
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
         }
         catch (ClassNotFoundException cnfe) {
             System.out.println("Driver class not found");           

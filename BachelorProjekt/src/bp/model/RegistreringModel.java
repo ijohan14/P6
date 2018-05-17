@@ -30,6 +30,9 @@ public class RegistreringModel {
 //        this.bmi = ((100*100*vagt)/(hojde*hojde));
 //    }
     
+    //metode registrerKost(){}
+    
+    
     public String bmiUdregning(float hojde, float vagt, int alder, boolean kon){
         bmi = ((100*100*vagt)/(hojde*hojde));
         String bmiString = String.valueOf(bmi);

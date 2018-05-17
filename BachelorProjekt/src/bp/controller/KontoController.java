@@ -5,32 +5,22 @@
  */
 package bp.controller;
 
-//import bp.model.ForaldreModel;
-import bp.model.BornModel;
+
 import java.io.IOException;
-//import java.net.URL;
-//import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-//import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-//import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-//import javafx.scene.control.ChoiceBox;
-//import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-//import static javafx.scene.input.KeyCode.M;
 import javafx.stage.Stage;
-//import javax.swing.JTable;
-//import javafx.application.Application;
-//import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
-import bp.model.ForaldreModel;
+import bp.model.KontoModel;
+import java.sql.SQLException;
 import javafx.scene.control.Label;
 
 /**
@@ -40,13 +30,14 @@ import javafx.scene.control.Label;
  */
 public class KontoController {//implements Initializable {
     
-    private ForaldreModel konto;
+    private KontoModel konto;
+    private DatalagringController dc;
     
     private boolean brugertypeTest;
     
     ObservableList brugertypeList=FXCollections.observableArrayList();
     
-    private ObservableList<ForaldreModel> familieData = FXCollections.observableArrayList();
+    private ObservableList<KontoModel> familieData = FXCollections.observableArrayList();
     
 //   String[] coloumnNames = {"fornavn", "efternavn", "crp", "familieID", "adgangskode"};
 //   Object[][] data = {
@@ -132,7 +123,7 @@ public class KontoController {//implements Initializable {
     public void handleLogInd() throws IOException{
         if(logIndIndtastet() ){ //Der må skulle være en if, der spørger efter kontotype, og så afhænger view af dette. 
                 Stage stage = (Stage) logIndKnap.getScene().getWindow();
-                Parent root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
                 stage.setScene(new Scene(root));
         }
     }
@@ -173,18 +164,18 @@ public class KontoController {//implements Initializable {
     }
     
 
-    public String radioSelectBrugertype(){
-        String message = "";
+    public boolean radioSelectBrugertype(){
+        boolean brugertype = true;
         if (foralderKnap.isSelected()){
-            message = "forælder";
+            brugertype = true;
         }
         if (barnKnap.isSelected()){
-            message = "barn";
+            brugertype = false;
         }
-        return message;
+        return brugertype;
     }
     
-     public void setKonto(ForaldreModel konto) {
+     public void setKonto(KontoModel konto) {
         this.konto = konto;
         fornavnFelt.setText(konto.getFornavn());
         efternavnFelt.setText(konto.getEfternavn());
@@ -194,9 +185,9 @@ public class KontoController {//implements Initializable {
         
     }
     
-    public ObservableList<ForaldreModel> getFamilieData() {
-        ObservableList<ForaldreModel> familieData = FXCollections.observableArrayList();
-        familieData.add(new ForaldreModel());
+    public ObservableList<KontoModel> getFamilieData() {
+        ObservableList<KontoModel> familieData = FXCollections.observableArrayList();
+        familieData.add(new KontoModel());
         return familieData;
     }
     
@@ -221,8 +212,12 @@ public class KontoController {//implements Initializable {
         if(opretKontoValid()){
 //            familieData.add(new ForaldreModel(fornavnFelt.getText(), efternavnFelt.getText(),cprFelt.getText(),familieIDFelt.getText(),brugertypeTest,adgangskodeFelt.getText()));
 //            System.out.println("Fornavn: "+fornavnFelt.getText()+"\nEfternavn: "+efternavnFelt.getText()+"\nCpr: "+cprFelt.getText()+"\nFamilieiD: "+familieIDFelt.getText()+"\nAdganskode: "+adgangskodeFelt.getText());
+            KontoModel k = new KontoModel(fornavnFelt.getText(), efternavnFelt.getText(), cprFelt.getText(), familieIDFelt.getText(), radioSelectBrugertype(), adgangskodeFelt.getText());
+            DatalagringController d = new DatalagringController();
+            d.opretKontoIDatabase(k);
             kontoGemtLabel.setText("Konto af brugertypen "+radioSelectBrugertype()+ " er gemt!");
-            if((opretKontoValid())&&(radioSelectBrugertype() == "barn")){
+            
+            if((opretKontoValid())&&(radioSelectBrugertype() == false)){
                 Stage stage = (Stage) opretKontoGemKnap.getScene().getWindow();
                 Parent root = FXMLLoader.load(getClass().getResource("/bp/view/SporgeskemaBornView.fxml"));
                 stage.setScene(new Scene(root));
@@ -230,6 +225,8 @@ public class KontoController {//implements Initializable {
             }
         } 
     }
+    
+    
       
     private boolean opretKontoValid(){
         String errorMessage = "";
@@ -335,14 +332,15 @@ public class KontoController {//implements Initializable {
             return false;
         }
     }
-    BornModel BornMod = new BornModel();
     
+    KontoModel km = new KontoModel();
     @FXML
     public void handleSporgeskemaGem() {
         if(validSporgeskemaBesvarelse()){
-            BornMod.startniveau(radioSelectSpEt(),radioSelectSpTo(),radioSelectSpTre(),radioSelectSpFire());
+            km.getStartniveau(radioSelectSpEt(),radioSelectSpTo(),radioSelectSpTre(),radioSelectSpFire());
             sporgeskemaFejlLabel.setText("");
             sporgeskemaGemtLabel.setText("Besvarelse af spørgeskema gemt!");
+            System.out.println(km.getStartniveau(radioSelectSpEt(),radioSelectSpTo(),radioSelectSpTre(),radioSelectSpFire()));
         }
     }
     
