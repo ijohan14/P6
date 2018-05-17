@@ -26,10 +26,11 @@ import static leifversion2.DBClass.dbUser;
 public class LeifVersion2 extends Application {
     public Stage stage;
     
-    String dbAdress   = "jdbc:mysql://db.course.hst.aau.dk:3306/hst_2018_18gr6406?autoReconnect=true&useSSL=false";
-    static String dbUser     = "hst_2018_18gr6406";
-    static String dbPassword = "aehiechahbuogheebaec";
-     java.sql.Connection con;
+//    String dbAdress   = "jdbc:mysql://db.course.hst.aau.dk:3306/hst_2018_18gr6406?autoReconnect=true&useSSL=false";
+//    static String dbUser     = "hst_2018_18gr6406";
+//    static String dbPassword = "aehiechahbuogheebaec";
+    java.sql.Connection con;
+    DBMySQLClass myDBClass = new DBMySQLClass();
     
     ObservableList<Person> personData = FXCollections.observableArrayList();
      
@@ -53,12 +54,9 @@ public class LeifVersion2 extends Application {
     public void start(Stage stage) throws IOException, SQLException{
         this.stage = stage;
         
-        con = DriverManager.getConnection(dbAdress, dbUser, dbPassword); 
+         con = myDBClass.getConnection(); //get db connection
         
-        
-        insertPersonData(new Person("Ida", "Vire"));
-        
-        buildData();
+        //buildData();
         
        
         
