@@ -82,40 +82,8 @@ public class DatalagringController {
 }
     
     
-
-    
-    
-     
-       
-//    
-//    @FXML
-//    private void initialize(){
-////        fornavnKolonne.setCellValueFactory(cellData -> cellData.getValue().fornavnProperty());
-////        efternavnKolonne.setCellValueFactory(cellData -> cellData.getValue().efternavnProperty());
-////        cprKolonne.setCellValueFactory(cellData -> cellData.getValue().cprProperty());
-////        familieIDKolonne.setCellValueFactory(cellData -> cellData.getValue().familieIDProperty());
-////        //brugertypeKolonne.setCellValueFactory(cellData -> cellData.getValue().brugertypeProperty());
-////        adgangskodeKolonne.setCellValueFactory(cellData -> cellData.getValue().adgangskodeProperty());
-////        
-//////        visDataTabel.getColumns().clear();
-//////        visDataTabel.setItems(MainApp.getFamilieData());
-//////        visDataTabel.getColumns().addAll(fornavnKolonne, efternavnKolonne, cprKolonne, familieIDKolonne, brugertypeKolonne, adgangskodeKolonne);
-//////        
-//    }
- 
-//    @FXML
-//    private void handleTilbage() throws IOException{ 
-//        Stage stage; 
-//        Parent root;
-//        stage = (Stage) visDataTilbageKnap.getScene().getWindow();
-//        root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
-//    }
-    
-    
-    public void opretKontoIDatabase(KontoModel konto) {
+    public void opretKontoIDatabase(KontoModel konto){
+         con = database.getConnection();
         try {
             String SQL = "INSERT INTO konto (Fornavn, Efternavn, CPR, FamilieID, Brugertype, Adgangskode)"            
             + " VALUES  ("
@@ -125,7 +93,7 @@ public class DatalagringController {
                     + "'" + konto.getFamilieID()+"',"
                     + "'" + konto.getBrugertype()+"',"
                     + "'" + konto.getAdgangskode()+ "')"; 
-           
+            
             int rows = con.createStatement().executeUpdate(SQL, 1);
             if (rows > 0)
                 System.out.println("Success!");

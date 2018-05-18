@@ -110,9 +110,9 @@ public class KontoController {//implements Initializable {
     @FXML
     private Button sporgeskemaFardigKnap;
     
-//    public KontoController(){
-//        this.d = new DatalagringController();
-//    }
+    public KontoController(){
+        this.d = new DatalagringController();
+    }
     
     
     @FXML
@@ -214,11 +214,9 @@ public class KontoController {//implements Initializable {
     @FXML
     public void handleOpretKontoGem() throws IOException {
         if(opretKontoValid()){
-//            familieData.add(new ForaldreModel(fornavnFelt.getText(), efternavnFelt.getText(),cprFelt.getText(),familieIDFelt.getText(),brugertypeTest,adgangskodeFelt.getText()));
-//            System.out.println("Fornavn: "+fornavnFelt.getText()+"\nEfternavn: "+efternavnFelt.getText()+"\nCpr: "+cprFelt.getText()+"\nFamilieiD: "+familieIDFelt.getText()+"\nAdganskode: "+adgangskodeFelt.getText());
             KontoModel k = new KontoModel(fornavnFelt.getText(), efternavnFelt.getText(), cprFelt.getText(), familieIDFelt.getText(), radioSelectBrugertype(), adgangskodeFelt.getText());
             
-            //d.opretKontoIDatabase(k);
+            d.opretKontoIDatabase(k);
             kontoGemtLabel.setText("Konto af brugertypen "+radioSelectBrugertype()+ " er gemt!");
             
             if((opretKontoValid())&&(radioSelectBrugertype() == false)){
