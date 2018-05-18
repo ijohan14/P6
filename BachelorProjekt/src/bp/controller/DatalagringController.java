@@ -22,7 +22,6 @@ public class DatalagringController {
     
     java.sql.Connection con;
     Database database = new Database();
-    DatalagringController dc;
     
     private ObservableList<KontoModel> familieData = FXCollections.observableArrayList();
     public ObservableList<KontoModel> getFamilieData(){

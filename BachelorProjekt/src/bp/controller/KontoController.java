@@ -31,7 +31,7 @@ import javafx.scene.control.Label;
 public class KontoController {//implements Initializable {
     
     private KontoModel konto;
-    private DatalagringController dc;
+    private DatalagringController d;
     
     private boolean brugertypeTest;
     
@@ -109,6 +109,10 @@ public class KontoController {//implements Initializable {
     private Label sporgeskemaFejlLabel;
     @FXML
     private Button sporgeskemaFardigKnap;
+    
+//    public KontoController(){
+//        this.d = new DatalagringController();
+//    }
     
     
     @FXML
@@ -213,8 +217,8 @@ public class KontoController {//implements Initializable {
 //            familieData.add(new ForaldreModel(fornavnFelt.getText(), efternavnFelt.getText(),cprFelt.getText(),familieIDFelt.getText(),brugertypeTest,adgangskodeFelt.getText()));
 //            System.out.println("Fornavn: "+fornavnFelt.getText()+"\nEfternavn: "+efternavnFelt.getText()+"\nCpr: "+cprFelt.getText()+"\nFamilieiD: "+familieIDFelt.getText()+"\nAdganskode: "+adgangskodeFelt.getText());
             KontoModel k = new KontoModel(fornavnFelt.getText(), efternavnFelt.getText(), cprFelt.getText(), familieIDFelt.getText(), radioSelectBrugertype(), adgangskodeFelt.getText());
-            DatalagringController d = new DatalagringController();
-            d.opretKontoIDatabase(k);
+            
+            //d.opretKontoIDatabase(k);
             kontoGemtLabel.setText("Konto af brugertypen "+radioSelectBrugertype()+ " er gemt!");
             
             if((opretKontoValid())&&(radioSelectBrugertype() == false)){
