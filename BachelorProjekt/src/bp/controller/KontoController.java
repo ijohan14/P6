@@ -126,9 +126,14 @@ public class KontoController {//implements Initializable {
     @FXML
     public void handleLogInd() throws IOException{
         if(logIndIndtastet() ){ //Der må skulle være en if, der spørger efter kontotype, og så afhænger view af dette. 
-                Stage stage = (Stage) logIndKnap.getScene().getWindow();
-                Parent root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
-                stage.setScene(new Scene(root));
+            if(d.verificerLogInd(cprFelt, adgangskodeFelt)){
+                System.out.println("Du er logget ind");
+            }else {
+                System.out.println("Du er ikke loggen ind");
+            }
+//                Stage stage = (Stage) logIndKnap.getScene().getWindow();
+//                Parent root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
+//                stage.setScene(new Scene(root));
         }
     }
     
@@ -206,19 +211,18 @@ public class KontoController {//implements Initializable {
     @FXML
     public void handleTilbageOpretKonto() throws IOException {
         Stage stage = (Stage) opretKontoTilbageKnap.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/bp/view/LogIndView.fxml"));
         stage.setScene(new Scene(root));
         stage.show();   
     }
     
     @FXML
-    public void handleOpretKontoGem() throws IOException {
+    public void handleOpretKontoGem() throws IOException, SQLException {
+        d.getCprDB(cprFelt);
         if(opretKontoValid()){
             KontoModel k = new KontoModel(fornavnFelt.getText(), efternavnFelt.getText(), cprFelt.getText(), familieIDFelt.getText(), radioSelectBrugertype(), adgangskodeFelt.getText());
-            
             d.opretKontoIDatabase(k);
-            kontoGemtLabel.setText("Konto af brugertypen "+radioSelectBrugertype()+ " er gemt!");
-            
+            kontoGemtLabel.setText("Konto af brugertypen "+radioSelectBrugertype()+ " er gemt!");            
             if((opretKontoValid())&&(radioSelectBrugertype() == false)){
                 Stage stage = (Stage) opretKontoGemKnap.getScene().getWindow();
                 Parent root = FXMLLoader.load(getClass().getResource("/bp/view/SporgeskemaBornView.fxml"));
@@ -349,7 +353,7 @@ public class KontoController {//implements Initializable {
     @FXML
     public void handleSporgeskemaFardig() throws IOException{
         Stage stage = (Stage) sporgeskemaFardigKnap.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/bp/view/LogIndView.fxml"));
         stage.setScene(new Scene(root));
         stage.show();  
     }

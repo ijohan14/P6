@@ -46,7 +46,7 @@ public class MainApp extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException, SQLException {
-        dc.opretKontoIDatabase(new KontoModel("Christine","Grabow","1234567890","FamilieID",true,"Leif"));
+        
         dc.hentDB();
         
         Parent root = FXMLLoader.load(getClass().getResource("view/LoginView.fxml"));
