@@ -14,6 +14,7 @@ import static java.lang.Thread.sleep;
 public class SpilModel {
     float aktivPoint;
     float mangelPoint;
+    String timerTid;
     
     
     //metode udfordring()
@@ -43,4 +44,54 @@ public class SpilModel {
             }
         return outputLevel;
     }
+    
+    public String startTimer(){
+        boolean  stadie = true; 
+        Thread stopUr = new Thread(){
+            public void run(){
+                for(;;){
+                    if(stadie == true){
+                        try{
+                            sleep(1);
+                            int milisekunder = 0;
+                            int sekunder = 0;
+                            if(milisekunder > 1000){
+                                milisekunder = 0;
+                                sekunder ++;
+                            }
+                            int minutter = 0;
+                            if(sekunder > 59){
+                                milisekunder = 0;
+                                sekunder = 0;
+                                minutter ++;
+                            }
+                            int timer = 0;
+                            if(minutter > 59){
+                                milisekunder = 0;
+                                sekunder = 0;
+                                minutter = 0;
+                                timer ++;
+                            }
+                            milisekunder ++;
+                            String timerString = String.valueOf(timer);
+                            String minutterString = String.valueOf(minutter);
+                            String sekunderString = String.valueOf(sekunder);
+
+                            System.out.println(" "+timer+" : "+minutter+" : "+sekunder);
+                            timerTid = " "+timerString+" : "+minutterString+" : "+sekunderString;
+//                                timerText.setText(timerTid);
+                        }
+                        catch(Exception e){
+                        }
+                    }
+                    else{
+                        break;
+                    }
+                }
+            }
+        };
+        stopUr.start();
+        return timerTid;
+    }
 }
+    

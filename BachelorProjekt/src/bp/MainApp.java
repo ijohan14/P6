@@ -47,7 +47,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException, SQLException {
         
-        dc.hentDB();
+//        dc.hentDB();
         
         Parent root = FXMLLoader.load(getClass().getResource("view/LoginView.fxml"));
         Scene scene = new Scene(root);
