@@ -30,6 +30,8 @@ import javafx.scene.control.Label;
  * @author christinemariegrabow
  */
 public class RegistreringController implements Initializable {
+    RegistreringModel RegMod = new RegistreringModel();
+    
     @FXML
     public Button kostRegistreringGemKnap;
     @FXML
@@ -98,7 +100,7 @@ public class RegistreringController implements Initializable {
     }
     
     @FXML
-    public void handleKostRegistreringTilbage() throws IOException { //tilbage var før reg
+    public void handleKostRegistreringTilbage() throws IOException { 
         Stage stage;
         Parent root;
         stage = (Stage) kostRegistreringTilbageKnap.getScene().getWindow();
@@ -109,9 +111,9 @@ public class RegistreringController implements Initializable {
     }
     
     @FXML
-    public void handleKostRegistreringGem() throws IOException { //gem var før kost
+    public void handleKostRegistreringGem() throws IOException {
         String message = "";
-        if (registrerKostValid()){
+        if (erKostValid()){
             LocalDate dato = datoKostFelt.getValue();
             String datoString = String.valueOf(dato);
             kostGemtLabel.setText(radioSelectMaltid()+" for "+datoString+ " er gemt!");
@@ -120,7 +122,7 @@ public class RegistreringController implements Initializable {
         } 
     }
     
-    private boolean erKostValid(){ //registrerKostValid
+    private boolean erKostValid(){ 
         String errorMessage = "";
         kostGemtLabel.setText("");
         
@@ -144,7 +146,7 @@ public class RegistreringController implements Initializable {
     }
     
     @FXML
-    public void handleBmiTilbage() throws IOException { //handletilbageisobmi
+    public void handleBmiTilbage() throws IOException { 
         Stage stage;
         Parent root;
         stage = (Stage) isoBmiTilbageKnap.getScene().getWindow();
@@ -154,16 +156,16 @@ public class RegistreringController implements Initializable {
         stage.show();   
     }
     
-    RegistreringModel RegMod = new RegistreringModel();
+    
     
     @FXML
-    public void handleBmiRegistreringGem() throws IOException { //handlegemisobmi...
+    public void handleBmiRegistreringGem() throws IOException { 
         bmiUdregnetLabel.setText("");
-        if (registrerIsoBmiValid()){
+        if (erBmiValid()){
             float Hojde = Float.valueOf(isoBmiHojdeFelt.getText());
             float Vagt = Float.valueOf(isoBmiVagtFelt.getText());
-            int Alder = RegMod.udtrakAlderFraCpr(isoBmiCprFelt.getText());
-            boolean Kon = RegMod.udtrakKonFraCpr(isoBmiCprFelt.getText());
+            int Alder = RegMod.getAlder(isoBmiCprFelt.getText());
+            boolean Kon = RegMod.getCpr(isoBmiCprFelt.getText());
             bmiUdregnetLabel.setText(RegMod.bmiUdregning(Hojde, Vagt, Alder, Kon));
             bmiGemtLabel.setText("Registering af ISO-BMI fuldført!");
             bmiFejlLabel.setText("");

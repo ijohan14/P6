@@ -7,6 +7,7 @@ package bp.controller;
 
 
 import bp.model.KontoModel;
+import bp.model.SpilModel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,8 +18,6 @@ import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
- *
- * @author christinemariegrabow
  */
 public class DatabaseController {
 
@@ -32,15 +31,11 @@ public class DatabaseController {
         return familieData;
     }
     
-   
-    //hentSpilstatus(cpr)
-    //tilfojSpilstatus(spilmodel spil)
-    
 
     public DatabaseController(){
     }
     
-    public void hentKontoDB() throws SQLException { //før hentDB
+    public void hentKontoDB() throws SQLException { 
          con = database.getConnection();
          
         try{
@@ -56,24 +51,27 @@ public class DatabaseController {
                 f.setFamilieID(rs.getString("familieID"));
                 f.setBrugertype(rs.getBoolean("brugertype"));
                 f.setAdgangskode(rs.getString("adgangskode"));
-//                try {
-//                    f.setStartniveau(Integer.parseInt(rs.getString("Startniveau")));
-//                 } catch (NumberFormatException nfe) {
-//               
-//                     System.out.println("Error on formatting ZIP code to an integer");
-//                 }
+                try {
+                    f.setStartniveau(Integer.parseInt(rs.getString("Startniveau")));
+                 } catch (NumberFormatException nfe) {
+               
+                     System.out.println("Error on formatting ZIP code to an integer");
+                 }
                 
-                //f.setStartniveau(rs.getInt("Startniveau"));
+                f.setStartniveau(rs.getInt("Startniveau"));
                
                 familieData.add(f);
             }
             for (KontoModel konto : familieData){
-                System.out.println(kontoModel.getFornavn()+" "+kontoModel.getEfternavn()+" "+kontoModel.getCpr()+" "+kontoModel.getFamilieID()+" "+kontoModel.getBrugertype()+" "+kontoModel.getAdgangskode());
+                System.out.println(konto.getFornavn()+" "+konto.getEfternavn()
+                        +" "+konto.getCpr()+" "+konto.getFamilieID()+" "
+                        +konto.getBrugertype()+" "+konto.getAdgangskode()
+                        +" "+konto.getStartniveau());
             }
         }
         catch(SQLException e){
             e.printStackTrace();
-            System.out.println("Fejl ved data!");
+            System.out.println("Data kunne ikke hentes fra database");
         }
 }
     
@@ -95,7 +93,7 @@ public class DatabaseController {
         }
 
         catch(SQLException e){
-            System.out.println("Error on inserting Data");
+            System.out.println("Konto kunne ikke tilføjes til database");
         }
 }
     
@@ -141,6 +139,37 @@ public class DatabaseController {
             e.printStackTrace();
         }
         return false;
+    }
+    
+    
+    public void hentSpilstatus(){
+        
+    }
+    
+    public void tilfojSpilstatus(SpilModel spil){
+//        con = database.getConnection(); 
+//        try {         
+//
+//            stmt = con.prepareStatement("INSERT INTO spil (point, level, udfordring, malsatning, varighed, cpr)"
+//                + "VALUES (?,?,?,?,?,?)");
+//            stmt.setString(1, spil.getPoint());
+//            stmt.setString(2, spil.getLevel());
+//            stmt.setString(3, spil.getUdordring());
+//            stmt.setString(4, spil.getMalsatning());
+//            stmt.setBoolean(5, spil.getVarighed());
+//            stmt.setString(6, spil.getCpr());
+//            stmt.executeUpdate();
+//            
+//        }
+//
+//        catch(SQLException e){
+//            System.out.println("Konto kunne ikke tilføjes til database");
+//        }
+        
+    }
+    
+    public void tilfojRegistreringTilDB(){
+        
     }
     
 }

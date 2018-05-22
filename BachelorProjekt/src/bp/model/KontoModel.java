@@ -41,25 +41,9 @@ public class KontoModel {
      */
     
     public KontoModel(){
-        this("","");
+        this("","","","",true,"",0);
     }
-    /**
-     * 
-     * @param fornavn
-     * @param efternavn 
-     */
-    public KontoModel(String fornavn, String efternavn) {
-        this.fornavn = new SimpleStringProperty(fornavn);
-        this.efternavn = new SimpleStringProperty(efternavn);
-        
-        this.cpr = new SimpleStringProperty("0123456789");
-        this.familieID = new SimpleStringProperty("familieID01");
-        this.brugertype = new SimpleBooleanProperty(true);
-        this.adgangskode = new SimpleStringProperty("leif");
-        //this.startniveau = startniveau;
-       
-       
-    }
+   
     
     /**
      * 
@@ -71,21 +55,14 @@ public class KontoModel {
      * @param adgangskode
      * @param startniveau 
      */
-    public KontoModel(String fornavn, String efternavn, String cpr, String familieID, boolean brugertype, String adgangskode) {
+    public KontoModel(String fornavn, String efternavn, String cpr, String familieID, boolean brugertype, String adgangskode, int startniveau) {
         this.fornavn = new SimpleStringProperty(fornavn);
         this.efternavn = new SimpleStringProperty(efternavn);
         this.cpr = new SimpleStringProperty(cpr);
         this.familieID = new SimpleStringProperty(familieID);
         this.brugertype = new SimpleBooleanProperty(brugertype);
         this.adgangskode = new SimpleStringProperty(adgangskode);
-        //this.startniveau = startniveau;// = new SimpleIntegerProperty(startniveau);
-//        setFornavn(fornavn);
-//        setEfternavn(efternavn); 
-//        setCpr(cpr);
-//        setFamilieID(familieID);
-//        setBrugertype(brugertype);
-//        setAdgangskode(adgangskode);
-//        setStartniveau(startniveau);
+        this.startniveau = 0;
     }
     
     
@@ -121,9 +98,7 @@ public class KontoModel {
         return efternavn.get();
     }
 
-    /**
-     * @param efternavn the efternavn to set
-     */
+ 
     public void setEfternavn(String efternavn) {
         this.efternavn.set(efternavn);
     }
@@ -206,24 +181,7 @@ public class KontoModel {
     public StringProperty adgangskodeProperty(){
         return adgangskode;
     }
-    
-//    public int startniveau(boolean svar1, boolean svar2, boolean svar3, boolean svar4){
-//        int svarSum = (svar1 ? 1 : 0)+(svar2 ? 1 : 0)+(svar3 ? 1 : 0)+(svar4 ? 1 : 0);
-//        //System.out.println("Svarsummen er: "+svarSum); //Dette kan indkommenteres, hvis det skal tjekkes om svarsummen bliver udregnet korrekt
-//        
-//        switch (svarSum) {
-//            case 1: startNiveau = 1;
-//                break;
-//            case 2: startNiveau = 1;
-//                break;
-//            case 3: startNiveau = 2;
-//                break;
-//            case 4: startNiveau = 2;
-//                break;
-//            default: startNiveau = 1;
-//        }
-//        return startNiveau;
-//    }
+
     
     public int getStartniveau(){
         return startniveau;

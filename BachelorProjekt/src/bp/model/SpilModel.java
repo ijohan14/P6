@@ -15,17 +15,14 @@ public class SpilModel {
     float aktivPoint;
     float mangelPoint;
     String timerTid;
-    //int level, float point
-    //String udfordring
-    //Straing malsatning
-    //varighedMalsatning
+    int level;
+    float point;
+    String udfordring;
+    String malsatning;
+    String varighed;
     
     
-    //metode tetudfordring()
-    //metode getmalsatning(type, varighed)
-    
-    
-    //setSpilStatus(point, level)
+   
     //get og set for attributter
     
     
@@ -97,6 +94,20 @@ public class SpilModel {
         };
         stopUr.start();
         return timerTid;
+    }
+    
+    public String getUdfordring(){
+        return null;
+        
+    }
+    public String getMalsatning(String type, String varighed){
+        return null;
+        
+    }
+    
+    
+    public void setSpilStatus(float point, int level){
+        
     }
 }
     

@@ -31,18 +31,14 @@ import javafx.scene.control.Label;
 public class KontoController {//implements Initializable {
     
     private KontoModel konto;
-    private DatabaseController d;
+    private DatabaseController dc;
     
     private boolean brugertypeTest;
     
     ObservableList brugertypeList=FXCollections.observableArrayList();
     
     private ObservableList<KontoModel> familieData = FXCollections.observableArrayList();
-    
-//   String[] coloumnNames = {"fornavn", "efternavn", "crp", "familieID", "adgangskode"};
-//   Object[][] data = {
-//       setKonto
-//   } 
+
     
     //StartVIew
     @FXML
@@ -111,14 +107,14 @@ public class KontoController {//implements Initializable {
     private Button sporgeskemaFardigKnap;
     
     public KontoController(){
-        this.d = new DatabaseController();
+        this.dc = new DatabaseController();
     }
     
         
     @FXML
     public void handleLogInd() throws IOException{
-        if(logIndIndtastet() ){ //Der må skulle være en if, der spørger efter kontotype, og så afhænger view af dette. 
-            if(d.verificerLogInd(cprFelt, adgangskodeFelt)){
+        if(erLogIndIndtastet() ){ //Der må skulle være en if, der spørger efter kontotype, og så afhænger view af dette. 
+            if(dc.verificerLogInd(cprFelt, adgangskodeFelt)){
                 System.out.println("Du er logget ind");
             }else {
                 System.out.println("Du er ikke logget ind");
@@ -129,7 +125,7 @@ public class KontoController {//implements Initializable {
         }
     }
     
-    private boolean erLogIndIndtastet(){ //logIndIndtastet
+    private boolean erLogIndIndtastet(){ 
         String errorMessage = "";
         if (cprLogIndFelt.getText() == null || cprLogIndFelt.getText().length() == 0) {
             errorMessage += "Intet cpr indtastet!\n"; 
@@ -147,7 +143,8 @@ public class KontoController {//implements Initializable {
         }
     }
     
-//    private boolean erLogIndValid(){ //før logIndValid
+//    Denne er overført til databasecontroller
+    //private boolean erLogIndValid(){ //før logIndValid
 //        String errorMessage = "";
 //        
 //        if (cprFelt.getText() != cprLogIndFelt.getText()){
@@ -176,21 +173,15 @@ public class KontoController {//implements Initializable {
         return brugertype;
     }
     
-     public void setKonto(KontoModel konto) { //se lige hvornår vi bruger denne.
-        this.konto = konto;
-        fornavnFelt.setText(konto.getFornavn());
-        efternavnFelt.setText(konto.getEfternavn());
-        cprFelt.setText(konto.getCpr());
-        familieIDFelt.setText(konto.getFamilieID());
-        adgangskodeFelt.setText(konto.getAdgangskode());
-        
-    }
-    
-//    public ObservableList<KontoModel> getFamilieData() {
-//        ObservableList<KontoModel> familieData = FXCollections.observableArrayList();
-//        familieData.add(new KontoModel());
-//        return familieData;
+//     public void setKonto(KontoModel konto) { .
+//        this.konto = konto;
+//        fornavnFelt.setText(konto.getFornavn());
+//        efternavnFelt.setText(konto.getEfternavn());
+//        cprFelt.setText(konto.getCpr());
+//        familieIDFelt.setText(konto.getFamilieID());
+//        adgangskodeFelt.setText(konto.getAdgangskode());        
 //    }
+    
     
     @FXML
     public void handleOpretKonto() throws IOException {
@@ -201,7 +192,7 @@ public class KontoController {//implements Initializable {
     }
     
     @FXML
-    public void handleOpretKontoTilbage() throws IOException { // før tilbageopretkonto
+    public void handleOpretKontoTilbage() throws IOException { 
         Stage stage = (Stage) opretKontoTilbageKnap.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/bp/view/LogIndView.fxml"));
         stage.setScene(new Scene(root));
@@ -210,23 +201,30 @@ public class KontoController {//implements Initializable {
     
     @FXML
     public void handleOpretKontoGem() throws IOException, SQLException {
-        d.getCprDB(cprFelt);
-        if(opretKontoValid()){
-            KontoModel k = new KontoModel(fornavnFelt.getText(), efternavnFelt.getText(), cprFelt.getText(), familieIDFelt.getText(), radioSelectBrugertype(), adgangskodeFelt.getText());
-            d.opretKontoIDatabase(k);
-            kontoGemtLabel.setText("Konto af brugertypen "+radioSelectBrugertype()+ " er gemt!");            
-            if((opretKontoValid())&&(radioSelectBrugertype() == false)){
+        dc.verificerCprDB(cprFelt);
+        
+        if((erOpretKontoValid())&&(radioSelectBrugertype() == true)){
+            KontoModel k = new KontoModel(fornavnFelt.getText(), efternavnFelt.getText(), 
+                    cprFelt.getText(), familieIDFelt.getText(), radioSelectBrugertype(), 
+                    adgangskodeFelt.getText(),0);
+            dc.tilfojKontoTilDB(k);
+            kontoGemtLabel.setText("Konto af brugertypen "+radioSelectBrugertype()+ " er gemt!");
+        } if((erOpretKontoValid())&&(radioSelectBrugertype() == false)){
+                KontoModel k = new KontoModel(fornavnFelt.getText(), efternavnFelt.getText(), 
+                    cprFelt.getText(), familieIDFelt.getText(), radioSelectBrugertype(), 
+                    adgangskodeFelt.getText(),0);
+                dc.tilfojKontoTilDB(k);
+                kontoGemtLabel.setText("Konto af brugertypen "+radioSelectBrugertype()+ " er gemt!");
+                
                 Stage stage = (Stage) opretKontoGemKnap.getScene().getWindow();
                 Parent root = FXMLLoader.load(getClass().getResource("/bp/view/SporgeskemaBornView.fxml"));
-                stage.setScene(new Scene(root));
-                
-            }
-        } 
+                stage.setScene(new Scene(root));                
+            }        
     }
     
     
       
-    private boolean erOpretKontoValid(){ //før uden er
+    private boolean erOpretKontoValid(){ 
         String errorMessage = "";
         
         if (fornavnFelt.getText() == null || fornavnFelt.getText().length() == 0) {
@@ -261,7 +259,7 @@ public class KontoController {//implements Initializable {
         }
     }
    
-    public boolean radioSelectSpEt(){ //svar1
+    public boolean svar1(){ 
         boolean svar = true;
         if (spEtJaKnap.isSelected() == true){
             svar = true;
@@ -272,7 +270,7 @@ public class KontoController {//implements Initializable {
         return svar;
     }
     
-    public boolean radioSelectSpTo(){ //svar2
+    public boolean svar2(){ 
         boolean svar = true;
         if (spToJaKnap.isSelected() == true){
             svar = true;
@@ -282,7 +280,7 @@ public class KontoController {//implements Initializable {
         }
         return svar;
     }
-    public boolean radioSelectSpTre(){ //svar3
+    public boolean svar3(){ 
         boolean svar = true;
         if (spTreJaKnap.isSelected() == true){
             svar = true;
@@ -292,7 +290,7 @@ public class KontoController {//implements Initializable {
         }
         return svar;
     }
-    public boolean radioSelectSpFire(){ //svar4
+    public boolean svar4(){
         boolean svar = true;
         if (spFireJaKnap.isSelected() == true){
             svar = true;
@@ -335,10 +333,10 @@ public class KontoController {//implements Initializable {
     @FXML
     public void handleSporgeskemaGem() {
         if(erSporgeskemaBesvarelseValid()){
-            km.getStartniveau(radioSelectSpEt(),radioSelectSpTo(),radioSelectSpTre(),radioSelectSpFire());
+            km.getStartniveau(svar1(),svar2(),svar3(),svar4());
             sporgeskemaFejlLabel.setText("");
             sporgeskemaGemtLabel.setText("Besvarelse af spørgeskema gemt!");
-            System.out.println(km.getStartniveau(radioSelectSpEt(),radioSelectSpTo(),radioSelectSpTre(),radioSelectSpFire()));
+            System.out.println(km.getStartniveau(svar1(),svar2(),svar3(),svar4()));
         }
     }
     

@@ -26,18 +26,11 @@ import javafx.collections.ObservableList;
 
 /**
  *
- * @author nathalie
  */
 public class MainApp extends Application {
-    
-//    java.sql.Connection con;
-//    Database database = new Database();
+
     DatabaseController dc;
-    
-//    private ObservableList<KontoModel> familieData = FXCollections.observableArrayList();
-//    public ObservableList<KontoModel> getFamilieData(){
-//        return familieData;
-//    }
+
 
     public MainApp(){
         this.dc = new DatabaseController();
@@ -47,7 +40,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException, SQLException {
         
-        dc.hentDB();
+        dc.hentKontoDB();
         
         Parent root = FXMLLoader.load(getClass().getResource("view/LoginView.fxml"));
         Scene scene = new Scene(root);

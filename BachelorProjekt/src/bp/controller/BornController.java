@@ -30,14 +30,15 @@ import javafx.stage.Stage;
  * @author christinemariegrabow
  */
 public class BornController implements Initializable {
-//
-//    static int milisekunder =0;
-//    static int sekunder = 0;
-//    static int minutter = 0;
-//    static int timer = 0;
+
+    static int milisekunder =0;
+    static int sekunder = 0;
+    static int minutter = 0;
+    static int timer = 0;
     static boolean stadie = false;
-//    String timerTid;
+    String timerTid;
     int aktivitetIntensitet;
+    SpilModel SpilMod = new SpilModel();
     
     @FXML
     public Button malsatningTilbageKnap; 
@@ -135,7 +136,7 @@ public class BornController implements Initializable {
         stage.show();   
     }
     
-    public boolean malsatningValid(){ //erMalsatningValid
+    public boolean erMalsatningValid(){ 
         String errorMessage = "";
         if ((gaturMalKnap.isSelected() == false) && (cykelSkoleMalKnap.isSelected() == false)){
             errorMessage += "Intet mål valgt!\n";
@@ -181,15 +182,15 @@ public class BornController implements Initializable {
     }
     
     @FXML
-    public void handleGemMalsatning(){ //handleMaltsatningGem
+    public void handleMalsatningGem(){ 
         malsatningFejlLabel.setText("");
-        if (malsatningValid()){
+        if (erMalsatningValid()){
             malsatningGemtLabel.setText("Målsætningen "+radioSelectMalsatning()+ " \naf længden "+ radioSelectMalsatningVarighed()+ " er gemt!");
         }
     }
     
     @FXML 
-    public void handleManuelIndtastningMalsatning() throws IOException{ //
+    public void handleManuelIndtastningMalsatning() throws IOException{ 
         Stage stage = (Stage) manuelIndtastningMalsatningKnap.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/bp/view/ManuelIndtastningView.fxml")); //...tastningFysiskAktivitetView
         stage.setScene(new Scene(root));
@@ -204,7 +205,7 @@ public class BornController implements Initializable {
         stage.show();   
     }
     
-    public boolean erUdfordringValid(){//udfordrningValid
+    public boolean erUdfordringValid(){
         String errorMessage = "";
         if ((sjippetovKnap.isSelected() == false) && (gaturKnap.isSelected() == false) && (lobeturKnap.isSelected() == false) && (rulleskojteKnap.isSelected() == false)){
             errorMessage += "Ingen udfordring valgt!\n";
@@ -216,12 +217,12 @@ public class BornController implements Initializable {
             return false;
         }
     }
-    SpilModel SpilMod = new SpilModel();
+    
     
     @FXML
-    public void handleStartTimer(){// throws IOException {
+    public void handleStartTimer(){
         timerText.setText("0 : 0 : 0");
-        if (udfordringValid()){
+        if (erUdfordringValid()){
             udfordringFejlLabel.setText("");
             udfordringGemtLabel.setText("");
             udfordringOpsummeringLabel.setText("");
@@ -303,10 +304,10 @@ public class BornController implements Initializable {
     public void handleStopTimer (){
         stadie = false;
         int point = 240; //skal ideelt hentes fra database 
-        String p = SpilMod.point(minutter, aktivitetIntensitet,point);
+        String p = SpilMod.getPoint(minutter, aktivitetIntensitet,point);
         int po = Integer.parseInt(p);
         
-//        udfordringOpsummeringLabel.setText("Udfordring: "+radioSelectUdfordring()+"\nVarighed: "+timerTid+"\nNy pointsum: "+p +"\n"+SpilMod.level(po, 1));
+        //udfordringOpsummeringLabel.setText("Udfordring: "+radioSelectUdfordring()+"\nVarighed: "+timerTid+"\nNy pointsum: "+p +"\n"+SpilMod.level(po, 1));
         
         timer = 0;
         minutter = 0;
@@ -316,7 +317,7 @@ public class BornController implements Initializable {
     }
     
     @FXML 
-    public void handleUdfordringGem(){ //handleGemUdfordring
+    public void handleUdfordringGem(){ 
         udfordringGemtLabel.setText("Udfordringen er gemt!");
     }
     
@@ -328,7 +329,7 @@ public class BornController implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
-    private boolean erManuelIndtastningValid(){ //manuelIndt...
+    private boolean erManuelIndtastningValid(){ 
         String errorMessage = "";
         if (typeManuelIndtastningFelt.getText() == null || typeManuelIndtastningFelt.getText().length() == 0) {
             errorMessage += "Ingen valid type af fysisk aktivitet!\n"; 
@@ -352,14 +353,14 @@ public class BornController implements Initializable {
     
     @FXML 
     public void handleManuelIndtastningGem(){
-        if(manuelIndtastningValid()){
+        if(erManuelIndtastningValid()){
             manuelIndtastningFejlLabel.setText("");
             manuelIndtastningGemtLabel.setText("Fysisk aktivitet gemt!");
         }
     }
     
     @FXML
-    public void handleMalsatningTilbage() throws IOException { //handletilbagemal...
+    public void handleMalsatningTilbage() throws IOException { 
         Stage stage = (Stage) malsatningTilbageKnap.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
         stage.setScene(new Scene(root));
@@ -367,7 +368,7 @@ public class BornController implements Initializable {
     }
     
     @FXML
-    public void handleUdfordringTilbage() throws IOException { //handletilbageudf
+    public void handleUdfordringTilbage() throws IOException { 
         Stage stage = (Stage) udfordringTilbageKnap.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
         stage.setScene(new Scene(root));

@@ -5,6 +5,7 @@
  */
 package bp.model;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 import static java.util.Calendar.DATE;
 import static java.util.Calendar.MONTH;
@@ -34,8 +35,12 @@ public class RegistreringModel {
 //        this.bmi = ((100*100*vagt)/(hojde*hojde));
 //    }
     
-    //public void getKost(LocalDate dato, String maltid, String kost){}
-    //setKost(registrerKost)
+    public void getKost(LocalDate dato, String maltid, String kost){
+    }
+    
+    public void setKost(String registrerKost){
+        
+    }
     
     
     
@@ -259,13 +264,13 @@ public class RegistreringModel {
         return returMeddelelse;
     }
 //    
-     public boolean udtrakKonFraCpr(String cpr){ //getkon
+     public boolean getCpr(String cpr){ //getkon
         
         boolean kon = false; //default dreng
         
-        String kon = cpr.substring(cpr.length()-1).trim();
+        String k = cpr.substring(cpr.length()-1).trim();
         
-        int konInt = Integer.parseInt(kon);//transform format fra string til int, så kan man lave matematiske beregninger med int'en
+        int konInt = Integer.parseInt(k);//transform format fra string til int, så kan man lave matematiske beregninger med int'en
         
         if (konInt % 2 == 0){
             kon =  true; //pige
@@ -275,7 +280,7 @@ public class RegistreringModel {
         return kon;   
     }
      
-     public int udtrakAlderFraCpr(String cpr){ //getAlder
+     public int getAlder(String cpr){ //getAlder
         
         String ar = cpr.substring(4, 6);//4 og 6 er de pladser i string hvor man finder året personen er blevet født i, fra cpr nr
         int numberAr = Integer.parseInt(ar);//laver igen string format til int for at lave matematiske beregninger

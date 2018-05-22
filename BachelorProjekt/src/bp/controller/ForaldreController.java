@@ -99,6 +99,8 @@ public class ForaldreController implements Initializable {
     }
     
     
-    //Mangler metode: visVejledning(), der viser vejledning.
+    public void visVejledning(){
+        
+    }
     
 }
