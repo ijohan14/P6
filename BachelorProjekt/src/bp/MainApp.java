@@ -16,7 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import bp.controller.DatalagringController;
+import bp.controller.DatabaseController;
 import bp.model.KontoModel;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -32,7 +32,7 @@ public class MainApp extends Application {
     
 //    java.sql.Connection con;
 //    Database database = new Database();
-    DatalagringController dc;
+    DatabaseController dc;
     
 //    private ObservableList<KontoModel> familieData = FXCollections.observableArrayList();
 //    public ObservableList<KontoModel> getFamilieData(){
@@ -40,7 +40,7 @@ public class MainApp extends Application {
 //    }
 
     public MainApp(){
-        this.dc = new DatalagringController();
+        this.dc = new DatabaseController();
     }
     
     

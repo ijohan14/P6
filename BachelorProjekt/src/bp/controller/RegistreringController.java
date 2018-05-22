@@ -98,7 +98,7 @@ public class RegistreringController implements Initializable {
     }
     
     @FXML
-    public void handleTilbageKostRegistrering() throws IOException {
+    public void handleKostRegistreringTilbage() throws IOException { //tilbage var før reg
         Stage stage;
         Parent root;
         stage = (Stage) kostRegistreringTilbageKnap.getScene().getWindow();
@@ -109,7 +109,7 @@ public class RegistreringController implements Initializable {
     }
     
     @FXML
-    public void handleGemKostRegistrering() throws IOException {
+    public void handleKostRegistreringGem() throws IOException { //gem var før kost
         String message = "";
         if (registrerKostValid()){
             LocalDate dato = datoKostFelt.getValue();
@@ -120,7 +120,7 @@ public class RegistreringController implements Initializable {
         } 
     }
     
-    private boolean registrerKostValid(){
+    private boolean erKostValid(){ //registrerKostValid
         String errorMessage = "";
         kostGemtLabel.setText("");
         
@@ -144,7 +144,7 @@ public class RegistreringController implements Initializable {
     }
     
     @FXML
-    public void handleTilbageIsoBmi() throws IOException {
+    public void handleBmiTilbage() throws IOException { //handletilbageisobmi
         Stage stage;
         Parent root;
         stage = (Stage) isoBmiTilbageKnap.getScene().getWindow();
@@ -157,7 +157,7 @@ public class RegistreringController implements Initializable {
     RegistreringModel RegMod = new RegistreringModel();
     
     @FXML
-    public void handleGemIsoBmiRegistrering() throws IOException {
+    public void handleBmiRegistreringGem() throws IOException { //handlegemisobmi...
         bmiUdregnetLabel.setText("");
         if (registrerIsoBmiValid()){
             float Hojde = Float.valueOf(isoBmiHojdeFelt.getText());
@@ -171,7 +171,7 @@ public class RegistreringController implements Initializable {
           
     }
     
-    private boolean registrerIsoBmiValid(){
+    private boolean erBmiValid(){
         String errorMessage = "";
         
         if (isoBmiCprFelt.getText() == null || isoBmiCprFelt.getText().length() == 0) {

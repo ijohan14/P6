@@ -88,6 +88,12 @@ public class KontoModel {
 //        setStartniveau(startniveau);
     }
     
+    
+    //Her mangler til foraldrecontroller getVejledning()
+    
+    
+    //setFamilie(alle cpr numre som har familieID tilknyttet) mangler hvor konti med samme familieID samles og returneres
+    
 
     /**
      * @return the fornavn

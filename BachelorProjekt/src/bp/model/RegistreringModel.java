@@ -15,10 +15,10 @@ import static java.util.Calendar.YEAR;
  * @author christinemariegrabow
  */
 public class RegistreringModel {
-    int alder = 8; //alder i år
-    float vagt = 78;  // Vægt i kg. Det er en double fordi den skal kunne registrere kommatal
-    float hojde = 127;  //Højde i cm
-    boolean kon = false;  //falsk = dreng, true = pige
+//    int alder = 8; //alder i år
+//    float vagt = 78;  // Vægt i kg. Det er en double fordi den skal kunne registrere kommatal
+//    float hojde = 127;  //Højde i cm
+//    boolean kon = false;  //falsk = dreng, true = pige
     double granseOvervagt; //bruges til at sætte BMI grænseværdien for barnets køn og alder
     double granseSvarOvervagt;
     double granseNormalVagt;
@@ -26,14 +26,20 @@ public class RegistreringModel {
     String bmiBarn = "Barnet har en BMI på ";
     String normalVagt = "Barnet er derfor normalvægtigt. Vær opmærksom på at dette system ikke tester for undervægt.";
     
+    
+    //dato LocalDate, maltid String, kost String, holde int, vagt int, alder int, kon boolean, bmi float
+    //get og set  - overvej hvad der skal ske med dem.
+    
 //    public void bmi (){
 //        this.bmi = ((100*100*vagt)/(hojde*hojde));
 //    }
     
-    //metode registrerKost(){}
+    //public void getKost(LocalDate dato, String maltid, String kost){}
+    //setKost(registrerKost)
     
     
-    public String bmiUdregning(float hojde, float vagt, int alder, boolean kon){
+    
+    public String bmiUdregning(float hojde, float vagt, int alder, boolean kon){ //getBMI
         bmi = ((100*100*vagt)/(hojde*hojde));
         String bmiString = String.valueOf(bmi);
         //Iso-Bmi resultat for 8 årig dreng
@@ -253,23 +259,23 @@ public class RegistreringModel {
         return returMeddelelse;
     }
 //    
-     public boolean udtrakKonFraCpr(String cpr){
+     public boolean udtrakKonFraCpr(String cpr){ //getkon
         
-        boolean koen = false; //default dreng
+        boolean kon = false; //default dreng
         
         String kon = cpr.substring(cpr.length()-1).trim();
         
         int konInt = Integer.parseInt(kon);//transform format fra string til int, så kan man lave matematiske beregninger med int'en
         
         if (konInt % 2 == 0){
-            koen =  true; //pige
+            kon =  true; //pige
         } else {
-            koen = false; //dreng
+            kon = false; //dreng
         }
-        return koen;   
+        return kon;   
     }
      
-     public int udtrakAlderFraCpr(String cpr){
+     public int udtrakAlderFraCpr(String cpr){ //getAlder
         
         String ar = cpr.substring(4, 6);//4 og 6 er de pladser i string hvor man finder året personen er blevet født i, fra cpr nr
         int numberAr = Integer.parseInt(ar);//laver igen string format til int for at lave matematiske beregninger

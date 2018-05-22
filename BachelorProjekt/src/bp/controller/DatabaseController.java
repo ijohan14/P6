@@ -20,7 +20,7 @@ import javafx.scene.control.TextField;
  *
  * @author christinemariegrabow
  */
-public class DatalagringController {
+public class DatabaseController {
 
     
     java.sql.Connection con;
@@ -33,22 +33,14 @@ public class DatalagringController {
     }
     
    
-    
+    //hentSpilstatus(cpr)
+    //tilfojSpilstatus(spilmodel spil)
     
 
-    public DatalagringController(){
-//        familieData.add(new ForaldreModel("Nathalie", "Trane", "1212070004", "3", false,"07"));
-//        familieData.add(new ForaldreModel("Christine", "Grabow", "0101090002", "5", false, "09"));
-//        familieData.add(new ForaldreModel("Ingeborg", "Jensen", "04041000006", "8" ,false, "10")); 
-//        familieData.add(new ForaldreModel("Lise", "Jensen", "05059200008", "8", true, "92")); 
-//        familieData.add(new ForaldreModel("Peter", "Jensen", "0420900003", "8", true, "90"));
-        
-       
-        
-       
+    public DatabaseController(){
     }
     
-    public void hentDB() throws SQLException {
+    public void hentKontoDB() throws SQLException { //før hentDB
          con = database.getConnection();
          
         try{
@@ -75,7 +67,7 @@ public class DatalagringController {
                
                 familieData.add(f);
             }
-            for (KontoModel kontoModel : familieData){
+            for (KontoModel konto : familieData){
                 System.out.println(kontoModel.getFornavn()+" "+kontoModel.getEfternavn()+" "+kontoModel.getCpr()+" "+kontoModel.getFamilieID()+" "+kontoModel.getBrugertype()+" "+kontoModel.getAdgangskode());
             }
         }
@@ -86,24 +78,9 @@ public class DatalagringController {
 }
     
     
-    public void opretKontoIDatabase(KontoModel konto){
+    public void tilfojKontoTilDB(KontoModel konto){ //opretKontoIDatabase
         con = database.getConnection(); 
-        try {
-//            
-//            String SQL = "INSERT INTO konto (fornavn, efternavn, cpr, familieID, brugertype, adgangskode)"            
-//            + " VALUES  ("
-//                    + "'" + konto.getFornavn()+ "',"
-//                    + "'" + konto.getEfternavn()+ "',"
-//                    + "'" + konto.getCpr()+"',"
-//                    + "'" + konto.getFamilieID()+"',"
-//                    + "'" + konto.getBrugertype()+"',"
-//                    + "'" + konto.getAdgangskode()+ "')"; 
-//            
-//            int rows = con.createStatement().executeUpdate(SQL, 1);
-//            
-//            if (rows > 0)
-//                System.out.println("Success!");
-            
+        try {         
 
             stmt = con.prepareStatement("INSERT INTO konto (fornavn, efternavn, cpr, familieID, brugertype, adgangskode)"
                 + "VALUES (?,?,?,?,?,?)");
@@ -122,16 +99,16 @@ public class DatalagringController {
         }
 }
     
-    public boolean getCprDB(TextField c) throws SQLException{
+    public boolean verificerCprDB(TextField tf) throws SQLException{
         con = database.getConnection();
         String SQL = "SELECT cpr FROM konto ORDER BY cpr";
         ResultSet rs = con.createStatement().executeQuery(SQL);
         
-        String k = c.getText();
+        String k = tf.getText();
         if(rs.next()){ 
             String cpr = rs.getString("cpr");
             if(k.equals(cpr)){
-               System.out.println("Konto findes allerede");
+               System.out.println("Konto findes allerede"); //cpr 
                 return true; 
             }else{
                 System.out.println("Konto findes ikke");

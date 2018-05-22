@@ -15,24 +15,29 @@ public class SpilModel {
     float aktivPoint;
     float mangelPoint;
     String timerTid;
+    //int level, float point
+    //String udfordring
+    //Straing malsatning
+    //varighedMalsatning
     
     
-    //metode udfordring()
-    //metode malsatning(type, varighed)
+    //metode tetudfordring()
+    //metode getmalsatning(type, varighed)
     
     
-    //metode 
+    //setSpilStatus(point, level)
+    //get og set for attributter
     
     
     
-    public String point(int aktivitetLangde, int aktivitetIntensitet, int pointsum){ //udregnpoint
+    public String getPoint(int aktivitetLangde, int aktivitetIntensitet, int pointsum){ //udregnpoint
         aktivPoint = ((aktivitetLangde *2) * aktivitetIntensitet);
         pointsum += aktivPoint; 
         String nyPointsum = String.valueOf(pointsum);
         return nyPointsum; 
     }
     
-    public String level(int pointsum, int level){
+    public String getLevel(int pointsum, int level){
         String outputLevel ="";
         if(pointsum >= (100 * Math.sqrt(level))+(100* Math.sqrt(level+1))){ //Hvis levelPoint er større end det krævede antal point for barnets pågældende level, kommer vi ind i dette loop for at stige et level.
                 level ++;

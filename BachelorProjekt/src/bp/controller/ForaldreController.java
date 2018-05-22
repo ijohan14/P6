@@ -22,7 +22,7 @@ import javafx.stage.Stage;
  *
  * @author christinemariegrabow
  */
-public class MenuForaldreController implements Initializable {
+public class ForaldreController implements Initializable {
     
     @FXML
     public Button kostRegistreringKnap;
@@ -77,7 +77,7 @@ public class MenuForaldreController implements Initializable {
     }
  
     @FXML
-    public void handleIsoBmi() throws IOException {
+    public void handleBmiRegistrering() throws IOException { //før handleIsoBmi
         Stage stage;
         Parent root;
         stage = (Stage) isoBmiKnap.getScene().getWindow();
@@ -97,5 +97,8 @@ public class MenuForaldreController implements Initializable {
         stage.setScene(scene);
         stage.show();   
     }
+    
+    
+    //Mangler metode: visVejledning(), der viser vejledning.
     
 }

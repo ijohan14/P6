@@ -29,12 +29,12 @@ import javafx.stage.Stage;
  *
  * @author christinemariegrabow
  */
-public class MenuBornController implements Initializable {
-
-    static int milisekunder =0;
-    static int sekunder = 0;
-    static int minutter = 0;
-    static int timer = 0;
+public class BornController implements Initializable {
+//
+//    static int milisekunder =0;
+//    static int sekunder = 0;
+//    static int minutter = 0;
+//    static int timer = 0;
     static boolean stadie = false;
 //    String timerTid;
     int aktivitetIntensitet;
@@ -135,7 +135,7 @@ public class MenuBornController implements Initializable {
         stage.show();   
     }
     
-    public boolean malsatningValid(){
+    public boolean malsatningValid(){ //erMalsatningValid
         String errorMessage = "";
         if ((gaturMalKnap.isSelected() == false) && (cykelSkoleMalKnap.isSelected() == false)){
             errorMessage += "Intet mål valgt!\n";
@@ -181,7 +181,7 @@ public class MenuBornController implements Initializable {
     }
     
     @FXML
-    public void handleGemMalsatning(){
+    public void handleGemMalsatning(){ //handleMaltsatningGem
         malsatningFejlLabel.setText("");
         if (malsatningValid()){
             malsatningGemtLabel.setText("Målsætningen "+radioSelectMalsatning()+ " \naf længden "+ radioSelectMalsatningVarighed()+ " er gemt!");
@@ -189,9 +189,9 @@ public class MenuBornController implements Initializable {
     }
     
     @FXML 
-    public void handleManuelIndtastningMalsatning() throws IOException{
+    public void handleManuelIndtastningMalsatning() throws IOException{ //
         Stage stage = (Stage) manuelIndtastningMalsatningKnap.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/bp/view/ManuelIndtastningFysiskAktivitetView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/bp/view/ManuelIndtastningView.fxml")); //...tastningFysiskAktivitetView
         stage.setScene(new Scene(root));
         stage.show();
     }
@@ -204,7 +204,7 @@ public class MenuBornController implements Initializable {
         stage.show();   
     }
     
-    public boolean udfordringValid(){
+    public boolean erUdfordringValid(){//udfordrningValid
         String errorMessage = "";
         if ((sjippetovKnap.isSelected() == false) && (gaturKnap.isSelected() == false) && (lobeturKnap.isSelected() == false) && (rulleskojteKnap.isSelected() == false)){
             errorMessage += "Ingen udfordring valgt!\n";
@@ -316,17 +316,10 @@ public class MenuBornController implements Initializable {
     }
     
     @FXML 
-    public void handleGemUdfordring(){
+    public void handleUdfordringGem(){ //handleGemUdfordring
         udfordringGemtLabel.setText("Udfordringen er gemt!");
     }
     
-    @FXML 
-    public void handleManuelIndtastningUdfordring() throws IOException{
-        Stage stage = (Stage) manuelIndtastningUdfordringKnap.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/bp/view/ManuelIndtastningFysiskAktivitetView.fxml"));
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
     
     @FXML 
     public void handleManuelIndtastningTilbage() throws IOException{
@@ -335,7 +328,7 @@ public class MenuBornController implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
-    private boolean manuelIndtastningValid(){
+    private boolean erManuelIndtastningValid(){ //manuelIndt...
         String errorMessage = "";
         if (typeManuelIndtastningFelt.getText() == null || typeManuelIndtastningFelt.getText().length() == 0) {
             errorMessage += "Ingen valid type af fysisk aktivitet!\n"; 
@@ -366,7 +359,7 @@ public class MenuBornController implements Initializable {
     }
     
     @FXML
-    public void handleTilbageMalsatning() throws IOException {
+    public void handleMalsatningTilbage() throws IOException { //handletilbagemal...
         Stage stage = (Stage) malsatningTilbageKnap.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
         stage.setScene(new Scene(root));
@@ -374,7 +367,7 @@ public class MenuBornController implements Initializable {
     }
     
     @FXML
-    public void handleTilbageUdfordring() throws IOException {
+    public void handleUdfordringTilbage() throws IOException { //handletilbageudf
         Stage stage = (Stage) udfordringTilbageKnap.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
         stage.setScene(new Scene(root));
