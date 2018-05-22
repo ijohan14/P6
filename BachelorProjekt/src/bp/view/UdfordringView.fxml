@@ -84,7 +84,6 @@
       </VBox>
       <ButtonBar layoutX="15.0" layoutY="346.0" prefHeight="40.0" prefWidth="271.0">
         <buttons>
-            <Button fx:id="manuelIndtastningUdfordringKnap" mnemonicParsing="false" onAction="#handleManuelIndtastningUdfordring" text="Manuel" />
             <Button mnemonicParsing="false" onAction="#handleGemUdfordring" text="Gem" />
           <Button fx:id="udfordringTilbageKnap" mnemonicParsing="false" onAction="#handleTilbageUdfordring" text="Tilbage" />
         </buttons>
