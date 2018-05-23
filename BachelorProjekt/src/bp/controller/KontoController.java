@@ -114,14 +114,14 @@ public class KontoController {//implements Initializable {
     @FXML
     public void handleLogInd() throws IOException{
         if(erLogIndIndtastet() ){ //Der må skulle være en if, der spørger efter kontotype, og så afhænger view af dette. 
-            if(dc.verificerLogInd(cprFelt, adgangskodeFelt)){
-                System.out.println("Du er logget ind");
-            }else {
-                System.out.println("Du er ikke logget ind");
-            }
-//                Stage stage = (Stage) logIndKnap.getScene().getWindow();
-//                Parent root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
-//                stage.setScene(new Scene(root));
+//            if(dc.verificerLogInd(cprFelt, adgangskodeFelt)){
+//                System.out.println("Du er logget ind");
+//            }else {
+//                System.out.println("Du er ikke logget ind");
+//            }
+                Stage stage = (Stage) logIndKnap.getScene().getWindow();
+                Parent root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
+                stage.setScene(new Scene(root));
         }
     }
     
@@ -201,20 +201,22 @@ public class KontoController {//implements Initializable {
     
     @FXML
     public void handleOpretKontoGem() throws IOException, SQLException {
-        dc.verificerCprDB(cprFelt);
+        //dc.verificerCprDB(cprFelt);
         
         if((erOpretKontoValid())&&(radioSelectBrugertype() == true)){
             KontoModel k = new KontoModel(fornavnFelt.getText(), efternavnFelt.getText(), 
                     cprFelt.getText(), familieIDFelt.getText(), radioSelectBrugertype(), 
-                    adgangskodeFelt.getText(),0);
+                    adgangskodeFelt.getText());
             dc.tilfojKontoTilDB(k);
             kontoGemtLabel.setText("Konto af brugertypen "+radioSelectBrugertype()+ " er gemt!");
+            dc.hentKontoDB();
         } if((erOpretKontoValid())&&(radioSelectBrugertype() == false)){
                 KontoModel k = new KontoModel(fornavnFelt.getText(), efternavnFelt.getText(), 
                     cprFelt.getText(), familieIDFelt.getText(), radioSelectBrugertype(), 
-                    adgangskodeFelt.getText(),0);
+                    adgangskodeFelt.getText());
                 dc.tilfojKontoTilDB(k);
                 kontoGemtLabel.setText("Konto af brugertypen "+radioSelectBrugertype()+ " er gemt!");
+                dc.hentKontoDB();
                 
                 Stage stage = (Stage) opretKontoGemKnap.getScene().getWindow();
                 Parent root = FXMLLoader.load(getClass().getResource("/bp/view/SporgeskemaBornView.fxml"));
@@ -329,14 +331,16 @@ public class KontoController {//implements Initializable {
         }
     }
     
-    KontoModel km = new KontoModel();
+    
     @FXML
     public void handleSporgeskemaGem() {
         if(erSporgeskemaBesvarelseValid()){
-            km.getStartniveau(svar1(),svar2(),svar3(),svar4());
+            konto.getStartniveau(svar1(),svar2(),svar3(),svar4());
             sporgeskemaFejlLabel.setText("");
             sporgeskemaGemtLabel.setText("Besvarelse af spørgeskema gemt!");
-            System.out.println(km.getStartniveau(svar1(),svar2(),svar3(),svar4()));
+            System.out.println(konto.getStartniveau(svar1(),svar2(),svar3(),svar4()));
+            
+            //i databasecontroller skal der være en metode der ændrer startniveau for barnet. lige nu er det 0 som default.
         }
     }
     

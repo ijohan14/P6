@@ -51,7 +51,6 @@
         <buttons>
           <Button fx:id="logIndKnap" mnemonicParsing="false" onAction="#handleLogInd" prefHeight="27.0" text="Log Ind" />
             <Button fx:id="opretKontoKnap" layoutX="215.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleOpretKonto" prefHeight="27.0" prefWidth="99.0" text="Opret Konto" />
-            <Button fx:id="visDataKnap" mnemonicParsing="false" onAction="#handleVisData" text="Button" />
         </buttons>
       </ButtonBar>
    </children>

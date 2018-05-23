@@ -48,42 +48,42 @@
                   <Label text="Spørgsmål 4: " GridPane.rowIndex="3" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
-                        <RadioButton fx:id="spEtJaKnap" mnemonicParsing="false" onAction="#radioSelectSpEt" text="Ja">
+                        <RadioButton fx:id="spEtJaKnap" mnemonicParsing="false" onAction="#svar1" text="Ja">
                            <toggleGroup>
                               <ToggleGroup fx:id="spEt" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="spEtNejKnap" mnemonicParsing="false" onAction="#radioSelectSpEt" text="Nej" toggleGroup="$spEt" />
+                        <RadioButton fx:id="spEtNejKnap" mnemonicParsing="false" onAction="#svar1" text="Nej" toggleGroup="$spEt" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <RadioButton fx:id="spToJaKnap" mnemonicParsing="false" onAction="#radioSelectSpTo" text="Ja">
+                        <RadioButton fx:id="spToJaKnap" mnemonicParsing="false" onAction="#svar2" text="Ja">
                            <toggleGroup>
                               <ToggleGroup fx:id="spTo" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="spToNejKnap" mnemonicParsing="false" onAction="#radioSelectSpTo" text="Nej" toggleGroup="$spTo" />
+                        <RadioButton fx:id="spToNejKnap" mnemonicParsing="false" onAction="#svar2" text="Nej" toggleGroup="$spTo" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <RadioButton fx:id="spTreJaKnap" mnemonicParsing="false" onAction="#radioSelectSpTre" text="Ja">
+                        <RadioButton fx:id="spTreJaKnap" mnemonicParsing="false" onAction="#svar3" text="Ja">
                            <toggleGroup>
                               <ToggleGroup fx:id="spTre" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="spTreNejKnap" mnemonicParsing="false" onAction="#radioSelectSpTre" text="Nej" toggleGroup="$spTre" />
+                        <RadioButton fx:id="spTreNejKnap" mnemonicParsing="false" onAction="#svar3" text="Nej" toggleGroup="$spTre" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
-                        <RadioButton fx:id="spFireJaKnap" mnemonicParsing="false" onAction="#radioSelectSpFire" text="Ja">
+                        <RadioButton fx:id="spFireJaKnap" mnemonicParsing="false" onAction="#svar4" text="Ja">
                            <toggleGroup>
                               <ToggleGroup fx:id="spFire" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="spFireNejKnap" mnemonicParsing="false" onAction="#radioSelectSpFire" text="Nej" toggleGroup="$spFire" />
+                        <RadioButton fx:id="spFireNejKnap" mnemonicParsing="false" onAction="#svar4" text="Nej" toggleGroup="$spFire" />
                      </children>
                   </HBox>
                </children>

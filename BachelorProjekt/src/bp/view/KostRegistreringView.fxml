@@ -77,8 +77,8 @@
       </VBox>
       <ButtonBar layoutX="86.0" layoutY="346.0" prefHeight="40.0" prefWidth="200.0">
         <buttons>
-          <Button fx:id="kostRegistreringGemKnap" mnemonicParsing="false" onAction="#handleGemKostRegistrering" text="Gem" />
-            <Button fx:id="kostRegistreringTilbageKnap" mnemonicParsing="false" onAction="#handleTilbageKostRegistrering" text="Tilbage" />
+          <Button fx:id="kostRegistreringGemKnap" mnemonicParsing="false" onAction="#handleKostRegistreringGem" text="Gem" />
+            <Button fx:id="kostRegistreringTilbageKnap" mnemonicParsing="false" onAction="#handleKostRegistreringTilbage" text="Tilbage" />
         </buttons>
       </ButtonBar>
    </children>

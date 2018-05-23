@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bp.controller.MenuBornController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bp.controller.BornController">
    <children>
       <VBox alignment="TOP_CENTER" layoutY="-32.0" prefHeight="354.0" prefWidth="300.0" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -84,8 +84,8 @@
       </VBox>
       <ButtonBar layoutX="15.0" layoutY="346.0" prefHeight="40.0" prefWidth="271.0">
         <buttons>
-            <Button mnemonicParsing="false" onAction="#handleGemUdfordring" text="Gem" />
-          <Button fx:id="udfordringTilbageKnap" mnemonicParsing="false" onAction="#handleTilbageUdfordring" text="Tilbage" />
+            <Button mnemonicParsing="false" onAction="#handleUdfordringGem" text="Gem" />
+          <Button fx:id="udfordringTilbageKnap" mnemonicParsing="false" onAction="#handleUdfordringTilbage" text="Tilbage" />
         </buttons>
       </ButtonBar>
    </children>

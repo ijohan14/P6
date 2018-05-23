@@ -51,22 +51,13 @@ public class DatabaseController {
                 f.setFamilieID(rs.getString("familieID"));
                 f.setBrugertype(rs.getBoolean("brugertype"));
                 f.setAdgangskode(rs.getString("adgangskode"));
-                try {
-                    f.setStartniveau(Integer.parseInt(rs.getString("Startniveau")));
-                 } catch (NumberFormatException nfe) {
-               
-                     System.out.println("Error on formatting ZIP code to an integer");
-                 }
-                
-                f.setStartniveau(rs.getInt("Startniveau"));
                
                 familieData.add(f);
             }
             for (KontoModel konto : familieData){
                 System.out.println(konto.getFornavn()+" "+konto.getEfternavn()
                         +" "+konto.getCpr()+" "+konto.getFamilieID()+" "
-                        +konto.getBrugertype()+" "+konto.getAdgangskode()
-                        +" "+konto.getStartniveau());
+                        +konto.getBrugertype()+" "+konto.getAdgangskode());
             }
         }
         catch(SQLException e){
@@ -81,7 +72,7 @@ public class DatabaseController {
         try {         
 
             stmt = con.prepareStatement("INSERT INTO konto (fornavn, efternavn, cpr, familieID, brugertype, adgangskode)"
-                + "VALUES (?,?,?,?,?,?)");
+                + "VALUES (?,?,?,?,?,?,?)");
             stmt.setString(1, konto.getFornavn());
             stmt.setString(2, konto.getEfternavn());
             stmt.setString(3, konto.getCpr());

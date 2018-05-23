@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bp.controller.MenuBornController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bp.controller.BornController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="338.0" prefWidth="300.0" AnchorPane.bottomAnchor="62.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -77,8 +77,8 @@
       <ButtonBar layoutX="6.0" layoutY="346.0" prefHeight="40.0" prefWidth="280.0">
         <buttons>
             <Button fx:id="manuelIndtastningMalsatningKnap" mnemonicParsing="false" onAction="#handleManuelIndtastningMalsatning" text="Manuel" />
-          <Button fx:id="malsatningGemKnap" mnemonicParsing="false" onAction="#handleGemMalsatning" text="Gem" />
-            <Button fx:id="malsatningTilbageKnap" mnemonicParsing="false" onAction="#handleTilbageMalsatning" text="Tilbage" />
+          <Button fx:id="malsatningGemKnap" mnemonicParsing="false" onAction="#handleMalsatningGem" text="Gem" />
+            <Button fx:id="malsatningTilbageKnap" mnemonicParsing="false" onAction="#handleMalsatningTilbage" text="Tilbage" />
         </buttons>
       </ButtonBar>
    </children>

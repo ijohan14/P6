@@ -116,7 +116,7 @@ public class RegistreringController implements Initializable {
         if (erKostValid()){
             LocalDate dato = datoKostFelt.getValue();
             String datoString = String.valueOf(dato);
-            kostGemtLabel.setText(radioSelectMaltid()+" for "+datoString+ " er gemt!");
+            kostGemtLabel.setText(radioSelectMaltid()+" for "+datoString+ " er registreret!");
             kostFejlLabel.setText("");
             
         } 

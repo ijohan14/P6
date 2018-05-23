@@ -226,53 +226,53 @@ public class BornController implements Initializable {
             udfordringFejlLabel.setText("");
             udfordringGemtLabel.setText("");
             udfordringOpsummeringLabel.setText("");
-            timerText.setText(SpilMod.startTimer());
-//            stadie = true;
-//            
-//            Thread stopUr = new Thread(){
-//                public void run(){
-//                    for(;;){
-//                        if(stadie == true){
-//                            try{
-//                                sleep(1);
-//                                if(milisekunder > 1000){
-//                                    milisekunder = 0;
-//                                    sekunder ++;
-//                                }
-//                                if(sekunder > 59){
-//                                    milisekunder = 0;
-//                                    sekunder = 0;
-//                                    minutter ++;
-//                                }
-//                                if(minutter > 59){
-//                                    milisekunder = 0;
-//                                    sekunder = 0;
-//                                    minutter = 0;
-//                                    timer ++;
-//                                }
-//                                milisekunder ++;
-//                                String timerString = String.valueOf(timer);
-//                                String minutterString = String.valueOf(minutter);
-//                                String sekunderString = String.valueOf(sekunder);
-//
-//                                System.out.println(" "+timer+" : "+minutter+" : "+sekunder);
-//                                timerTid = " "+timerString+" : "+minutterString+" : "+sekunderString;
-//                                timerText.setText(timerTid);
-//                            }
-//                            catch(Exception e){
-//                            }
-//                        }
-//                        else{
-//                            break;
-//                        }
-//                    }
-//                }
-//            };
-//            stopUr.start();
-//    
-//        }
+            //timerText.setText(SpilMod.startTimer());
+            stadie = true;
+            
+            Thread stopUr = new Thread(){
+                public void run(){
+                    for(;;){
+                        if(stadie == true){
+                            try{
+                                sleep(1);
+                                if(milisekunder > 1000){
+                                    milisekunder = 0;
+                                    sekunder ++;
+                                }
+                                if(sekunder > 59){
+                                    milisekunder = 0;
+                                    sekunder = 0;
+                                    minutter ++;
+                                }
+                                if(minutter > 59){
+                                    milisekunder = 0;
+                                    sekunder = 0;
+                                    minutter = 0;
+                                    timer ++;
+                                }
+                                milisekunder ++;
+                                String timerString = String.valueOf(timer);
+                                String minutterString = String.valueOf(minutter);
+                                String sekunderString = String.valueOf(sekunder);
+
+                                System.out.println(" "+timer+" : "+minutter+" : "+sekunder);
+                                timerTid = " "+timerString+" : "+minutterString+" : "+sekunderString;
+                                timerText.setText(timerTid);
+                            }
+                            catch(Exception e){
+                            }
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                }
+            };
+            stopUr.start();
+    
+        }
     }
-    }
+    
     
     @FXML
     public String radioSelectUdfordring(){
@@ -307,7 +307,7 @@ public class BornController implements Initializable {
         String p = SpilMod.getPoint(minutter, aktivitetIntensitet,point);
         int po = Integer.parseInt(p);
         
-        //udfordringOpsummeringLabel.setText("Udfordring: "+radioSelectUdfordring()+"\nVarighed: "+timerTid+"\nNy pointsum: "+p +"\n"+SpilMod.level(po, 1));
+        udfordringOpsummeringLabel.setText("Udfordring: "+radioSelectUdfordring()+"\nVarighed: "+timerTid+"\nNy pointsum: "+p +"\n"+SpilMod.getLevel(po, 1));
         
         timer = 0;
         minutter = 0;

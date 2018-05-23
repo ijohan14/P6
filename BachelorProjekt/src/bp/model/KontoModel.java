@@ -41,7 +41,7 @@ public class KontoModel {
      */
     
     public KontoModel(){
-        this("","","","",true,"",0);
+        this("","","","",true,"");
     }
    
     
@@ -53,16 +53,14 @@ public class KontoModel {
      * @param familieID
      * @param brugertype
      * @param adgangskode
-     * @param startniveau 
      */
-    public KontoModel(String fornavn, String efternavn, String cpr, String familieID, boolean brugertype, String adgangskode, int startniveau) {
+    public KontoModel(String fornavn, String efternavn, String cpr, String familieID, boolean brugertype, String adgangskode) {
         this.fornavn = new SimpleStringProperty(fornavn);
         this.efternavn = new SimpleStringProperty(efternavn);
         this.cpr = new SimpleStringProperty(cpr);
         this.familieID = new SimpleStringProperty(familieID);
         this.brugertype = new SimpleBooleanProperty(brugertype);
         this.adgangskode = new SimpleStringProperty(adgangskode);
-        this.startniveau = 0;
     }
     
     
@@ -183,9 +181,9 @@ public class KontoModel {
     }
 
     
-    public int getStartniveau(){
-        return startniveau;
-    }
+//    public int getStartniveau(){
+//        return startniveau;
+//    }
     
 
     /**
@@ -193,7 +191,7 @@ public class KontoModel {
      */
     public int getStartniveau(boolean svar1, boolean svar2, boolean svar3, boolean svar4) {
         int svarSum = (svar1 ? 1 : 0)+(svar2 ? 1 : 0)+(svar3 ? 1 : 0)+(svar4 ? 1 : 0);
-        //System.out.println("Svarsummen er: "+svarSum); //Dette kan indkommenteres, hvis det skal tjekkes om svarsummen bliver udregnet korrekt
+        System.out.println("Svarsummen er: "+svarSum); //Dette kan indkommenteres, hvis det skal tjekkes om svarsummen bliver udregnet korrekt
         
         switch (svarSum) {
             case 1: startniveau = 1;

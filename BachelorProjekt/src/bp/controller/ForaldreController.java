@@ -77,11 +77,11 @@ public class ForaldreController implements Initializable {
     }
  
     @FXML
-    public void handleBmiRegistrering() throws IOException { //før handleIsoBmi
+    public void handleBmiRegistrering() throws IOException {
         Stage stage;
         Parent root;
         stage = (Stage) isoBmiKnap.getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("/bp/view/IsoBmiView.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/bp/view/BmiRegistreringView.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();   

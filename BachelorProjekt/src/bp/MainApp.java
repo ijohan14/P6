@@ -42,7 +42,7 @@ public class MainApp extends Application {
         
         dc.hentKontoDB();
         
-        Parent root = FXMLLoader.load(getClass().getResource("view/LoginView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("view/LogIndView.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
