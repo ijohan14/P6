@@ -26,9 +26,8 @@ import javafx.scene.control.Label;
 /**
  * FXML Controller class
  *
- * @author nathalie
  */
-public class KontoController {//implements Initializable {
+public class KontoController {
     
     private KontoModel konto;
     private DatabaseController dc;
@@ -40,7 +39,7 @@ public class KontoController {//implements Initializable {
     private ObservableList<KontoModel> familieData = FXCollections.observableArrayList();
 
     
-    //StartVIew
+    //LogIndView
     @FXML
     private Button opretKontoKnap;
     @FXML
@@ -49,8 +48,6 @@ public class KontoController {//implements Initializable {
     private TextField cprLogIndFelt; 
     @FXML
     private TextField adgangskodeLogIndFelt;
-    @FXML
-    private Button visDataKnap;
     @FXML 
     private Label logIndFejlLabel;
     
@@ -112,16 +109,26 @@ public class KontoController {//implements Initializable {
     
         
     @FXML
-    public void handleLogInd() throws IOException{
-        if(erLogIndIndtastet() ){ //Der må skulle være en if, der spørger efter kontotype, og så afhænger view af dette. 
-//            if(dc.verificerLogInd(cprFelt, adgangskodeFelt)){
-//                System.out.println("Du er logget ind");
-//            }else {
-//                System.out.println("Du er ikke logget ind");
-//            }
+    public void handleLogInd() throws IOException, SQLException{
+        if(erLogIndIndtastet() ){             
+            if(dc.verificerLogInd(cprLogIndFelt.getText(), adgangskodeLogIndFelt.getText())
+                    && (dc.hentBrugertypeDB(cprLogIndFelt.getText())==true)){
+                Stage stage = (Stage) logIndKnap.getScene().getWindow();
+                Parent root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));
+                stage.setScene(new Scene(root));
+                
+                System.out.println("Du er logget ind som forældre");
+            }else if(dc.verificerLogInd(cprLogIndFelt.getText(), adgangskodeLogIndFelt.getText())
+                    && (dc.hentBrugertypeDB(cprLogIndFelt.getText())==false)){
                 Stage stage = (Stage) logIndKnap.getScene().getWindow();
                 Parent root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
                 stage.setScene(new Scene(root));
+                
+                System.out.println("Du er logget ind som barn");
+            }else {
+                System.out.println("Du er ikke logget ind");
+            }
+                
         }
     }
     
@@ -143,25 +150,6 @@ public class KontoController {//implements Initializable {
         }
     }
     
-//    Denne er overført til databasecontroller
-    //private boolean erLogIndValid(){ //før logIndValid
-//        String errorMessage = "";
-//        
-//        if (cprFelt.getText() != cprLogIndFelt.getText()){
-//            errorMessage += "cpr ikke validt\n";
-//        }
-//        if (adgangskodeFelt.getText() != adgangskodeLogIndFelt.getText()){
-//            errorMessage += "adgangskode ikke valid\n";
-//        }
-//        if (errorMessage.length() == 0) {
-//            return true;
-//        } else {
-//            System.out.println(errorMessage);
-//            return false;
-//        }
-//    }
-    
-
     public boolean radioSelectBrugertype(){
         boolean brugertype = true;
         if (foralderKnap.isSelected()){
@@ -172,15 +160,6 @@ public class KontoController {//implements Initializable {
         }
         return brugertype;
     }
-    
-//     public void setKonto(KontoModel konto) { .
-//        this.konto = konto;
-//        fornavnFelt.setText(konto.getFornavn());
-//        efternavnFelt.setText(konto.getEfternavn());
-//        cprFelt.setText(konto.getCpr());
-//        familieIDFelt.setText(konto.getFamilieID());
-//        adgangskodeFelt.setText(konto.getAdgangskode());        
-//    }
     
     
     @FXML
@@ -201,27 +180,25 @@ public class KontoController {//implements Initializable {
     
     @FXML
     public void handleOpretKontoGem() throws IOException, SQLException {
-        //dc.verificerCprDB(cprFelt);
+        if (dc.verificerCprDB(cprFelt.getText()) == false){
         
-        if((erOpretKontoValid())&&(radioSelectBrugertype() == true)){
+        if(erOpretKontoValid() && radioSelectBrugertype() == true){
             KontoModel k = new KontoModel(fornavnFelt.getText(), efternavnFelt.getText(), 
                     cprFelt.getText(), familieIDFelt.getText(), radioSelectBrugertype(), 
-                    adgangskodeFelt.getText());
-            dc.tilfojKontoTilDB(k);
-            kontoGemtLabel.setText("Konto af brugertypen "+radioSelectBrugertype()+ " er gemt!");
+                    adgangskodeFelt.getText(),0);           
+            kontoGemtLabel.setText(dc.tilfojKontoTilDB(k));
             dc.hentKontoDB();
-        } if((erOpretKontoValid())&&(radioSelectBrugertype() == false)){
-                KontoModel k = new KontoModel(fornavnFelt.getText(), efternavnFelt.getText(), 
+        } else if((erOpretKontoValid())&&(radioSelectBrugertype() == false)){
+            KontoModel k = new KontoModel(fornavnFelt.getText(), efternavnFelt.getText(), 
                     cprFelt.getText(), familieIDFelt.getText(), radioSelectBrugertype(), 
-                    adgangskodeFelt.getText());
-                dc.tilfojKontoTilDB(k);
-                kontoGemtLabel.setText("Konto af brugertypen "+radioSelectBrugertype()+ " er gemt!");
-                dc.hentKontoDB();
-                
-                Stage stage = (Stage) opretKontoGemKnap.getScene().getWindow();
-                Parent root = FXMLLoader.load(getClass().getResource("/bp/view/SporgeskemaBornView.fxml"));
-                stage.setScene(new Scene(root));                
-            }        
+                    adgangskodeFelt.getText(),1);
+            kontoGemtLabel.setText(dc.tilfojKontoTilDB(k)); 
+            dc.hentKontoDB();             
+            }
+        } else{
+            
+            kontoGemtLabel.setText("Konto af med CPR "+cprFelt.getText()+ " eksisterer.");
+        }
     }
     
     
@@ -335,10 +312,10 @@ public class KontoController {//implements Initializable {
     @FXML
     public void handleSporgeskemaGem() {
         if(erSporgeskemaBesvarelseValid()){
-            konto.getStartniveau(svar1(),svar2(),svar3(),svar4());
+            konto.udregnStartniveau(svar1(), svar2(), svar3(), svar4());
             sporgeskemaFejlLabel.setText("");
             sporgeskemaGemtLabel.setText("Besvarelse af spørgeskema gemt!");
-            System.out.println(konto.getStartniveau(svar1(),svar2(),svar3(),svar4()));
+            System.out.println(konto.udregnStartniveau(svar1(), svar2(), svar3(), svar4()));
             
             //i databasecontroller skal der være en metode der ændrer startniveau for barnet. lige nu er det 0 som default.
         }

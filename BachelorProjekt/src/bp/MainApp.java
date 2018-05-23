@@ -41,6 +41,7 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) throws IOException, SQLException {
         
         dc.hentKontoDB();
+        dc.hentBrugertypeDB("1234abc");
         
         Parent root = FXMLLoader.load(getClass().getResource("view/LogIndView.fxml"));
         Scene scene = new Scene(root);

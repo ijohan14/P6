@@ -29,17 +29,18 @@ import javafx.scene.control.Label;
  *
  * @author christinemariegrabow
  */
-public class RegistreringController implements Initializable {
+public class RegistreringController{
     RegistreringModel RegMod = new RegistreringModel();
+    DatabaseController dc;
     
     @FXML
     public Button kostRegistreringGemKnap;
     @FXML
     public Button kostRegistreringTilbageKnap;
     @FXML
-    public Button isoBmiGemKnap;
+    public Button bmiGemKnap;
     @FXML
-    public Button isoBmiTilbageKnap;
+    public Button bmiTilbageKnap;
     @FXML
     private RadioButton morgenmadKnap;
     @FXML
@@ -53,11 +54,11 @@ public class RegistreringController implements Initializable {
     @FXML
     private TextField kostFelt;
     @FXML
-    private TextField isoBmiCprFelt;
+    private TextField bmiCprFelt;
     @FXML
-    private TextField isoBmiHojdeFelt;
+    private TextField bmiHojdeFelt;
     @FXML
-    private TextField isoBmiVagtFelt;
+    private TextField bmiVagtFelt;
     @FXML
     private Label bmiUdregnetLabel;
     @FXML
@@ -71,13 +72,9 @@ public class RegistreringController implements Initializable {
     @FXML
     private Label kostGemtLabel;
     
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+    public RegistreringController(){
+        this.dc = new DatabaseController();
+    }   
    
     public String radioSelectMaltid(){
         String message = "";
@@ -149,7 +146,7 @@ public class RegistreringController implements Initializable {
     public void handleBmiTilbage() throws IOException { 
         Stage stage;
         Parent root;
-        stage = (Stage) isoBmiTilbageKnap.getScene().getWindow();
+        stage = (Stage) bmiTilbageKnap.getScene().getWindow();
         root = FXMLLoader.load(getClass().getResource("/bp/view/MenuForaldreView.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -162,11 +159,12 @@ public class RegistreringController implements Initializable {
     public void handleBmiRegistreringGem() throws IOException { 
         bmiUdregnetLabel.setText("");
         if (erBmiValid()){
-            float Hojde = Float.valueOf(isoBmiHojdeFelt.getText());
-            float Vagt = Float.valueOf(isoBmiVagtFelt.getText());
-            int Alder = RegMod.getAlder(isoBmiCprFelt.getText());
-            boolean Kon = RegMod.getCpr(isoBmiCprFelt.getText());
-            bmiUdregnetLabel.setText(RegMod.bmiUdregning(Hojde, Vagt, Alder, Kon));
+            float Hojde = Float.valueOf(bmiHojdeFelt.getText());
+            float Vagt = Float.valueOf(bmiVagtFelt.getText());
+            int Alder = RegMod.getAlder(bmiCprFelt.getText());
+            boolean Kon = RegMod.getKon(bmiCprFelt.getText());
+            bmiUdregnetLabel.setText(RegMod.getBmi(Hojde, Vagt, Alder, Kon));
+            //dc.tilfojBmiRegistreringTilDB(RegMod, konto)
             bmiGemtLabel.setText("Registering af ISO-BMI fuldført!");
             bmiFejlLabel.setText("");
         }
@@ -176,17 +174,17 @@ public class RegistreringController implements Initializable {
     private boolean erBmiValid(){
         String errorMessage = "";
         
-        if (isoBmiCprFelt.getText() == null || isoBmiCprFelt.getText().length() == 0) {
+        if (bmiCprFelt.getText() == null || bmiCprFelt.getText().length() == 0) {
             errorMessage += "Intet validt CPR!\n"; 
             bmiGemtLabel.setText("");
             bmiFejlLabel.setText(errorMessage);
         }
-        if (isoBmiHojdeFelt.getText() == null || isoBmiHojdeFelt.getText().length() == 0) {
+        if (bmiHojdeFelt.getText() == null || bmiHojdeFelt.getText().length() == 0) {
             errorMessage += "Ingen valid højde!\n"; 
             bmiGemtLabel.setText("");
             bmiFejlLabel.setText(errorMessage);
         }
-        if (isoBmiVagtFelt.getText() == null || isoBmiVagtFelt.getText().length() == 0) {
+        if (bmiVagtFelt.getText() == null || bmiVagtFelt.getText().length() == 0) {
             errorMessage += "Ingen valid vægt!\n"; 
             bmiGemtLabel.setText("");
             bmiFejlLabel.setText(errorMessage);

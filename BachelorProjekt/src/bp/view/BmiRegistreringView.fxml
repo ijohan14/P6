@@ -40,9 +40,9 @@
                   <Label text="CPR:" />
                   <Label text="Højde:" GridPane.rowIndex="1" />
                   <Label text="Vægt:" GridPane.rowIndex="2" />
-                  <TextField fx:id="isoBmiHojdeFelt" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="isoBmiVagtFelt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="isoBmiCprFelt" GridPane.columnIndex="1" />
+                  <TextField fx:id="bmiHojdeFelt" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="bmiVagtFelt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="bmiCprFelt" GridPane.columnIndex="1" />
                   <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
                      <children>
                         <Label text="ISO-BMI:" />
@@ -64,8 +64,8 @@
       </VBox>
       <ButtonBar layoutX="86.0" layoutY="346.0" prefHeight="40.0" prefWidth="200.0">
         <buttons>
-          <Button fx:id="isoBmiGemKnap" mnemonicParsing="false" onAction="#handleBmiRegistreringGem" text="Gem" />
-            <Button fx:id="isoBmiTilbageKnap" mnemonicParsing="false" onAction="#handleBmiTilbage" text="Tilbage" />
+          <Button fx:id="bmiGemKnap" mnemonicParsing="false" onAction="#handleBmiRegistreringGem" text="Gem" />
+            <Button fx:id="bmiTilbageKnap" mnemonicParsing="false" onAction="#handleBmiTilbage" text="Tilbage" />
         </buttons>
       </ButtonBar>
    </children>

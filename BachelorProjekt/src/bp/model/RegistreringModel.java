@@ -10,6 +10,11 @@ import java.util.Calendar;
 import static java.util.Calendar.DATE;
 import static java.util.Calendar.MONTH;
 import static java.util.Calendar.YEAR;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  *
@@ -23,198 +28,208 @@ public class RegistreringModel {
     double granseOvervagt; //bruges til at sætte BMI grænseværdien for barnets køn og alder
     double granseSvarOvervagt;
     double granseNormalVagt;
-    float bmi; //double fordi den skal kunne indeholde kommatal
     String bmiBarn = "Barnet har en BMI på ";
     String normalVagt = "Barnet er derfor normalvægtigt. Vær opmærksom på at dette system ikke tester for undervægt.";
     
+    private SimpleStringProperty familieID;
+    private ObjectProperty<LocalDate> datotid;
+    private SimpleStringProperty maltid;    
+    private SimpleStringProperty kost;
+    private SimpleFloatProperty hojde;
+    private SimpleFloatProperty vagt;
+    private SimpleStringProperty cpr;
+    private float bmi;
     
-    //dato LocalDate, maltid String, kost String, holde int, vagt int, alder int, kon boolean, bmi float
-    //get og set  - overvej hvad der skal ske med dem.
-    
-//    public void bmi (){
-//        this.bmi = ((100*100*vagt)/(hojde*hojde));
+//    public RegistreringModel(){
+//        this("",null,"","");
 //    }
     
-    public void getKost(LocalDate dato, String maltid, String kost){
-    }
-    
-    public void setKost(String registrerKost){
-        
+    public RegistreringModel(){
+        this(null,0,0,0);
     }
     
     
+    public RegistreringModel(LocalDate datotid, String maltid, String kost){
+        //this.familieID = new SimpleStringProperty(familieID);
+        this.datotid = new SimpleObjectProperty<LocalDate>(datotid);
+        this.maltid = new SimpleStringProperty(maltid);
+        this.kost = new SimpleStringProperty(kost);
+    }
     
-    public String bmiUdregning(float hojde, float vagt, int alder, boolean kon){ //getBMI
+    public RegistreringModel(LocalDate datotid, float hojde, float vagt, float bmi){
+        //this.cpr = new SimpleStringProperty(cpr);
+        this.datotid = new SimpleObjectProperty<LocalDate>(datotid);
+        this.hojde = new SimpleFloatProperty(hojde);
+        this.vagt = new SimpleFloatProperty(vagt);
+        this.bmi = bmi;
+    }
+    
+    public LocalDate getDatotid(){
+        return datotid.get();
+    }
+    
+    public void setDatotid(LocalDate datotid){
+        this.datotid.set(datotid);
+    }
+    
+    public float getHojde(){
+        return hojde.get();
+    }
+    
+    public void setHojde(float hojde){
+        this.hojde.set(hojde);
+    }
+    
+     public float getVagt(){
+        return vagt.get();
+    }
+    
+    public void setVagt(float vagt){
+        this.vagt.set(vagt);
+    }
+    
+     public float getBmi(){
+        return bmi;
+    }
+    
+    public void setBmi(float bmi){
+        this.bmi = bmi;
+    }
+    
+    public String getKost(){
+        return kost.get();
+    }
+    
+    public void setKost(String kost){
+        this.kost.set(kost);
+    }
+    
+    
+    public String getBmi(float hojde, float vagt, int alder, boolean kon){ 
         bmi = ((100*100*vagt)/(hojde*hojde));
         String bmiString = String.valueOf(bmi);
-        //Iso-Bmi resultat for 8 årig dreng
-        String returMeddelelse = "BMI: "+bmiString;
+        String meddelelse = "BMI: "+bmiString;
         if(kon == false && alder == 8){
-//            System.out.println(bmiBarn+bmi);
             granseSvarOvervagt = 21.6;
             String gsoString = String.valueOf(granseSvarOvervagt);
             granseOvervagt = 18.44;
             String goString = String.valueOf(granseOvervagt);
-            returMeddelelse += "\nGrænseværdier - dreng, 8 år:\nOvervægt=BMI>"+ gsoString+"\nSvær overvægt=BMI>"+goString;
-//            System.out.println("Grænseværdierne for en dreng på "+alder+" år er: "
-//                                + "Overvægt = BMI > "+granseOvervagt+", "
-//                                + "Svær overvægt = BMI > "+granseSvarOvervagt);
-
+            meddelelse += "\nGrænseværdier - dreng, 8 år:\nOvervægt=BMI>"+ goString+"\nSvær overvægt=BMI>"+gsoString;
             if(bmi >= 21.6){
-                returMeddelelse += "\nBarnet er derfor svært \novervægtigt.";
-//                System.out.println("Barnet er derfor svært overvægtigt.");
+                meddelelse += "\nBarnet er derfor svært \novervægtigt.";
             }
             else if(bmi >= 18.44){
-                returMeddelelse += "\nBarnet er derfor \novervægtigt.";
-//                System.out.println("\nBarnet er derfor \novervægtigt.");
+                meddelelse += "\nBarnet er derfor \novervægtigt.";
             }
             else{
-                returMeddelelse += "\nBarnet er derfor \nnormalvægtigt.";// Vær opmærksom på at dette system ikke tester for undervægt.";
-//                System.out.println(normalVagt);
-            }
-                
+                meddelelse += "\nBarnet er derfor \nnormalvægtigt.";
+            }              
 
-        }
-    
-
-        // Iso-Bmi resultat for en 8 årig pige
-        else if (kon == true && alder == 8){
+        } else if (kon == true && alder == 8){
             granseSvarOvervagt = 21.57;
             String gsoString = String.valueOf(granseSvarOvervagt);
             granseOvervagt = 18.35;
             String goString = String.valueOf(granseOvervagt);
-                        returMeddelelse += "\nGrænseværdier - pige, 8 år:\nOvervægt=BMI>"+ gsoString+"\nSvær overvægt=BMI>"+goString;
-
+                        meddelelse += "\nGrænseværdier - pige, 8 år:\nOvervægt=BMI>"+ goString+"\nSvær overvægt=BMI>"+gsoString;
 
             if(bmi >= 21.57){
-                returMeddelelse += "\nBarnet er derfor svært \novervægtigt.";
-            }
+                meddelelse += "\nBarnet er derfor svært \novervægtigt.";            }
             else if(bmi >= 18.35){
-                System.out.println("Barnet er derfor overvægtigt.");
-            }
+                meddelelse += "\nBarnet er derfor overvægtigt.";            }
             else{
-                System.out.println(normalVagt);
+                meddelelse += "\nBarnet er derfor \nnormalvægtigt.";
             }
-        }
-
-        // Iso-Bmi resultat for 9 årig dreng
-        else if(kon == false && alder == 9){
+        } else if(kon == false && alder == 9){
             granseSvarOvervagt = 22.77;
             String gsoString = String.valueOf(granseSvarOvervagt);
             granseOvervagt = 19.2;
             String goString = String.valueOf(granseOvervagt);
-                        returMeddelelse += "\nGrænseværdier - dreng, 9 år:\nOvervægt=BMI>"+ gsoString+"\nSvær overvægt=BMI>"+goString;
-
-
+                        meddelelse += "\nGrænseværdier - dreng, 9 år:\nOvervægt=BMI>"+ goString+"\nSvær overvægt=BMI>"+gsoString;
             if(bmi >= 22.77){
-                returMeddelelse += "\nBarnet er derfor svært \novervægtigt.";
+                meddelelse += "\nBarnet er derfor svært \novervægtigt.";
             }
             else if(bmi >= 19.2){
-                returMeddelelse += "\nBarnet er derfor \novervægtigt.";
+                meddelelse += "\nBarnet er derfor \novervægtigt.";
             }
             else{
-                returMeddelelse += "\nBarnet er derfor \nnormalvægtigt.";// Vær opmærksom på at dette system ikke tester for undervægt.";
+                meddelelse += "\nBarnet er derfor \nnormalvægtigt.";
             }
-        }
-
-        // Iso-Bmi resultat for en 9 årig pige
-        else if (kon == true && alder == 9){
-
+        } else if (kon == true && alder == 9){
             granseSvarOvervagt = 22.81;
             String gsoString = String.valueOf(granseSvarOvervagt);
             granseOvervagt = 19.07;
             String goString = String.valueOf(granseOvervagt);
-                        returMeddelelse += "\nGrænseværdier - pige, 9 år:\nOvervægt=BMI>"+ gsoString+"\nSvær overvægt=BMI>"+goString;
-
-
+                        meddelelse += "\nGrænseværdier - pige, 9 år:\nOvervægt=BMI>"+ goString+"\nSvær overvægt=BMI>"+gsoString;
             if(bmi >= 22.81){
-                returMeddelelse += "\nBarnet er derfor svært \novervægtigt.";
+                meddelelse += "\nBarnet er derfor svært \novervægtigt.";
             }
             else if(bmi >= 19.07){
-                returMeddelelse += "\nBarnet er derfor \novervægtigt.";
+                meddelelse += "\nBarnet er derfor \novervægtigt.";
             }
             else{
-                returMeddelelse += "\nBarnet er derfor \nnormalvægtigt.";// Vær opmærksom på at dette system ikke tester for undervægt.";
+                meddelelse += "\nBarnet er derfor \nnormalvægtigt.";
             }
-        }
-
-        // Iso-Bmi resultat for 10 årig dreng
-        else if(kon == false && alder == 10){
+        } else if(kon == false && alder == 10){
             granseSvarOvervagt = 24.00;
             String gsoString = String.valueOf(granseSvarOvervagt);
             granseOvervagt = 19.84;
             String goString = String.valueOf(granseOvervagt);
-                        returMeddelelse += "\nGrænseværdier - dreng, 10 år:\nOvervægt=BMI>"+ gsoString+"\nSvær overvægt=BMI>"+goString;
-
-
+                        meddelelse += "\nGrænseværdier - dreng, 10 år:\nOvervægt=BMI>"+ goString+"\nSvær overvægt=BMI>"+gsoString;
             if(bmi >= 24.00){
-                returMeddelelse += "\nBarnet er derfor svært \novervægtigt.";
+                meddelelse += "\nBarnet er derfor svært \novervægtigt.";
             }
             else if(bmi >= 19.84){
-                returMeddelelse += "\nBarnet er derfor \novervægtigt.";
+                meddelelse += "\nBarnet er derfor \novervægtigt.";
             }
             else{
-                returMeddelelse += "\nBarnet er derfor \nnormalvægtigt.";// Vær opmærksom på at dette system ikke tester for undervægt.";
+                meddelelse += "\nBarnet er derfor \nnormalvægtigt.";
             }
-        }
-
-        // Iso-Bmi resultat for en 10 årig pige
-        else if (kon == true && alder == 10){
+        } else if (kon == true && alder == 10){
             granseSvarOvervagt = 24.11;
             String gsoString = String.valueOf(granseSvarOvervagt);
             granseOvervagt = 19.86;
             String goString = String.valueOf(granseOvervagt);
-            returMeddelelse += "\nGrænseværdier - pige, 10 år:\nOvervægt=BMI>"+ gsoString+"\nSvær overvægt=BMI>"+goString;
-
-
+            meddelelse += "\nGrænseværdier - pige, 10 år:\nOvervægt=BMI>"+ goString+"\nSvær overvægt=BMI>"+gsoString;
             if(bmi >= 24.11){
-                returMeddelelse += "\nBarnet er derfor svært \novervægtigt.";
+                meddelelse += "\nBarnet er derfor svært \novervægtigt.";
             }
             else if(bmi >= 19.86){
-                returMeddelelse += "\nBarnet er derfor \novervægtigt.";
+                meddelelse += "\nBarnet er derfor \novervægtigt.";
             }
             else{
-                returMeddelelse += "\nBarnet er derfor \nnormalvægtigt.";// Vær opmærksom på at dette system ikke tester for undervægt.";
+                meddelelse += "\nBarnet er derfor \nnormalvægtigt.";
             }
-        }
-
-        // Iso-Bmi resultat for 11 årig dreng
-        else if(kon == false && alder == 11){
+        } else if(kon == false && alder == 11){
             granseSvarOvervagt = 25.10;
             String gsoString = String.valueOf(granseSvarOvervagt);
             granseOvervagt = 20.55;
             String goString = String.valueOf(granseOvervagt);
-            returMeddelelse += "\nGrænseværdier - dreng, 11 år:\nOvervægt=BMI>"+ gsoString+"\nSvær overvægt=BMI>"+goString;
-
-
+            meddelelse += "\nGrænseværdier - dreng, 11 år:\nOvervægt=BMI>"+ goString+"\nSvær overvægt=BMI>"+gsoString;
             if(bmi >= 25.10){
-                returMeddelelse += "\nBarnet er derfor svært \novervægtigt.";
+                meddelelse += "\nBarnet er derfor svært \novervægtigt.";
             }
             else if(bmi >= 20.55){
-                returMeddelelse += "\nBarnet er derfor \novervægtigt.";
+                meddelelse += "\nBarnet er derfor \novervægtigt.";
             }
             else{
-                returMeddelelse += "\nBarnet er derfor \nnormalvægtigt.";// Vær opmærksom på at dette system ikke tester for undervægt.";
+                meddelelse += "\nBarnet er derfor \nnormalvægtigt.";
             }
-        }
-
-        // Iso-Bmi resultat for en 11 årig pige
-        else if (kon == true && alder == 11){
+        } else if (kon == true && alder == 11){
             granseSvarOvervagt = 25.42;
             String gsoString = String.valueOf(granseSvarOvervagt);
             granseOvervagt = 20.74;
             String goString = String.valueOf(granseOvervagt);
-            returMeddelelse += "\nGrænseværdier - pige, 11 år:\nOvervægt=BMI>"+ gsoString+"\nSvær overvægt=BMI>"+goString;
+            meddelelse += "\nGrænseværdier - pige, 11 år:\nOvervægt=BMI>"+ goString+"\nSvær overvægt=BMI>"+gsoString;
 
 
             if(bmi >= 25.42){
-                returMeddelelse += "\nBarnet er derfor svært \novervægtigt.";
+                meddelelse += "\nBarnet er derfor svært \novervægtigt.";
             }
             else if(bmi >= 20.74){
-                returMeddelelse += "\nBarnet er derfor \novervægtigt.";
+                meddelelse += "\nBarnet er derfor \novervægtigt.";
             }
             else{
-                returMeddelelse += "\nBarnet er derfor \nnormalvægtigt.";// Vær opmærksom på at dette system ikke tester for undervægt.";
+                meddelelse += "\nBarnet er derfor \nnormalvægtigt.";// Vær opmærksom på at dette system ikke tester for undervægt.";
             }
         }
 
@@ -224,17 +239,17 @@ public class RegistreringModel {
             String gsoString = String.valueOf(granseSvarOvervagt);
             granseOvervagt = 21.22;
             String goString = String.valueOf(granseOvervagt);
-            returMeddelelse += "\nGrænseværdier - dreng, 12 år:\nOvervægt=BMI>"+ gsoString+"\nSvær overvægt=BMI>"+goString;
+            meddelelse += "\nGrænseværdier - dreng, 12 år:\nOvervægt=BMI>"+ goString+"\nSvær overvægt=BMI>"+gsoString;
 
 
             if(bmi >= 26.02){
-                returMeddelelse += "\nBarnet er derfor svært \novervægtigt.";
+                meddelelse += "\nBarnet er derfor svært \novervægtigt.";
             }
             else if(bmi >= 21.22){
-                returMeddelelse += "\nBarnet er derfor \novervægtigt.";
+                meddelelse += "\nBarnet er derfor \novervægtigt.";
             }
             else{
-                returMeddelelse += "\nBarnet er derfor \nnormalvægtigt.";// Vær opmærksom på at dette system ikke tester for undervægt.";
+                meddelelse += "\nBarnet er derfor \nnormalvægtigt.";// Vær opmærksom på at dette system ikke tester for undervægt.";
             }
         }
 
@@ -244,27 +259,27 @@ public class RegistreringModel {
             String gsoString = String.valueOf(granseSvarOvervagt);
             granseOvervagt = 21.68;
             String goString = String.valueOf(granseOvervagt);
-            returMeddelelse += "\nGrænseværdier - pige, 12 år:\nOvervægt=BMI>"+ gsoString+"\nSvær overvægt=BMI>"+goString;
+            meddelelse += "\nGrænseværdier - pige, 12 år:\nOvervægt=BMI>"+ goString+"\nSvær overvægt=BMI>"+gsoString;
 
 
             if(bmi >= 26.67){
-                returMeddelelse += "\nBarnet er derfor svært \novervægtigt.";
+                meddelelse += "\nBarnet er derfor svært \novervægtigt.";
             }
             else if(bmi >= 21.68){
-                returMeddelelse += "\nBarnet er derfor \novervægtigt.";
+                meddelelse += "\nBarnet er derfor \novervægtigt.";
             }
             else{
-                returMeddelelse += "\nBarnet er derfor \nnormalvægtigt.";// Vær opmærksom på at dette system ikke tester for undervægt.";
+                meddelelse += "\nBarnet er derfor \nnormalvægtigt.";// Vær opmærksom på at dette system ikke tester for undervægt.";
             }
         }
 
         else {
-            returMeddelelse = "Barnet ligger uden for \naldersgruppen til dette system.";
+            meddelelse = "Barnet ligger uden for \naldersgruppen til dette system.";
         }
-        return returMeddelelse;
+        return meddelelse;
     }
 //    
-     public boolean getCpr(String cpr){ //getkon
+     public boolean getKon(String cpr){ 
         
         boolean kon = false; //default dreng
         
@@ -280,7 +295,7 @@ public class RegistreringModel {
         return kon;   
     }
      
-     public int getAlder(String cpr){ //getAlder
+     public int getAlder(String cpr){ 
         
         String ar = cpr.substring(4, 6);//4 og 6 er de pladser i string hvor man finder året personen er blevet født i, fra cpr nr
         int numberAr = Integer.parseInt(ar);//laver igen string format til int for at lave matematiske beregninger

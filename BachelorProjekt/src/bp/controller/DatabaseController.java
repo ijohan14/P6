@@ -8,6 +8,7 @@ package bp.controller;
 
 import bp.model.KontoModel;
 import bp.model.SpilModel;
+import bp.model.RegistreringModel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,11 +26,10 @@ public class DatabaseController {
     java.sql.Connection con;
     Database database = new Database();
     private PreparedStatement stmt;
+    String meddelelse = "";
     
     private ObservableList<KontoModel> familieData = FXCollections.observableArrayList();
-    public ObservableList<KontoModel> getFamilieData(){
-        return familieData;
-    }
+    private ObservableList<KontoModel> familie = FXCollections.observableArrayList();
     
 
     public DatabaseController(){
@@ -51,13 +51,19 @@ public class DatabaseController {
                 f.setFamilieID(rs.getString("familieID"));
                 f.setBrugertype(rs.getBoolean("brugertype"));
                 f.setAdgangskode(rs.getString("adgangskode"));
+                try {
+                    f.setStartniveau(Integer.parseInt(rs.getString("startniveau")));
+                 } catch (NumberFormatException nfe) {               
+                     System.out.println("Fejl ved formatering fra int til string");
+                 }
                
                 familieData.add(f);
             }
             for (KontoModel konto : familieData){
                 System.out.println(konto.getFornavn()+" "+konto.getEfternavn()
-                        +" "+konto.getCpr()+" "+konto.getFamilieID()+" "
-                        +konto.getBrugertype()+" "+konto.getAdgangskode());
+                        +" "+konto.getCpr()+" "+konto.getFamilieID()
+                        +" "+konto.getBrugertype()+" "+konto.getAdgangskode()
+                        +" "+konto.getStartniveau());
             }
         }
         catch(SQLException e){
@@ -67,11 +73,12 @@ public class DatabaseController {
 }
     
     
-    public void tilfojKontoTilDB(KontoModel konto){ //opretKontoIDatabase
+    public String tilfojKontoTilDB(KontoModel konto){ 
         con = database.getConnection(); 
+        
         try {         
 
-            stmt = con.prepareStatement("INSERT INTO konto (fornavn, efternavn, cpr, familieID, brugertype, adgangskode)"
+            stmt = con.prepareStatement("INSERT INTO konto (fornavn, efternavn, cpr, familieID, brugertype, adgangskode, startniveau)"
                 + "VALUES (?,?,?,?,?,?,?)");
             stmt.setString(1, konto.getFornavn());
             stmt.setString(2, konto.getEfternavn());
@@ -79,28 +86,28 @@ public class DatabaseController {
             stmt.setString(4, konto.getFamilieID());
             stmt.setBoolean(5, konto.getBrugertype());
             stmt.setString(6, konto.getAdgangskode());
+            stmt.setInt(7, konto.getStartniveau());
             stmt.executeUpdate();
             
+            return meddelelse = "Konto tilføjet til database";
         }
 
         catch(SQLException e){
-            System.out.println("Konto kunne ikke tilføjes til database");
+            return meddelelse = "Konto kunne ikke tilføjes til database";
         }
 }
     
-    public boolean verificerCprDB(TextField tf) throws SQLException{
+    public boolean verificerCprDB(String indtastetCpr) throws SQLException{
         con = database.getConnection();
-        String SQL = "SELECT cpr FROM konto ORDER BY cpr";
+        String SQL = "SELECT * FROM konto where cpr = '" + indtastetCpr + "'";
         ResultSet rs = con.createStatement().executeQuery(SQL);
         
-        String k = tf.getText();
         if(rs.next()){ 
-            String cpr = rs.getString("cpr");
-            if(k.equals(cpr)){
-               System.out.println("Konto findes allerede"); //cpr 
+            String hentetCpr = rs.getString("cpr");
+            if(indtastetCpr.equals(hentetCpr)){
                 return true; 
             }else{
-                System.out.println("Konto findes ikke");
+                //System.out.println("Konto findes ikke");
                 return false;
             }
             
@@ -111,25 +118,36 @@ public class DatabaseController {
        
     }
     
-    public boolean verificerLogInd(TextField cpr, TextField adgangskode){
-        
+    public boolean verificerLogInd(String indtastetCpr, String indtastetAdgangskode) throws SQLException{
         con = database.getConnection();
-        try{
-            stmt = con.prepareStatement("SELECT cpr, adgangskode FROM konto WHERE cpr = ? AND adgangskode = ?");
-            stmt.setString(1, cpr.getText());
-            stmt.setString(2, adgangskode.getText());
-            
-            ResultSet rs = stmt.executeQuery();
+        String SQL ="SELECT * FROM konto WHERE cpr = '"+indtastetCpr+"'";
+        ResultSet rs = con.createStatement().executeQuery(SQL);
             
             if (rs.next()){
-                return true;
+                String hentetCpr = rs.getString("cpr");
+                String hentetAdgangskode = rs.getString("adgangskode");
+                if(indtastetCpr.equals(hentetCpr) && indtastetAdgangskode.equals(hentetAdgangskode)){
+                    
+                    return true;
+                }else{
+                    return false;
+                }
             } else{
                 return false;
             }
-        } catch(SQLException e){
-            e.printStackTrace();
+        
+    }
+    
+    public boolean hentBrugertypeDB(String cpr) throws SQLException{
+        con = database.getConnection();
+        String SQL = "SELECT brugertype FROM konto WHERE cpr = '"+cpr+"'";
+        ResultSet rs = con.createStatement().executeQuery(SQL);
+        if(rs.next()){
+            boolean brugertype = rs.getBoolean("brugertype");
+            return brugertype;
+        }else{
+            return false;
         }
-        return false;
     }
     
     
@@ -159,8 +177,60 @@ public class DatabaseController {
         
     }
     
-    public void tilfojRegistreringTilDB(){
+    public String tilfojBmiRegistreringTilDB(RegistreringModel bmi, KontoModel konto){
+        con = database.getConnection(); 
         
-    }
-    
+        try {       
+            //convert RegistreringModel class LocalData to a sql date
+            java.sql.Date date = java.sql.Date.valueOf(bmi.getDatotid());
+
+            stmt = con.prepareStatement("INSERT INTO bmiRegistrering (cpr, datotid, hojde, vagt, bmi)"
+                + "VALUES (?,?,?,?,?)");
+            stmt.setString(1, konto.getCpr());
+            stmt.setDate(2, date);
+            stmt.setFloat(3, bmi.getHojde());
+            stmt.setFloat(4, bmi.getVagt());
+            stmt.setFloat(5, bmi.getBmi());
+            stmt.executeUpdate();
+            
+            return meddelelse = "BMI registrering tilføjet til database";
+        }
+
+        catch(SQLException e){
+            return meddelelse = "BMI registrering kunne ikke tilføjes til database";
+        }
 }
+    public void hentFamilieDB(String id){
+        con = database.getConnection();
+        try{
+        String SQL = "SELECT * FROM konto WHERE familieID = '"+id+"'";
+        ResultSet rs = con.createStatement().executeQuery(SQL);
+        while(rs.next()){
+                KontoModel k = new KontoModel();
+                k.setFornavn(rs.getString("fornavn"));
+                k.setEfternavn(rs.getString("efternavn"));
+                k.setCpr(rs.getString("cpr"));
+                k.setFamilieID(rs.getString("familieID"));
+                k.setBrugertype(rs.getBoolean("brugertype"));
+                k.setAdgangskode(rs.getString("adgangskode"));
+                try {
+                    k.setStartniveau(Integer.parseInt(rs.getString("startniveau")));
+                 } catch (NumberFormatException nfe) {               
+                     System.out.println("Fejl ved formatering fra int til string");
+                 }
+               
+                familie.add(k);
+            }
+            for (KontoModel km : familie){
+                System.out.println(km.getFornavn()+" "+km.getEfternavn()
+                        +" "+km.getCpr()+" "+km.getFamilieID()
+                        +" "+km.getBrugertype()+" "+km.getAdgangskode()
+                        +" "+km.getStartniveau());
+            }
+        } catch(SQLException e){
+            System.out.println("Familie kunne ikke hentes");
+        }
+    }
+        
+}
+    
