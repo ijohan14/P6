@@ -191,7 +191,7 @@ public class KontoModel {
     /**
      * @return the startniveau
      */
-    public int udregnStartniveau(boolean svar1, boolean svar2, boolean svar3, boolean svar4) {
+    public int getStartniveau(boolean svar1, boolean svar2, boolean svar3, boolean svar4) {
         int svarSum = (svar1 ? 1 : 0)+(svar2 ? 1 : 0)+(svar3 ? 1 : 0)+(svar4 ? 1 : 0);
         System.out.println("Svarsummen er: "+svarSum); //Dette kan indkommenteres, hvis det skal tjekkes om svarsummen bliver udregnet korrekt
         

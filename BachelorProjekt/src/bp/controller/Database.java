@@ -16,9 +16,9 @@ import java.sql.SQLException;
 
 public class Database {
   
-    static String dbAdress   = "jdbc:mysql://db.course.hst.aau.dk:3306/hst_2018_18gr6406?autoReconnect=true&useSSL=false";
-    static String dbUser     = "hst_2018_18gr6406";
-    static String dbPassword = "aehiechahbuogheebaec";
+    static String dbAdresse   = "jdbc:mysql://db.course.hst.aau.dk:3306/hst_2018_18gr6406?autoReconnect=true&useSSL=false";
+    static String dbBruger     = "hst_2018_18gr6406";
+    static String dbKode = "aehiechahbuogheebaec";
     
     public Connection getConnection() {
         
@@ -28,14 +28,14 @@ public class Database {
             Class.forName("com.mysql.jdbc.Driver");
         }
         catch (ClassNotFoundException cnfe) {
-            System.out.println("Driver class not found");           
+            System.out.println("Driver klasse ikke fundet");           
         }
                 
         try {
-            con = DriverManager.getConnection(dbAdress, dbUser, dbPassword);            
+            con = DriverManager.getConnection(dbAdresse, dbBruger, dbKode);            
         }
         catch (SQLException me) {
-            System.out.println("Connection could not be factorized"); 
+            System.out.println("Forbindelse til database kunne ikke oprettes"); 
             System.out.println(me.getMessage());
         }
         
