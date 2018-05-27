@@ -32,7 +32,8 @@ public class Database {
         }
                 
         try {
-            con = DriverManager.getConnection(dbAdresse, dbBruger, dbKode);            
+            con = DriverManager.getConnection(dbAdresse, dbBruger, dbKode); 
+            System.out.println("Forbindelse til database er oprettet");           
         }
         catch (SQLException me) {
             System.out.println("Forbindelse til database kunne ikke oprettes"); 

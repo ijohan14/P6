@@ -192,10 +192,14 @@ public class KontoController {
                     adgangskodeFelt.getText(),1);
             kontoGemtLabel.setText(dc.tilfojKontoDB(k)); 
             dc.hentKontoDB();             
+            Stage stage = (Stage) opretKontoGemKnap.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("/bp/view/SporgeskemaView.fxml"));
+            stage.setScene(new Scene(root));
+            stage.show();   
             }
         } else{
             
-            kontoGemtLabel.setText("Konto af med CPR "+cprFelt.getText()+ " eksisterer.");
+            kontoGemtLabel.setText("Konto med CPR "+cprFelt.getText()+ " eksisterer.");
         }
     }
     
@@ -279,7 +283,7 @@ public class KontoController {
     }
     
     
-    private boolean erSporgeskemaBesvarelseValid(){
+    private boolean erSporgeskemaBesvarelseIndtastet(){
         String errorMessage = "";
         sporgeskemaGemtLabel.setText("");
         
@@ -309,11 +313,11 @@ public class KontoController {
     
     @FXML
     public void handleSporgeskemaGem() {
-        if(erSporgeskemaBesvarelseValid()){
-            konto.getStartniveau(svar1(), svar2(), svar3(), svar4());
+        if(erSporgeskemaBesvarelseIndtastet()){
+            int startniveau = konto.getStartniveau(svar1(), svar2(), svar3(), svar4());
             sporgeskemaFejlLabel.setText("");
-            sporgeskemaGemtLabel.setText("Besvarelse af spørgeskema gemt!");
-            System.out.println(konto.getStartniveau(svar1(), svar2(), svar3(), svar4()));
+            sporgeskemaGemtLabel.setText("Startniveauet "+startniveau+"er tildelt");
+            System.out.println("Startniveauet "+startniveau+"er tildelt");
             
             //i databasecontroller skal der være en metode der ændrer startniveau for barnet. lige nu er det 0 som default.
         }

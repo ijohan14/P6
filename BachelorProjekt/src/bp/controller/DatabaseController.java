@@ -138,6 +138,7 @@ public class DatabaseController {
                     return false;
                 }
             } else{
+                System.out.println("CPR findes ikke i databasen");
                 return false;
             }
         
