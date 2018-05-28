@@ -123,9 +123,10 @@ public class BornController implements Initializable {
     @FXML
     public void handleBornLogUd() throws IOException {
         Stage stage = (Stage) bornLogUdKnap.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/bp/view/LogIndView.fxml"));
         stage.setScene(new Scene(root));
         stage.show();   
+        System.out.println("Du er logget ud");
     }
 
     @FXML

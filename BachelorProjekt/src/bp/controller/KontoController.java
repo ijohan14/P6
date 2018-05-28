@@ -29,7 +29,7 @@ import javafx.scene.control.Label;
  */
 public class KontoController {
     
-    private KontoModel konto;
+    private KontoModel konto = new KontoModel("fornavn", "efternavn", "cpr","familieID", false, "adgangskode",1);
     private DatabaseController dc;
     
     private boolean brugertypeTest;
@@ -196,7 +196,7 @@ public class KontoController {
             kontoGemtLabel.setText(dc.tilfojKontoDB(k)); 
             dc.hentKontoDB();             
             Stage stage = (Stage) opretKontoGemKnap.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("/bp/view/SporgeskemaView.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/bp/view/SporgeskemaBornView.fxml"));
             stage.setScene(new Scene(root));
             stage.show();   
             }
@@ -321,8 +321,8 @@ public class KontoController {
         if(erSporgeskemaBesvarelseIndtastet()){
             int startniveau = konto.getStartniveau(svar1(), svar2(), svar3(), svar4());
             sporgeskemaFejlLabel.setText("");
-            sporgeskemaGemtLabel.setText("Startniveauet "+startniveau+"er tildelt");
-            System.out.println("Startniveauet "+startniveau+"er tildelt");
+            sporgeskemaGemtLabel.setText("Startniveauet "+startniveau+" er tildelt");
+            System.out.println("Startniveauet "+startniveau+" er tildelt");
             
             //i databasecontroller skal der være en metode der ændrer startniveau for barnet. lige nu er det 0 som default.
         }
