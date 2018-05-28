@@ -110,7 +110,7 @@ public class RegistreringController{
     @FXML
     public void handleKostRegistreringGem() throws IOException {
         String message = "";
-        if (erKostValid()){
+        if (erKostIndtastet()){
             LocalDate dato = datoKostFelt.getValue();
             String datoString = String.valueOf(dato);
             kostGemtLabel.setText(radioSelectMaltid()+" for "+datoString+ " er registreret!");
@@ -119,7 +119,7 @@ public class RegistreringController{
         } 
     }
     
-    private boolean erKostValid(){ 
+    private boolean erKostIndtastet(){ 
         String errorMessage = "";
         kostGemtLabel.setText("");
         
@@ -132,7 +132,7 @@ public class RegistreringController{
             kostFejlLabel.setText(errorMessage);
         }
         if (kostFelt.getText() == null || kostFelt.getText().length() == 0) {
-            errorMessage += "Ingen valid kost!\n"; 
+            errorMessage += "Ingen indtastet kost!\n"; 
             kostFejlLabel.setText(errorMessage);
         }
         if (errorMessage.length() == 0) {
@@ -158,7 +158,8 @@ public class RegistreringController{
     @FXML
     public void handleBmiRegistreringGem() throws IOException { 
         bmiUdregnetLabel.setText("");
-        if (erBmiValid()){
+        bmiFejlLabel.setText("");
+        if (erBmiIndtastet()){
             float Hojde = Float.valueOf(bmiHojdeFelt.getText());
             float Vagt = Float.valueOf(bmiVagtFelt.getText());
             int Alder = RegMod.getAlder(bmiCprFelt.getText());
@@ -171,25 +172,25 @@ public class RegistreringController{
           
     }
     
-    private boolean erBmiValid(){
-        String errorMessage = "";
+    private boolean erBmiIndtastet(){
+        String meddelelse = "";
         
         if (bmiCprFelt.getText() == null || bmiCprFelt.getText().length() == 0) {
-            errorMessage += "Intet validt CPR!\n"; 
+            meddelelse += "Intet indtastet CPR!\n"; 
             bmiGemtLabel.setText("");
-            bmiFejlLabel.setText(errorMessage);
+            bmiFejlLabel.setText(meddelelse);
         }
         if (bmiHojdeFelt.getText() == null || bmiHojdeFelt.getText().length() == 0) {
-            errorMessage += "Ingen valid højde!\n"; 
+            meddelelse += "Ingen indtastet højde!\n"; 
             bmiGemtLabel.setText("");
-            bmiFejlLabel.setText(errorMessage);
+            bmiFejlLabel.setText(meddelelse);
         }
         if (bmiVagtFelt.getText() == null || bmiVagtFelt.getText().length() == 0) {
-            errorMessage += "Ingen valid vægt!\n"; 
+            meddelelse += "Ingen indtastet vægt!\n"; 
             bmiGemtLabel.setText("");
-            bmiFejlLabel.setText(errorMessage);
+            bmiFejlLabel.setText(meddelelse);
         }
-        if (errorMessage.length() == 0) {
+        if (meddelelse.length() == 0) {
             return true;
         } else {
             return false;

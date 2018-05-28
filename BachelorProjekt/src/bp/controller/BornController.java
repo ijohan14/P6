@@ -37,7 +37,7 @@ public class BornController implements Initializable {
     static int timer = 0;
     static boolean stadie = false;
     String timerTid;
-    int aktivitetIntensitet;
+    int intensitet;
     SpilModel SpilMod = new SpilModel();
     
     @FXML
@@ -136,17 +136,17 @@ public class BornController implements Initializable {
         stage.show();   
     }
     
-    public boolean erMalsatningValid(){ 
-        String errorMessage = "";
+    public boolean erMalsatningIndtastet(){ 
+        String meddelelse = "";
         if ((gaturMalKnap.isSelected() == false) && (cykelSkoleMalKnap.isSelected() == false)){
-            errorMessage += "Intet mål valgt!\n";
-            malsatningFejlLabel.setText(errorMessage);
+            meddelelse += "Igen målsætning valgt!\n";
+            malsatningFejlLabel.setText(meddelelse);
         }
         if ((enDagMalKnap.isSelected() == false) && (treDageMalKnap.isSelected() == false) && (femDageMalKnap.isSelected() == false) && (enUgeMalKnap.isSelected() == false)){
-            errorMessage += "Ingen varighed for mål valgt!";
-            malsatningFejlLabel.setText(errorMessage);
+            meddelelse += "Ingen varighed for målsætning valgt!";
+            malsatningFejlLabel.setText(meddelelse);
         }
-        if (errorMessage.length() == 0) {
+        if (meddelelse.length() == 0) {
             return true;
         } else {
             return false;
@@ -184,8 +184,8 @@ public class BornController implements Initializable {
     @FXML
     public void handleMalsatningGem(){ 
         malsatningFejlLabel.setText("");
-        if (erMalsatningValid()){
-            malsatningGemtLabel.setText("Målsætningen "+radioSelectMalsatning()+ " \naf længden "+ radioSelectMalsatningVarighed()+ " er gemt!");
+        if (erMalsatningIndtastet()){
+            malsatningGemtLabel.setText("Målsætningen "+radioSelectMalsatning()+ " \naf varigheden "+ radioSelectMalsatningVarighed()+ " er registreret!");
         }
     }
     
@@ -205,13 +205,13 @@ public class BornController implements Initializable {
         stage.show();   
     }
     
-    public boolean erUdfordringValid(){
-        String errorMessage = "";
+    public boolean erUdfordringIndtastet(){
+        String meddelelse = "";
         if ((sjippetovKnap.isSelected() == false) && (gaturKnap.isSelected() == false) && (lobeturKnap.isSelected() == false) && (rulleskojteKnap.isSelected() == false)){
-            errorMessage += "Ingen udfordring valgt!\n";
-            udfordringFejlLabel.setText(errorMessage);
+            meddelelse += "Ingen udfordring valgt!\n";
+            udfordringFejlLabel.setText(meddelelse);
         }
-        if (errorMessage.length() == 0) {
+        if (meddelelse.length() == 0) {
             return true;
         } else {
             return false;
@@ -222,7 +222,7 @@ public class BornController implements Initializable {
     @FXML
     public void handleStartTimer(){
         timerText.setText("0 : 0 : 0");
-        if (erUdfordringValid()){
+        if ((erUdfordringIndtastet()) && ((timer == 0) && (minutter == 0) && (sekunder == 0) && (milisekunder == 0)) ){
             udfordringFejlLabel.setText("");
             udfordringGemtLabel.setText("");
             udfordringOpsummeringLabel.setText("");
@@ -270,6 +270,8 @@ public class BornController implements Initializable {
             };
             stopUr.start();
     
+        } else {
+            udfordringFejlLabel.setText("Gem udfordringen før påbegyndelse\n af ny udfordring");
         }
     }
     
@@ -281,19 +283,19 @@ public class BornController implements Initializable {
         udfordringOpsummeringLabel.setText("");
         if (sjippetovKnap.isSelected()){
             message += sjippetovKnap.getText();
-            aktivitetIntensitet = 3; 
+            intensitet = 3; 
         }
         if (gaturKnap.isSelected()){
             message += gaturKnap.getText();
-            aktivitetIntensitet = 1;
+            intensitet = 1;
         }
         if (lobeturKnap.isSelected()){
             message += lobeturKnap.getText();
-            aktivitetIntensitet = 3;
+            intensitet = 3;
         }
         if (rulleskojteKnap.isSelected()){
             message += rulleskojteKnap.getText();
-            aktivitetIntensitet = 2; 
+            intensitet = 2; 
         } 
 
         return message;
@@ -304,21 +306,34 @@ public class BornController implements Initializable {
     public void handleStopTimer (){
         stadie = false;
         int point = 240; //skal ideelt hentes fra database 
-        String p = SpilMod.getPoint(minutter, aktivitetIntensitet,point);
+        String p = SpilMod.getPoint(minutter, intensitet, point);
         int po = Integer.parseInt(p);
         
         udfordringOpsummeringLabel.setText("Udfordring: "+radioSelectUdfordring()+"\nVarighed: "+timerTid+"\nNy pointsum: "+p +"\n"+SpilMod.getLevel(po, 1));
         
-        timer = 0;
-        minutter = 0;
-        sekunder = 0;
-        milisekunder = 0;
+//        timer = 0;
+//        minutter = 0;
+//        sekunder = 0;
+//        milisekunder = 0;
 
     }
     
     @FXML 
     public void handleUdfordringGem(){ 
-        udfordringGemtLabel.setText("Udfordringen er gemt!");
+        if ((erUdfordringIndtastet())){
+            udfordringGemtLabel.setText("Udfordringen er gemt!");
+            timer = 0;
+            minutter = 0;
+            sekunder = 0;
+            milisekunder = 0;
+        } else if ((erUdfordringIndtastet())&& ((timer == 0) && (minutter == 0) && (sekunder == 0) && (milisekunder == 0))){
+            udfordringFejlLabel.setText("Start timer før du kan gemme");
+        }
+//         else {
+//            udfordringFejlLabel.setText("Ingen udfordring valgt\nStart timer før du kan gemme");
+//        }
+//        
+        
     }
     
     
@@ -330,23 +345,23 @@ public class BornController implements Initializable {
         stage.show();
     }
     private boolean erManuelIndtastningValid(){ 
-        String errorMessage = "";
+        String meddelelse = "";
         if (typeManuelIndtastningFelt.getText() == null || typeManuelIndtastningFelt.getText().length() == 0) {
-            errorMessage += "Ingen valid type af fysisk aktivitet!\n"; 
-            manuelIndtastningFejlLabel.setText(errorMessage);
+            meddelelse += "Ingen valid type af fysisk aktivitet!\n"; 
+            manuelIndtastningFejlLabel.setText(meddelelse);
         }
         if (varighedManuelIndtastningFelt.getText() == null || varighedManuelIndtastningFelt.getText().length() == 0) {
-            errorMessage += "Ingen valid varighed af fysisk aktivitet!\n";
-            manuelIndtastningFejlLabel.setText(errorMessage);
+            meddelelse += "Ingen valid varighed af fysisk aktivitet!\n";
+            manuelIndtastningFejlLabel.setText(meddelelse);
         }
         if (intensitetManuelIndtastningFelt.getText() == null || intensitetManuelIndtastningFelt.getText().length() == 0) {
-            errorMessage += "Ingen valid intensitet af fysisk aktivitet!\n"; 
-            manuelIndtastningFejlLabel.setText(errorMessage);
+            meddelelse += "Ingen valid intensitet af fysisk aktivitet!\n"; 
+            manuelIndtastningFejlLabel.setText(meddelelse);
         }
-        if (errorMessage.length() == 0) {
+        if (meddelelse.length() == 0) {
             return true;
         } else {
-            System.out.println(errorMessage);
+            System.out.println(meddelelse);
             return false;
         }
     }

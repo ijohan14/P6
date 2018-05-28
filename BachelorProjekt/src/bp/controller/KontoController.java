@@ -123,7 +123,8 @@ public class KontoController {
                 Parent root = FXMLLoader.load(getClass().getResource("/bp/view/MenuBornView.fxml"));
                 stage.setScene(new Scene(root));                
                 System.out.println("Du er logget ind som barn");
-            }else {
+            }else{
+                logIndFejlLabel.setText("Forkert CPR eller adgangskode");
                 System.out.println("Du er ikke logget ind");
             }
                 
@@ -131,19 +132,19 @@ public class KontoController {
     }
     
     private boolean erLogIndIndtastet(){ 
-        String errorMessage = "";
+        String meddelelse = "";
         if (cprLogIndFelt.getText() == null || cprLogIndFelt.getText().length() == 0) {
-            errorMessage += "Intet cpr indtastet!\n"; 
-            logIndFejlLabel.setText(errorMessage);
+            meddelelse += "Intet cpr indtastet!\n"; 
+            logIndFejlLabel.setText(meddelelse);
         }
         if (adgangskodeLogIndFelt.getText() == null || adgangskodeLogIndFelt.getText().length() == 0) {
-            errorMessage += "Ingen adgangskode indtastet!\n"; 
-            logIndFejlLabel.setText(errorMessage);
+            meddelelse += "Ingen adgangskode indtastet!\n"; 
+            logIndFejlLabel.setText(meddelelse);
         }
-        if (errorMessage.length() == 0) {
+        if (meddelelse.length() == 0) {
             return true;
         } else {
-            System.out.println(errorMessage);
+            System.out.println(meddelelse);
             return false;
         }
     }
@@ -178,8 +179,10 @@ public class KontoController {
     
     @FXML
     public void handleOpretKontoGem() throws IOException, SQLException {
+                    opretKontoFejlLabel.setText("");
+
         if (dc.verificerCprDB(cprFelt.getText()) == false){
-        
+
         if(erKontoIndtastet() && radioSelectBrugertype() == true){
             KontoModel k = new KontoModel(fornavnFelt.getText(), efternavnFelt.getText(), 
                     cprFelt.getText(), familieIDFelt.getText(), radioSelectBrugertype(), 
@@ -206,36 +209,38 @@ public class KontoController {
     
       
     private boolean erKontoIndtastet(){ 
-        String errorMessage = "";
+        String meddelelse = "";
+        opretKontoFejlLabel.setText("");
+
         
         if (fornavnFelt.getText() == null || fornavnFelt.getText().length() == 0) {
-            errorMessage += "Intet valid fornavn!\n"; 
-            opretKontoFejlLabel.setText(errorMessage);
+            meddelelse += "Intet indtastet fornavn!\n"; 
+            opretKontoFejlLabel.setText(meddelelse);
         }
         if (efternavnFelt.getText() == null || efternavnFelt.getText().length() == 0) {
-            errorMessage += "Intet valid efternavn!\n";
-            opretKontoFejlLabel.setText(errorMessage);
+            meddelelse += "Intet indtastet efternavn!\n";
+            opretKontoFejlLabel.setText(meddelelse);
         }
         if (cprFelt.getText() == null || cprFelt.getText().length() == 0) {
-            errorMessage += "Intet valid cpr!\n"; 
-            opretKontoFejlLabel.setText(errorMessage);
+            meddelelse += "Intet indtastet cpr!\n"; 
+            opretKontoFejlLabel.setText(meddelelse);
         }
         if (familieIDFelt.getText() == null || familieIDFelt.getText().length() == 0) {
-            errorMessage += "Intet valid familieID!\n"; 
-            opretKontoFejlLabel.setText(errorMessage);
+            meddelelse += "Intet indtastet familieID!\n"; 
+            opretKontoFejlLabel.setText(meddelelse);
         }
         if((barnKnap.isSelected() == false) && (foralderKnap.isSelected() == false)){
-            errorMessage += "Ingen valid brugertype!\n"; 
-            opretKontoFejlLabel.setText(errorMessage);
+            meddelelse += "Ingen indtastet brugertype!\n"; 
+            opretKontoFejlLabel.setText(meddelelse);
         }
         if (adgangskodeFelt.getText() == null || adgangskodeFelt.getText().length() == 0) {
-            errorMessage += "Intet valid adgangekode!\n"; 
-            opretKontoFejlLabel.setText(errorMessage);
+            meddelelse += "Intet indtastet adgangekode!\n"; 
+            opretKontoFejlLabel.setText(meddelelse);
         }
-        if (errorMessage.length() == 0) {
+        if (meddelelse.length() == 0) {
             return true;
         } else {
-            System.out.println(errorMessage);
+            System.out.println(meddelelse);
             return false;
         }
     }
@@ -284,26 +289,26 @@ public class KontoController {
     
     
     private boolean erSporgeskemaBesvarelseIndtastet(){
-        String errorMessage = "";
+        String meddelelse = "";
         sporgeskemaGemtLabel.setText("");
         
         if ((spEtJaKnap.isSelected() == false) && (spEtNejKnap.isSelected() == false)){
-            errorMessage += "Spørgsmål 1 mangler besvarelse!\n";
-            sporgeskemaFejlLabel.setText(errorMessage);
+            meddelelse += "Spørgsmål 1 mangler besvarelse!\n";
+            sporgeskemaFejlLabel.setText(meddelelse);
         }
         if ((spToJaKnap.isSelected() == false) && (spToNejKnap.isSelected() == false)){
-            errorMessage += "Spørgsmål 2 mangler besvarelse!\n";
-            sporgeskemaFejlLabel.setText(errorMessage);
+            meddelelse += "Spørgsmål 2 mangler besvarelse!\n";
+            sporgeskemaFejlLabel.setText(meddelelse);
         }
         if ((spTreJaKnap.isSelected() == false) && (spTreNejKnap.isSelected() == false)){
-            errorMessage += "Spørgsmål 3 mangler besvarelse!\n";
-            sporgeskemaFejlLabel.setText(errorMessage);
+            meddelelse += "Spørgsmål 3 mangler besvarelse!\n";
+            sporgeskemaFejlLabel.setText(meddelelse);
         }
         if ((spFireJaKnap.isSelected() == false) && (spFireNejKnap.isSelected() == false)){
-            errorMessage += "Spørgsmål 4 mangler besvarelse!\n";
-            sporgeskemaFejlLabel.setText(errorMessage);
+            meddelelse += "Spørgsmål 4 mangler besvarelse!\n";
+            sporgeskemaFejlLabel.setText(meddelelse);
         }
-        if (errorMessage.length() == 0) {
+        if (meddelelse.length() == 0) {
             return true;
         } else {
             return false;

@@ -92,12 +92,12 @@ public class DatabaseController {
             stmt.executeUpdate();
             
             System.out.println("Forbindelse er oprettet og konto er tilføjet til database");
-            return meddelelse = "Forbindelse er oprettet og konto er tilføjet til database";
+            return meddelelse = "Forbindelse er oprettet og konto er \ntilføjet til database";
         }
 
         catch(SQLException e){
             System.out.println("Forbindelse ikke oprettet til databasen og konto kunne ikke tilføjes");
-            return meddelelse = "Forbindelse ikke oprettet til databasen og konto kunne ikke tilføjes";
+            return meddelelse = "Forbindelse ikke oprettet til databasen og konto \nkunne ikke tilføjes";
         }
 }
     
