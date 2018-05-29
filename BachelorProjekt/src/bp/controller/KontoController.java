@@ -69,9 +69,9 @@ public class KontoController {
 //    @FXML
 //    private ToggleGroup brugertype;
     @FXML
-    private RadioButton foralderKnap; 
+    private RadioButton brugertypeForalderKnap; 
     @FXML
-    private RadioButton barnKnap;
+    private RadioButton brugertypeBarnKnap;
     @FXML
     private Label kontoGemtLabel;
     @FXML
@@ -109,7 +109,7 @@ public class KontoController {
     
         
     @FXML
-    public void handleLogInd() throws IOException, SQLException{
+    private void handleLogInd() throws IOException, SQLException{
         if(erLogIndIndtastet() ){             
             if(dc.verificerLogInd(cprLogIndFelt.getText(), adgangskodeLogIndFelt.getText())
                     && (dc.hentBrugertypeDB(cprLogIndFelt.getText())==true)){
@@ -124,7 +124,7 @@ public class KontoController {
                 stage.setScene(new Scene(root));                
                 System.out.println("Du er logget ind som barn");
             }else{
-                logIndFejlLabel.setText("Forkert CPR eller adgangskode");
+                logIndFejlLabel.setText("Forkert CPR-nummer eller adgangskode");
                 System.out.println("Du er ikke logget ind");
             }
                 
@@ -151,10 +151,10 @@ public class KontoController {
     
     public boolean radioSelectBrugertype(){
         boolean brugertype = true;
-        if (foralderKnap.isSelected()){
+        if (brugertypeForalderKnap.isSelected()){
             brugertype = true;
         }
-        if (barnKnap.isSelected()){
+        if (brugertypeBarnKnap.isSelected()){
             brugertype = false;
         }
         return brugertype;
@@ -183,13 +183,13 @@ public class KontoController {
 
         if (dc.verificerCprDB(cprFelt.getText()) == false){
 
-        if(erKontoIndtastet() && radioSelectBrugertype() == true){
+        if(erOpretKontoIndtastet() && radioSelectBrugertype() == true){
             KontoModel k = new KontoModel(fornavnFelt.getText(), efternavnFelt.getText(), 
                     cprFelt.getText(), familieIDFelt.getText(), radioSelectBrugertype(), 
                     adgangskodeFelt.getText(),0);           
             kontoGemtLabel.setText(dc.tilfojKontoDB(k));
             dc.hentKontoDB();
-        } else if((erKontoIndtastet())&&(radioSelectBrugertype() == false)){
+        } else if((erOpretKontoIndtastet())&&(radioSelectBrugertype() == false)){
             KontoModel k = new KontoModel(fornavnFelt.getText(), efternavnFelt.getText(), 
                     cprFelt.getText(), familieIDFelt.getText(), radioSelectBrugertype(), 
                     adgangskodeFelt.getText(),1);
@@ -208,7 +208,7 @@ public class KontoController {
     
     
       
-    private boolean erKontoIndtastet(){ 
+    private boolean erOpretKontoIndtastet(){ 
         String meddelelse = "";
         opretKontoFejlLabel.setText("");
 
@@ -229,7 +229,7 @@ public class KontoController {
             meddelelse += "Intet indtastet familieID!\n"; 
             opretKontoFejlLabel.setText(meddelelse);
         }
-        if((barnKnap.isSelected() == false) && (foralderKnap.isSelected() == false)){
+        if((brugertypeBarnKnap.isSelected() == false) && (brugertypeForalderKnap.isSelected() == false)){
             meddelelse += "Ingen indtastet brugertype!\n"; 
             opretKontoFejlLabel.setText(meddelelse);
         }

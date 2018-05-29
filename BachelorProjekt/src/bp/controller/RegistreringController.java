@@ -33,38 +33,39 @@ public class RegistreringController{
     RegistreringModel RegMod = new RegistreringModel();
     DatabaseController dc;
     
-    @FXML
-    public Button kostRegistreringGemKnap;
-    @FXML
-    public Button kostRegistreringTilbageKnap;
+    //BmiRegistreringView
     @FXML
     public Button bmiGemKnap;
     @FXML
     public Button bmiTilbageKnap;
     @FXML
-    private RadioButton morgenmadKnap;
-    @FXML
-    private ToggleGroup maltid;
-    @FXML
-    private RadioButton frokostKnap;
-    @FXML
-    private RadioButton aftensmadKnap;
-    @FXML
-    private RadioButton snackKnap;
-    @FXML
-    private TextField kostFelt;
-    @FXML
-    private TextField bmiCprFelt;
-    @FXML
     private TextField bmiHojdeFelt;
     @FXML
     private TextField bmiVagtFelt;
+    @FXML
+    private TextField bmiCprFelt;
     @FXML
     private Label bmiUdregnetLabel;
     @FXML
     private Label bmiGemtLabel;
     @FXML
     private Label bmiFejlLabel;
+    
+    //KostRegistreringView
+    @FXML
+    public Button kostRegistreringGemKnap;
+    @FXML
+    public Button kostRegistreringTilbageKnap;
+    @FXML
+    private RadioButton kostMorgenmadKnap;
+    @FXML
+    private RadioButton kostFrokostKnap;
+    @FXML
+    private RadioButton kostAftensmadKnap;
+    @FXML
+    private RadioButton kostSnackKnap;
+    @FXML
+    private TextField kostFelt;
     @FXML
     private DatePicker datoKostFelt; 
     @FXML
@@ -79,17 +80,17 @@ public class RegistreringController{
     public String radioSelectMaltid(){
         String message = "";
 //        kostFejlLabel.setText("");
-        if (morgenmadKnap.isSelected()){
-            message += morgenmadKnap.getText();
+        if (kostMorgenmadKnap.isSelected()){
+            message += kostMorgenmadKnap.getText();
         }
-        if (frokostKnap.isSelected()){
-            message += frokostKnap.getText();
+        if (kostFrokostKnap.isSelected()){
+            message += kostFrokostKnap.getText();
         }
-        if (aftensmadKnap.isSelected()){
-            message += aftensmadKnap.getText();
+        if (kostAftensmadKnap.isSelected()){
+            message += kostAftensmadKnap.getText();
         }
-        if (snackKnap.isSelected()){
-            message += snackKnap.getText();
+        if (kostSnackKnap.isSelected()){
+            message += kostSnackKnap.getText();
           //  snackKnap.getText();
         } 
 
@@ -127,7 +128,7 @@ public class RegistreringController{
             errorMessage += "Ingen dato valgt!\n";
             kostFejlLabel.setText(errorMessage);
         }
-        if ((snackKnap.isSelected() == false) && (morgenmadKnap.isSelected() == false) && (aftensmadKnap.isSelected() == false) && (frokostKnap.isSelected() == false)){
+        if ((kostSnackKnap.isSelected() == false) && (kostMorgenmadKnap.isSelected() == false) && (kostAftensmadKnap.isSelected() == false) && (kostFrokostKnap.isSelected() == false)){
             errorMessage += "Intet måltid valgt!\n";
             kostFejlLabel.setText(errorMessage);
         }
@@ -176,7 +177,7 @@ public class RegistreringController{
         String meddelelse = "";
         
         if (bmiCprFelt.getText() == null || bmiCprFelt.getText().length() == 0) {
-            meddelelse += "Intet indtastet CPR!\n"; 
+            meddelelse += "Intet indtastet CPR-nummer!\n"; 
             bmiGemtLabel.setText("");
             bmiFejlLabel.setText(meddelelse);
         }

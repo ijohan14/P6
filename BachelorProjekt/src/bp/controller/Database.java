@@ -22,7 +22,7 @@ public class Database {
     
     public Connection getConnection() {
         
-        Connection con = null;
+        Connection forbindelse = null;
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -32,7 +32,7 @@ public class Database {
         }
                 
         try {
-            con = DriverManager.getConnection(dbAdresse, dbBruger, dbKode); 
+            forbindelse = DriverManager.getConnection(dbAdresse, dbBruger, dbKode); 
             System.out.println("Forbindelse til database er oprettet");           
         }
         catch (SQLException me) {
@@ -40,7 +40,7 @@ public class Database {
             System.out.println(me.getMessage());
         }
         
-        return con;
+        return forbindelse;
     }
 }
 

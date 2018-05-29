@@ -40,8 +40,29 @@ public class BornController implements Initializable {
     int intensitet;
     SpilModel SpilMod = new SpilModel();
     
+    //malsatning
     @FXML
     public Button malsatningTilbageKnap; 
+    @FXML
+    private RadioButton gaturMalKnap;
+    @FXML
+    private RadioButton cykelSkoleMalKnap;
+    @FXML
+    private RadioButton enDagMalKnap;
+    @FXML
+    private RadioButton treDageMalKnap;
+    @FXML
+    private RadioButton femDageMalKnap;
+    @FXML
+    private RadioButton enUgeMalKnap;
+    @FXML
+    private Button manuelIndtastningMalsatningKnap;
+    @FXML
+    private Label malsatningFejlLabel;
+    @FXML
+    private Label malsatningGemtLabel;
+    
+    //udfordring
     @FXML
     public Button startTimerKnap;
     @FXML
@@ -53,17 +74,11 @@ public class BornController implements Initializable {
     @FXML
     public Button udfordringTilbageKnap;
     @FXML
-    public Label udfordringOpsummeringLabel;
-    @FXML 
-    public Button udfordringKnap; 
+    public Label udfordringOpsummeringLabel; 
     @FXML
     public Text timerText;
     @FXML
     public Label udfordringFejlLabel;
-    @FXML 
-    public Button malsatningKnap; 
-    @FXML 
-    public Button bornLogUdKnap; 
     @FXML
     private RadioButton sjippetovKnap;
     @FXML
@@ -72,30 +87,14 @@ public class BornController implements Initializable {
     private RadioButton lobeturKnap;
     @FXML
     private RadioButton rulleskojteKnap;
-    @FXML
-    private Label pointsumLabel;
-    @FXML
-    private RadioButton cykelSkoleMalKnap;
-    @FXML
-    private RadioButton gaturMalKnap;
-    @FXML
-    private RadioButton enDagMalKnap;
-    @FXML
-    private RadioButton treDageMalKnap;
-    @FXML
-    private RadioButton femDageMalKnap;
-    @FXML
-    private RadioButton enUgeMalKnap;
-    @FXML
-    private Label malsatningLabel;
-    @FXML
-    private Label malsatningGemtLabel;
-    @FXML
-    private Label malsatningFejlLabel;
-    @FXML
-    private Button manuelIndtastningMalsatningKnap;
-    @FXML
-    private Button manuelIndtastningUdfordringKnap;
+    
+    //menuborn
+    @FXML 
+    public Button bornLogUdKnap; 
+    @FXML 
+    public Button udfordringKnap;
+    @FXML 
+    public Button malsatningKnap; 
     
     //ManuelIndtastiningFysiskAktivitetView
     @FXML
@@ -345,18 +344,18 @@ public class BornController implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
-    private boolean erManuelIndtastningValid(){ 
+    private boolean erManuelIndtastningIndtastet(){ 
         String meddelelse = "";
         if (typeManuelIndtastningFelt.getText() == null || typeManuelIndtastningFelt.getText().length() == 0) {
-            meddelelse += "Ingen valid type af fysisk aktivitet!\n"; 
+            meddelelse += "Ingen indtastet type af fysisk aktivitet!\n"; 
             manuelIndtastningFejlLabel.setText(meddelelse);
         }
         if (varighedManuelIndtastningFelt.getText() == null || varighedManuelIndtastningFelt.getText().length() == 0) {
-            meddelelse += "Ingen valid varighed af fysisk aktivitet!\n";
+            meddelelse += "Ingen indtastet varighed af fysisk aktivitet!\n";
             manuelIndtastningFejlLabel.setText(meddelelse);
         }
         if (intensitetManuelIndtastningFelt.getText() == null || intensitetManuelIndtastningFelt.getText().length() == 0) {
-            meddelelse += "Ingen valid intensitet af fysisk aktivitet!\n"; 
+            meddelelse += "Ingen indtastet intensitet af fysisk aktivitet!\n"; 
             manuelIndtastningFejlLabel.setText(meddelelse);
         }
         if (meddelelse.length() == 0) {
@@ -369,7 +368,7 @@ public class BornController implements Initializable {
     
     @FXML 
     public void handleManuelIndtastningGem(){
-        if(erManuelIndtastningValid()){
+        if(erManuelIndtastningIndtastet()){
             manuelIndtastningFejlLabel.setText("");
             manuelIndtastningGemtLabel.setText("Fysisk aktivitet gemt!");
         }

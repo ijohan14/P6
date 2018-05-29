@@ -21,7 +21,7 @@ import javafx.collections.ObservableList;
 public class DatabaseController {
 
     
-    java.sql.Connection con;
+    java.sql.Connection forbindelse;
     Database database = new Database();
     String meddelelse = "";
             
@@ -33,12 +33,12 @@ public class DatabaseController {
     }
     
     public String hentKontoDB(){ 
-         con = database.getConnection();
+         forbindelse = database.getConnection();
          
         try{
             String SQL = "SELECT * FROM konto";
            
-            ResultSet rs = con.createStatement().executeQuery(SQL);
+            ResultSet rs = forbindelse.createStatement().executeQuery(SQL);
             
             while(rs.next()){
                 KontoModel f = new KontoModel();
@@ -75,12 +75,12 @@ public class DatabaseController {
     
     
     public String tilfojKontoDB(KontoModel konto){ 
-        con = database.getConnection(); 
+        forbindelse = database.getConnection(); 
         PreparedStatement stmt;
         
         try {         
 
-            stmt = con.prepareStatement("INSERT INTO konto (fornavn, efternavn, cpr, familieID, brugertype, adgangskode, startniveau)"
+            stmt = forbindelse.prepareStatement("INSERT INTO konto (fornavn, efternavn, cpr, familieID, brugertype, adgangskode, startniveau)"
                 + "VALUES (?,?,?,?,?,?,?)");
             stmt.setString(1, konto.getFornavn());
             stmt.setString(2, konto.getEfternavn());
@@ -102,9 +102,9 @@ public class DatabaseController {
 }
     
     public boolean verificerCprDB(String indtastetCpr) throws SQLException{
-        con = database.getConnection();
+        forbindelse = database.getConnection();
         String SQL = "SELECT * FROM konto where cpr = '" + indtastetCpr + "'";
-        ResultSet rs = con.createStatement().executeQuery(SQL);
+        ResultSet rs = forbindelse.createStatement().executeQuery(SQL);
         
         if(rs.next()){ 
             String hentetCpr = rs.getString("cpr");
@@ -124,9 +124,9 @@ public class DatabaseController {
     }
     
     public boolean verificerLogInd(String indtastetCpr, String indtastetAdgangskode) throws SQLException{
-        con = database.getConnection();
+        forbindelse = database.getConnection();
         String SQL ="SELECT * FROM konto WHERE cpr = '"+indtastetCpr+"'";
-        ResultSet rs = con.createStatement().executeQuery(SQL);
+        ResultSet rs = forbindelse.createStatement().executeQuery(SQL);
             
             if (rs.next()){
                 String hentetCpr = rs.getString("cpr");
@@ -145,9 +145,9 @@ public class DatabaseController {
     }
     
     public boolean hentBrugertypeDB(String cpr) throws SQLException{
-        con = database.getConnection();
+        forbindelse = database.getConnection();
         String SQL = "SELECT brugertype FROM konto WHERE cpr = '"+cpr+"'";
-        ResultSet rs = con.createStatement().executeQuery(SQL);
+        ResultSet rs = forbindelse.createStatement().executeQuery(SQL);
         if(rs.next()){
             boolean brugertype = rs.getBoolean("brugertype");
             return brugertype;
@@ -156,8 +156,7 @@ public class DatabaseController {
         }
     }
     
-    
-    public String hentSpilDB(){
+    public String hentSpilstatusDB(){
         return meddelelse;
     }
     

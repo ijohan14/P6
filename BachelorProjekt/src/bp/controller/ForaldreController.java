@@ -27,7 +27,7 @@ public class ForaldreController implements Initializable {
     @FXML
     public Button kostRegistreringKnap;
     @FXML
-    public Button isoBmiKnap;
+    public Button bmiRegistreringKnap;
     @FXML
     public Button vejledningKnap;
     @FXML
@@ -80,7 +80,7 @@ public class ForaldreController implements Initializable {
     public void handleBmiRegistrering() throws IOException {
         Stage stage;
         Parent root;
-        stage = (Stage) isoBmiKnap.getScene().getWindow();
+        stage = (Stage) bmiRegistreringKnap.getScene().getWindow();
         root = FXMLLoader.load(getClass().getResource("/bp/view/BmiRegistreringView.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
