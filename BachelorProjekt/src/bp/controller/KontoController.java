@@ -183,7 +183,7 @@ public class KontoController {
 
         if (dc.verificerCprDB(cprFelt.getText()) == false){
 
-        if(erOpretKontoIndtastet() && radioSelectBrugertype() == true){
+        if((erOpretKontoIndtastet()==true) && (radioSelectBrugertype() == true)){
             KontoModel k = new KontoModel(fornavnFelt.getText(), efternavnFelt.getText(), 
                     cprFelt.getText(), familieIDFelt.getText(), radioSelectBrugertype(), 
                     adgangskodeFelt.getText(),0);           
@@ -207,7 +207,6 @@ public class KontoController {
     }
     
     
-      
     private boolean erOpretKontoIndtastet(){ 
         String meddelelse = "";
         opretKontoFejlLabel.setText("");

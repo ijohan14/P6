@@ -48,7 +48,7 @@ public class ForaldreController implements Initializable {
         Stage stage;
         Parent root;
         stage = (Stage) foraldreLogUdKnap.getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("/bp/view/StartView.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/bp/view/LogIndView.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();   

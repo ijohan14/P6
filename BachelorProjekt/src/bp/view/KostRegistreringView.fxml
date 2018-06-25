@@ -47,18 +47,18 @@
                   <Label text="Kost:" GridPane.rowIndex="3" />
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <RadioButton fx:id="morgenmadKnap" mnemonicParsing="false" onAction="#radioSelectMaltid" text="Morgenmad">
+                        <RadioButton fx:id="kostMorgenmadKnap" mnemonicParsing="false" onAction="#radioSelectMaltid" text="Morgenmad">
                            <toggleGroup>
                               <ToggleGroup fx:id="maltid" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="frokostKnap" mnemonicParsing="false" onAction="#radioSelectMaltid" text="Frokost" toggleGroup="$maltid" />
+                        <RadioButton fx:id="kostFrokostKnap" mnemonicParsing="false" onAction="#radioSelectMaltid" text="Frokost" toggleGroup="$maltid" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <RadioButton fx:id="aftensmadKnap" mnemonicParsing="false" onAction="#radioSelectMaltid" prefHeight="18.0" prefWidth="98.0" text="Aftensmad" toggleGroup="$maltid" />
-                        <RadioButton fx:id="snackKnap" mnemonicParsing="false" onAction="#radioSelectMaltid" text="Snack" toggleGroup="$maltid" />
+                        <RadioButton fx:id="kostAftensmadKnap" mnemonicParsing="false" onAction="#radioSelectMaltid" prefHeight="18.0" prefWidth="98.0" text="Aftensmad" toggleGroup="$maltid" />
+                        <RadioButton fx:id="kostSnackKnap" mnemonicParsing="false" onAction="#radioSelectMaltid" text="Snack" toggleGroup="$maltid" />
                      </children>
                   </HBox>
                </children>
